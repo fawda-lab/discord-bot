@@ -216,15 +216,15 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
     rr(p1x, p1y, p1w, p1h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
 
     ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
-    ctx.fillText('Seviye Bilgisi', p1x + 14, p1y + 18);
+    ctx.fillText('Level Info', p1x + 14, p1y + 18);
 
     ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
-    ctx.fillText('▣  Mesaj Seviyesi:', p1x + 14, p1y + 42);
+    ctx.fillText('▣  Message Level:', p1x + 14, p1y + 42);
     ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
     ctx.fillText(`${lvl}`, p1x + 158, p1y + 42);
 
     ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
-    ctx.fillText('◈  Ses Seviyesi:', p1x + 14, p1y + 62);
+    ctx.fillText('◈  Progress:', p1x + 14, p1y + 62);
     ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
     ctx.fillText(isOwner ? '∞' : `${Math.round(pct * 100)}%`, p1x + 158, p1y + 62);
 
@@ -244,15 +244,15 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
     rr(p2x, p2y, p2w, p2h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
 
     ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
-    ctx.fillText('Siralama Bilgisi', p2x + 14, p2y + 18);
+    ctx.fillText('Rank Info', p2x + 14, p2y + 18);
 
     ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
-    ctx.fillText('▣  Mesaj Siralaması:', p2x + 14, p2y + 42);
+    ctx.fillText('▣  Server Rank:', p2x + 14, p2y + 42);
     ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
     ctx.fillText(`#${serverRank}`, p2x + 178, p2y + 42);
 
     ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
-    ctx.fillText('◈  Toplam XP:', p2x + 14, p2y + 62);
+    ctx.fillText('◈  Total XP:', p2x + 14, p2y + 62);
     ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
     ctx.fillText(isOwner ? '∞' : totXP.toLocaleString(), p2x + 178, p2y + 62);
 
