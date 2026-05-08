@@ -1,28 +1,30 @@
+const log = require('./logger')('RankBot');
+
 const http = require('http');
 const server = http.createServer((req, res) => {
   try {
     res.writeHead(200);
     res.end('Bot is alive!');
   } catch (e) {
-    console.error('HTTP Server Error:', e);
+    log.error('HTTP Server Error:', e);
   }
 });
 server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-        console.error(`[HTTP] Port ${process.env.PORT || 3000} is already in use.`);
+        log.error(`[HTTP] Port ${process.env.PORT || 3000} is already in use.`);
         process.exit(1);
     }
-    console.error('[HTTP] Server error:', err);
+    log.error('[HTTP] Server error:', err);
 });
 server.listen(process.env.PORT || 3000);
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.error('[Anti-Crash] Unhandled Rejection at:', promise);
-    console.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
+    log.error('[Anti-Crash] Unhandled Rejection at:', promise);
+    log.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
 });
 process.on('uncaughtException', (err) => {
-    console.error('[Anti-Crash] Uncaught Exception:', err.message);
-    console.error(err.stack);
+    log.error('[Anti-Crash] Uncaught Exception:', err.message);
+    log.error(err.stack);
 });
 
 const {
@@ -76,7 +78,7 @@ function getMainBotData() {
     try {
         const p = path.join(__dirname, 'data.json');
         if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
-    } catch (e) { console.debug('[DEBUG]', e.message); }
+    } catch (e) { log.debug('[DEBUG]', e.message); }
     return null;
 }
 
@@ -125,15 +127,15 @@ async function handleRankUp(userId, oldLevel, newLevel, guild) {
     // Remove all rank roles, apply new highest one
     for (const rank of RANKS) {
         if (member.roles.cache.has(rank.id))
-            await member.roles.remove(rank.id).catch(e => console.debug('[DEBUG]', e.message));
+            await member.roles.remove(rank.id).catch(e => log.debug('[DEBUG]', e.message));
     }
     const role = guild.roles.cache.get(milestone.id);
-    if (role) await member.roles.add(role).catch(e => console.debug('[DEBUG]', e.message));
+    if (role) await member.roles.add(role).catch(e => log.debug('[DEBUG]', e.message));
 
     await member.send(
         `🎉 You reached **Level ${newLevel}** in **FAWDA**!\n` +
         `You unlocked the rank **${milestone.name}**! Congrats!`
-    ).catch(e => console.debug('[DEBUG]', e.message));
+    ).catch(e => log.debug('[DEBUG]', e.message));
 }
 
 // ─── Voice session tracking ───────────────────────────────────────────────────
@@ -157,7 +159,7 @@ function getRankColors(level) {
 // ─── Card generator (static PNG) ─────────────────────────────────────────────
 async function generateCard(member, levelInfo, guild, serverRank, warnCount, isOwner) {
     let avatarImg = null;
-    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); } catch (e) { console.debug('[DEBUG]', e.message); }
+    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); } catch (e) { log.debug('[DEBUG]', e.message); }
 
     const W = 700, H = 220;
     const canvas = createCanvas(W, H);
@@ -303,7 +305,7 @@ const client = new Client({
 });
 
 client.once('ready', async () => {
-    console.log(`[Rank Bot] Logged in as ${client.user.tag}`);
+    log.info(`[Rank Bot] Logged in as ${client.user.tag}`);
     const guild = client.guilds.cache.get(GUILD_ID);
     if (guild) {
         await guild.members.fetch();
@@ -313,9 +315,9 @@ client.once('ready', async () => {
     }
 });
 
-client.on('error', (err) => console.error('[Discord Client Error]', err));
-client.on('warn', (info) => console.warn('[Discord Client Warning]', info));
-client.on('rateLimit', (info) => console.warn('[Discord Rate Limit]', info));
+client.on('error', (err) => log.error('[Discord Client Error]', err));
+client.on('warn', (info) => log.warn('[Discord Client Warning]', info));
+client.on('rateLimit', (info) => log.warn('[Discord Rate Limit]', info));
 
 // ─── Voice XP ─────────────────────────────────────────────────────────────────
 client.on('voiceStateUpdate', async (oldState, newState) => {
@@ -362,12 +364,12 @@ client.on('messageCreate', async (msg) => {
         await handleCommand(msg, cmd, args);
     } catch (e) {
         logCommandError(e, cmd, msg, args);
-        msg.reply('❌ An error occurred.').catch(e => console.debug('[DEBUG]', e.message));
+        msg.reply('❌ An error occurred.').catch(e => log.debug('[DEBUG]', e.message));
     }
 });
 
 function logCommandError(err, cmd, msg, args) {
-    console.error(
+    log.error(
         `[Command Error] cmd=${cmd} user=${msg.author.tag} (${msg.author.id}) ` +
         `args=${JSON.stringify(args)} guild=${msg.guild?.name} (${msg.guild?.id})\n` +
         (err.stack ?? err)
@@ -401,10 +403,10 @@ async function handleCommand(msg, cmd, args) {
         const notice = await msg.reply('⏳ Generating rank card...');
         try {
             const buffer = await generateCard(target, lvInfo, guild, serverRank, warnCount, isOwner);
-            await notice.delete().catch(e => console.debug('[DEBUG]', e.message));
+            await notice.delete().catch(e => log.debug('[DEBUG]', e.message));
             return msg.reply({ files: [new AttachmentBuilder(buffer, { name: 'rank.png' })] });
         } catch (e) {
-            console.error('Card generation error:', e);
+            log.error('Card generation error:', e);
             await notice.edit({ content: null, embeds: [errEmbed('Failed to generate card.')] });
         }
         return;
@@ -503,18 +505,18 @@ function errEmbed(text) {
 }
 
 async function gracefulShutdown(signal) {
-    console.log(`[Rank Bot] Received ${signal}, shutting down gracefully...`);
+    log.info(`[Rank Bot] Received ${signal}, shutting down gracefully...`);
     const guild = client.guilds.cache.get(GUILD_ID);
     if (guild) {
         for (const [userId, joinTime] of voiceSessions) {
             const minutes = Math.floor((Date.now() - joinTime) / 60_000);
             if (minutes > 0) {
                 try { await addXP(userId, minutes * VOICE_XP, guild); }
-                catch (e) { console.debug('[DEBUG]', e.message); }
+                catch (e) { log.debug('[DEBUG]', e.message); }
             }
         }
     }
-    try { client.destroy(); } catch (e) { console.debug('[DEBUG]', e.message); }
+    try { client.destroy(); } catch (e) { log.debug('[DEBUG]', e.message); }
     server.close(() => process.exit(0));
 }
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));

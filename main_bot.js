@@ -1,28 +1,30 @@
+const log = require('./logger')('MainBot');
+
 const http = require('http');
 const server = http.createServer((req, res) => {
   try {
     res.writeHead(200);
     res.end('Bot is alive!');
   } catch (e) {
-    console.error('HTTP Server Error:', e);
+    log.error('HTTP Server Error:', e);
   }
 });
 server.on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
-        console.error(`[HTTP] Port ${process.env.PORT || 3001} is already in use.`);
+        log.error(`[HTTP] Port ${process.env.PORT || 3001} is already in use.`);
         process.exit(1);
     }
-    console.error('[HTTP] Server error:', err);
+    log.error('[HTTP] Server error:', err);
 });
 server.listen(process.env.PORT || 3001);
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.error('[Anti-Crash] Unhandled Rejection at:', promise);
-    console.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
+    log.error('[Anti-Crash] Unhandled Rejection at:', promise);
+    log.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
 });
 process.on('uncaughtException', (err) => {
-    console.error('[Anti-Crash] Uncaught Exception:', err.message);
-    console.error(err.stack);
+    log.error('[Anti-Crash] Uncaught Exception:', err.message);
+    log.error(err.stack);
 });
 
 const {
@@ -92,7 +94,7 @@ function loadData() {
         return { warns: {}, jailed: {}, sasList: [], verifications: {}, jailActions: {} };
     try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); }
     catch (e) {
-        console.error('[Data] Failed to parse data.json:', e.message);
+        log.error('[Data] Failed to parse data.json:', e.message);
         return { warns: {}, jailed: {}, sasList: [], verifications: {}, jailActions: {} };
     }
 }
@@ -134,11 +136,11 @@ const client = new Client({
     ],
 });
 
-client.on('ready', () => console.log(`[Main Bot] Logged in as ${client.user.tag}`));
+client.on('ready', () => log.info(`[Main Bot] Logged in as ${client.user.tag}`));
 
-client.on('error', (err) => console.error('[Discord Client Error]', err));
-client.on('warn', (info) => console.warn('[Discord Client Warning]', info));
-client.on('rateLimit', (info) => console.warn('[Discord Rate Limit]', info));
+client.on('error', (err) => log.error('[Discord Client Error]', err));
+client.on('warn', (info) => log.warn('[Discord Client Warning]', info));
+client.on('rateLimit', (info) => log.warn('[Discord Rate Limit]', info));
 
 // ─── Help panel ───────────────────────────────────────────────────────────────
 function buildHelpRows() {
@@ -250,7 +252,7 @@ client.on('interactionCreate', async (interaction) => {
         const builder = HELP_PANELS[id];
         if (builder) await interaction.reply({ embeds: [builder()], ephemeral: true });
     } catch (error) {
-        console.error('[Interaction Error]', error);
+        log.error('[Interaction Error]', error);
         try {
             if (interaction.replied || interaction.deferred) {
                 await interaction.followUp({ content: '❌ An error occurred. Please try again later.', ephemeral: true });
@@ -258,7 +260,7 @@ client.on('interactionCreate', async (interaction) => {
                 await interaction.reply({ content: '❌ An error occurred. Please try again later.', ephemeral: true });
             }
         } catch (e) {
-            console.error('Failed to send interaction error message:', e);
+            log.error('Failed to send interaction error message:', e);
         }
     }
 });
@@ -272,7 +274,7 @@ client.on('messageCreate', async (msg) => {
     if (msg.author.bot || !msg.guild) return;
 
     if (msg.content.includes(`<@${RAYSS_ID}>`) && fs.existsSync(RAYSS_IMG)) {
-        await msg.reply({ files: [RAYSS_IMG] }).catch(e => console.debug('[DEBUG]', e.message));
+        await msg.reply({ files: [RAYSS_IMG] }).catch(e => log.debug('[DEBUG]', e.message));
     }
 
     if (!msg.content.startsWith(PREFIX)) return;
@@ -282,12 +284,12 @@ client.on('messageCreate', async (msg) => {
         await handleCommand(msg, cmd, args);
     } catch (e) {
         logCommandError(e, cmd, msg, args);
-        msg.reply('❌ An error occurred.').catch(e => console.debug('[DEBUG]', e.message));
+        msg.reply('❌ An error occurred.').catch(e => log.debug('[DEBUG]', e.message));
     }
 });
 
 function logCommandError(err, cmd, msg, args) {
-    console.error(
+    log.error(
         `[Command Error] cmd=${cmd} user=${msg.author.tag} (${msg.author.id}) ` +
         `args=${JSON.stringify(args)} guild=${msg.guild?.name} (${msg.guild?.id})\n` +
         (err.stack ?? err)
@@ -322,9 +324,9 @@ async function handleCommand(msg, cmd, args) {
         const boy  = guild.roles.cache.get(ROLES.BOY);
         const male = guild.roles.cache.get(ROLES.MALE);
         const unv  = guild.roles.cache.get(ROLES.UNVERIFIED);
-        if (boy)  await target.roles.add(boy).catch(e => console.debug('[DEBUG]', e.message));
-        if (male) await target.roles.add(male).catch(e => console.debug('[DEBUG]', e.message));
-        if (unv)  await target.roles.remove(unv).catch(e => console.debug('[DEBUG]', e.message));
+        if (boy)  await target.roles.add(boy).catch(e => log.debug('[DEBUG]', e.message));
+        if (male) await target.roles.add(male).catch(e => log.debug('[DEBUG]', e.message));
+        if (unv)  await target.roles.remove(unv).catch(e => log.debug('[DEBUG]', e.message));
         data.verifications[member.id] = (data.verifications[member.id] || 0) + 1;
         saveData(data);
         const e = new EmbedBuilder()
@@ -348,9 +350,9 @@ async function handleCommand(msg, cmd, args) {
         const girl   = guild.roles.cache.get(ROLES.GIRL);
         const female = guild.roles.cache.get(ROLES.FEMALE);
         const unv    = guild.roles.cache.get(ROLES.UNVERIFIED);
-        if (girl)   await target.roles.add(girl).catch(e => console.debug('[DEBUG]', e.message));
-        if (female) await target.roles.add(female).catch(e => console.debug('[DEBUG]', e.message));
-        if (unv)    await target.roles.remove(unv).catch(e => console.debug('[DEBUG]', e.message));
+        if (girl)   await target.roles.add(girl).catch(e => log.debug('[DEBUG]', e.message));
+        if (female) await target.roles.add(female).catch(e => log.debug('[DEBUG]', e.message));
+        if (unv)    await target.roles.remove(unv).catch(e => log.debug('[DEBUG]', e.message));
         data.verifications[member.id] = (data.verifications[member.id] || 0) + 1;
         saveData(data);
         const e = new EmbedBuilder()
@@ -424,8 +426,8 @@ async function handleCommand(msg, cmd, args) {
         const jailRole = guild.roles.cache.get(ROLES.JAIL);
         if (jailRole) {
             const rolesToRemove = target.roles.cache.filter(r => r.id !== guild.roles.everyone.id && r.id !== ROLES.JAIL);
-            for (const [, r] of rolesToRemove) { await target.roles.remove(r).catch(e => console.debug('[DEBUG]', e.message)); await sleep(300); }
-            await target.roles.add(jailRole).catch(e => console.debug('[DEBUG]', e.message));
+            for (const [, r] of rolesToRemove) { await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message)); await sleep(300); }
+            await target.roles.add(jailRole).catch(e => log.debug('[DEBUG]', e.message));
         }
         data.jailed[target.id] = {
             reason, jailedBy: member.id,
@@ -446,7 +448,7 @@ async function handleCommand(msg, cmd, args) {
             )
             .setFooter(ft(client)).setTimestamp();
         await msg.reply({ embeds: [e] });
-        await target.send(`🔒 You have been **jailed** in **${guild.name}**.\n📝 Reason: ${reason}`).catch(e => console.debug('[DEBUG]', e.message));
+        await target.send(`🔒 You have been **jailed** in **${guild.name}**.\n📝 Reason: ${reason}`).catch(e => log.debug('[DEBUG]', e.message));
         return;
     }
 
@@ -458,9 +460,9 @@ async function handleCommand(msg, cmd, args) {
         const jailData = data.jailed[target.id];
         if (!jailData) return msg.reply({ embeds: [errEmbed('That member is not jailed.')] });
         const jailRole = guild.roles.cache.get(ROLES.JAIL);
-        if (jailRole) await target.roles.remove(jailRole).catch(e => console.debug('[DEBUG]', e.message));
+        if (jailRole) await target.roles.remove(jailRole).catch(e => log.debug('[DEBUG]', e.message));
         const roleToAdd = guild.roles.cache.get(isGirl ? ROLES.GIRL : ROLES.BOY);
-        if (roleToAdd) await target.roles.add(roleToAdd).catch(e => console.debug('[DEBUG]', e.message));
+        if (roleToAdd) await target.roles.add(roleToAdd).catch(e => log.debug('[DEBUG]', e.message));
         delete data.jailed[target.id];
         saveData(data);
         const e = new EmbedBuilder()
@@ -522,18 +524,18 @@ async function handleCommand(msg, cmd, args) {
         const warnRoles = [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN];
         for (const roleId of warnRoles) {
             const r = guild.roles.cache.get(roleId);
-            if (r && target.roles.cache.has(roleId)) await target.roles.remove(r).catch(e => console.debug('[DEBUG]', e.message));
+            if (r && target.roles.cache.has(roleId)) await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
         }
         const warnRoleMap = { 1: ROLES.FIRST_WARN, 2: ROLES.SECOND_WARN, 3: ROLES.LAST_WARN };
         if (warnRoleMap[Math.min(count, 3)]) {
             const r = guild.roles.cache.get(warnRoleMap[Math.min(count, 3)]);
-            if (r) await target.roles.add(r).catch(e => console.debug('[DEBUG]', e.message));
+            if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
         }
         if (count === 3) {
             const muted = guild.roles.cache.get(ROLES.MUTED);
-            if (muted) await target.roles.add(muted).catch(e => console.debug('[DEBUG]', e.message));
+            if (muted) await target.roles.add(muted).catch(e => log.debug('[DEBUG]', e.message));
         }
-        if (count >= 4) await target.kick(`Auto-kick: ${count} warns`).catch(e => console.debug('[DEBUG]', e.message));
+        if (count >= 4) await target.kick(`Auto-kick: ${count} warns`).catch(e => log.debug('[DEBUG]', e.message));
 
         saveData(data);
         const e = new EmbedBuilder()
@@ -549,7 +551,7 @@ async function handleCommand(msg, cmd, args) {
             )
             .setFooter(ft(client)).setTimestamp();
         await msg.reply({ embeds: [e] });
-        await target.send(`⚠️ You received a **warn** in **${guild.name}**.\n📝 Reason: ${reason}\n📊 Total: ${warnBar(count)} (${count}/3)`).catch(e => console.debug('[DEBUG]', e.message));
+        await target.send(`⚠️ You received a **warn** in **${guild.name}**.\n📝 Reason: ${reason}\n📊 Total: ${warnBar(count)} (${count}/3)`).catch(e => log.debug('[DEBUG]', e.message));
         return;
     }
 
@@ -566,12 +568,12 @@ async function handleCommand(msg, cmd, args) {
         const allWarnRoles = [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN, ROLES.MUTED];
         for (const roleId of allWarnRoles) {
             const r = guild.roles.cache.get(roleId);
-            if (r && target.roles.cache.has(roleId)) await target.roles.remove(r).catch(e => console.debug('[DEBUG]', e.message));
+            if (r && target.roles.cache.has(roleId)) await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
         }
         const warnRoleMap = { 1: ROLES.FIRST_WARN, 2: ROLES.SECOND_WARN, 3: ROLES.LAST_WARN };
         if (warnRoleMap[newCount]) {
             const r = guild.roles.cache.get(warnRoleMap[newCount]);
-            if (r) await target.roles.add(r).catch(e => console.debug('[DEBUG]', e.message));
+            if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
         }
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
@@ -639,7 +641,7 @@ async function handleCommand(msg, cmd, args) {
             )
             .setFooter(ft(client)).setTimestamp();
         await msg.reply({ embeds: [e] });
-        await target.send(`⏱️ You have been **timed out** in **${guild.name}** for **${timeArg}**.\n📝 Reason: ${reason}`).catch(e => console.debug('[DEBUG]', e.message));
+        await target.send(`⏱️ You have been **timed out** in **${guild.name}** for **${timeArg}**.\n📝 Reason: ${reason}`).catch(e => log.debug('[DEBUG]', e.message));
         return;
     }
 
@@ -831,7 +833,7 @@ async function handleCommand(msg, cmd, args) {
         const amount = parseInt(args[0]);
         if (!args[0] || isNaN(amount) || amount < 1 || amount > 100)
             return msg.reply({ embeds: [errEmbed('Usage: `+ms7 [1-100]`')] });
-        await msg.delete().catch(e => console.debug('[DEBUG]', e.message));
+        await msg.delete().catch(e => log.debug('[DEBUG]', e.message));
         const deleted = await channel.bulkDelete(amount, true).catch(() => null);
         const count   = deleted?.size ?? 0;
         const notice  = await channel.send({
@@ -839,7 +841,7 @@ async function handleCommand(msg, cmd, args) {
                 .setDescription(`🗑️  **${count}** message(s) deleted by ${member}.`)
                 .setFooter(ft(client))]
         });
-        setTimeout(() => notice.delete().catch(e => console.debug('[DEBUG]', e.message)), 4000);
+        setTimeout(() => notice.delete().catch(e => log.debug('[DEBUG]', e.message)), 4000);
         return;
     }
 
@@ -901,8 +903,8 @@ async function resolveUser(guild, raw) {
 }
 
 async function gracefulShutdown(signal) {
-    console.log(`[Main Bot] Received ${signal}, shutting down gracefully...`);
-    try { client.destroy(); } catch (e) { console.debug('[DEBUG]', e.message); }
+    log.info(`[Main Bot] Received ${signal}, shutting down gracefully...`);
+    try { client.destroy(); } catch (e) { log.debug('[DEBUG]', e.message); }
     server.close(() => process.exit(0));
 }
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));

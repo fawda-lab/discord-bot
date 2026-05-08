@@ -10,6 +10,7 @@ data.json
 rank_data.json
 
 # Logs
+logs/
 *.log
 npm-debug.log*
 
