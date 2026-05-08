@@ -1,8 +1,29 @@
 const http = require('http');
-http.createServer((req, res) => {
-  res.writeHead(200);
-  res.end('Bot is alive!');
-}).listen(process.env.PORT || 3000);
+const server = http.createServer((req, res) => {
+  try {
+    res.writeHead(200);
+    res.end('Bot is alive!');
+  } catch (e) {
+    console.error('HTTP Server Error:', e);
+  }
+});
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.error(`[HTTP] Port ${process.env.PORT || 3000} is already in use.`);
+        process.exit(1);
+    }
+    console.error('[HTTP] Server error:', err);
+});
+server.listen(process.env.PORT || 3000);
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('[Anti-Crash] Unhandled Rejection at:', promise);
+    console.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
+});
+process.on('uncaughtException', (err) => {
+    console.error('[Anti-Crash] Uncaught Exception:', err.message);
+    console.error(err.stack);
+});
 
 const {
     Client, GatewayIntentBits, EmbedBuilder, AttachmentBuilder, PermissionFlagsBits,
@@ -45,13 +66,17 @@ function loadData() {
     try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); }
     catch { return { users: {} }; }
 }
-function saveData(d) { fs.writeFileSync(DATA_FILE, JSON.stringify(d, null, 2), 'utf8'); }
+function saveData(d) {
+    const tmp = DATA_FILE + '.tmp';
+    fs.writeFileSync(tmp, JSON.stringify(d, null, 2), 'utf8');
+    fs.renameSync(tmp, DATA_FILE);
+}
 
 function getMainBotData() {
     try {
         const p = path.join(__dirname, 'data.json');
         if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
-    } catch {}
+    } catch (e) { console.debug('[DEBUG]', e.message); }
     return null;
 }
 
@@ -100,15 +125,15 @@ async function handleRankUp(userId, oldLevel, newLevel, guild) {
     // Remove all rank roles, apply new highest one
     for (const rank of RANKS) {
         if (member.roles.cache.has(rank.id))
-            await member.roles.remove(rank.id).catch(() => {});
+            await member.roles.remove(rank.id).catch(e => console.debug('[DEBUG]', e.message));
     }
     const role = guild.roles.cache.get(milestone.id);
-    if (role) await member.roles.add(role).catch(() => {});
+    if (role) await member.roles.add(role).catch(e => console.debug('[DEBUG]', e.message));
 
     await member.send(
         `🎉 You reached **Level ${newLevel}** in **FAWDA**!\n` +
         `You unlocked the rank **${milestone.name}**! Congrats!`
-    ).catch(() => {});
+    ).catch(e => console.debug('[DEBUG]', e.message));
 }
 
 // ─── Voice session tracking ───────────────────────────────────────────────────
@@ -132,7 +157,7 @@ function getRankColors(level) {
 // ─── Card generator (static PNG) ─────────────────────────────────────────────
 async function generateCard(member, levelInfo, guild, serverRank, warnCount, isOwner) {
     let avatarImg = null;
-    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); } catch {}
+    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); } catch (e) { console.debug('[DEBUG]', e.message); }
 
     const W = 700, H = 220;
     const canvas = createCanvas(W, H);
@@ -288,6 +313,10 @@ client.once('ready', async () => {
     }
 });
 
+client.on('error', (err) => console.error('[Discord Client Error]', err));
+client.on('warn', (info) => console.warn('[Discord Client Warning]', info));
+client.on('rateLimit', (info) => console.warn('[Discord Rate Limit]', info));
+
 // ─── Voice XP ─────────────────────────────────────────────────────────────────
 client.on('voiceStateUpdate', async (oldState, newState) => {
     const member = newState.member ?? oldState.member;
@@ -329,9 +358,21 @@ client.on('messageCreate', async (msg) => {
 
     const args = msg.content.slice(PREFIX.length).trim().split(/\s+/);
     const cmd  = args.shift().toLowerCase();
-    try { await handleCommand(msg, cmd, args); }
-    catch (e) { if (e.code !== 10008) console.error(e); }
+    try {
+        await handleCommand(msg, cmd, args);
+    } catch (e) {
+        logCommandError(e, cmd, msg, args);
+        msg.reply('❌ An error occurred.').catch(e => console.debug('[DEBUG]', e.message));
+    }
 });
+
+function logCommandError(err, cmd, msg, args) {
+    console.error(
+        `[Command Error] cmd=${cmd} user=${msg.author.tag} (${msg.author.id}) ` +
+        `args=${JSON.stringify(args)} guild=${msg.guild?.name} (${msg.guild?.id})\n` +
+        (err.stack ?? err)
+    );
+}
 
 // ─── Commands ─────────────────────────────────────────────────────────────────
 async function handleCommand(msg, cmd, args) {
@@ -360,7 +401,7 @@ async function handleCommand(msg, cmd, args) {
         const notice = await msg.reply('⏳ Generating rank card...');
         try {
             const buffer = await generateCard(target, lvInfo, guild, serverRank, warnCount, isOwner);
-            await notice.delete().catch(() => {});
+            await notice.delete().catch(e => console.debug('[DEBUG]', e.message));
             return msg.reply({ files: [new AttachmentBuilder(buffer, { name: 'rank.png' })] });
         } catch (e) {
             console.error('Card generation error:', e);
@@ -460,5 +501,23 @@ async function handleCommand(msg, cmd, args) {
 function errEmbed(text) {
     return new EmbedBuilder().setColor(0xED4245).setDescription(`❌  ${text}`);
 }
+
+async function gracefulShutdown(signal) {
+    console.log(`[Rank Bot] Received ${signal}, shutting down gracefully...`);
+    const guild = client.guilds.cache.get(GUILD_ID);
+    if (guild) {
+        for (const [userId, joinTime] of voiceSessions) {
+            const minutes = Math.floor((Date.now() - joinTime) / 60_000);
+            if (minutes > 0) {
+                try { await addXP(userId, minutes * VOICE_XP, guild); }
+                catch (e) { console.debug('[DEBUG]', e.message); }
+            }
+        }
+    }
+    try { client.destroy(); } catch (e) { console.debug('[DEBUG]', e.message); }
+    server.close(() => process.exit(0));
+}
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 
 client.login(TOKEN);
