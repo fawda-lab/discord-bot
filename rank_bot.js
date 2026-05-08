@@ -8,7 +8,6 @@ const {
     Client, GatewayIntentBits, EmbedBuilder, AttachmentBuilder, PermissionFlagsBits,
 } = require('discord.js');
 const { createCanvas, loadImage } = require('@napi-rs/canvas');
-const GIFEncoder = require('gif-encoder-2');
 const fs   = require('fs');
 const path = require('path');
 
@@ -130,341 +129,141 @@ function getRankColors(level) {
     return                   { P: '#94A3B8', D: '#334155', BAR0: '#0F172A', BAR1: '#94A3B8', BAR2: '#64748B' }; // Initiate— slate
 }
 
-// ─── Card helpers ─────────────────────────────────────────────────────────────
-function getTopRoleName(member) {
-    const priority = [
-        { id: '1487864551226478674', name: 'OWNER'        },
-        { id: '1487864552275312722', name: 'FOUNDER'      },
-        { id: '1487864577134952601', name: 'ADMINISTRATOR'},
-        { id: '1487864579596877874', name: 'HEAD MOD'     },
-        { id: '1487864597795966976', name: 'STAFF TEAM'   },
-        { id: '1487864605660151849', name: 'VERIFICATION' },
-    ];
-    for (const { id, name } of priority) {
-        if (member.roles.cache.has(id)) return name;
-    }
-    const topRank = [...RANKS].reverse().find(r => member.roles.cache.has(r.id));
-    if (topRank) return topRank.name.toUpperCase();
-    return 'MEMBER';
-}
-
-function getClearance(level) {
-    if (level >= 100) return 'OMEGA — UNRESTRICTED';
-    if (level >= 90)  return 'OMEGA LEVEL 4';
-    if (level >= 80)  return 'OMEGA LEVEL 3';
-    if (level >= 70)  return 'OMEGA LEVEL 2';
-    if (level >= 60)  return 'OMEGA LEVEL 1';
-    if (level >= 50)  return 'SIGMA — TOP SECRET';
-    if (level >= 40)  return 'ALPHA — SECRET';
-    if (level >= 30)  return 'BETA — CLASSIFIED';
-    if (level >= 20)  return 'GAMMA — RESTRICTED';
-    if (level >= 10)  return 'DELTA — RESTRICTED';
-    return 'NONE — INITIATE';
-}
-
-function getMentalState(warns) {
-    if (warns >= 3) return 'CRITICAL';
-    if (warns === 2) return 'VOLATILE';
-    if (warns === 1) return 'UNSTABLE';
-    return 'STABLE';
-}
-
-function drawCornerBrackets(ctx, x, y, w, h, size, color) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    const corners = [
-        [[x, y + size], [x, y], [x + size, y]],
-        [[x + w - size, y], [x + w, y], [x + w, y + size]],
-        [[x, y + h - size], [x, y + h], [x + size, y + h]],
-        [[x + w - size, y + h], [x + w, y + h], [x + w, y + h - size]],
-    ];
-    for (const pts of corners) {
-        ctx.beginPath();
-        ctx.moveTo(pts[0][0], pts[0][1]);
-        ctx.lineTo(pts[1][0], pts[1][1]);
-        ctx.lineTo(pts[2][0], pts[2][1]);
-        ctx.stroke();
-    }
-}
-
-function drawOrbit(ctx, cx, cy, color) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 0.8;
-    for (const angle of [0, Math.PI / 3, -Math.PI / 3]) {
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, 18, 8, angle, 0, Math.PI * 2);
-        ctx.stroke();
-    }
-    ctx.fillStyle = color;
-    ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2); ctx.fill();
-}
-
-function drawWormSquare(ctx, x, y, w, h, color, wavePhase) {
-    const perim = 2 * (w + h);
-
-    // Ghost trail — dim solid border always visible
-    ctx.strokeStyle = color + '33';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([]);
-    ctx.lineDashOffset = 0;
-    ctx.strokeRect(x, y, w, h);
-
-    // Worms: multiple short dashes marching around the rectangle
-    const dashLen = 18, gapLen = 14;
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    ctx.setLineDash([dashLen, gapLen]);
-    ctx.lineDashOffset = -((wavePhase / (Math.PI * 2)) * (dashLen + gapLen) * 4);
-    ctx.strokeRect(x, y, w, h);
-    ctx.setLineDash([]);
-    ctx.lineDashOffset = 0;
-
-    // Corner nodes that pulse in brightness
-    const pulse = 0.35 + 0.65 * Math.abs(Math.sin(wavePhase));
-    ctx.fillStyle = color;
-    ctx.globalAlpha = pulse;
-    for (const [cx, cy] of [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]) {
-        ctx.beginPath(); ctx.arc(cx, cy, 4, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.globalAlpha = 1;
-}
-
-// ─── Card generator ───────────────────────────────────────────────────────────
+// ─── Card generator (static PNG) ─────────────────────────────────────────────
 async function generateCard(member, levelInfo, guild, serverRank, warnCount, isOwner) {
-    // Pre-load images once, reuse across all frames
-    let avatarImg = null, iconImg = null;
-    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 256 })); } catch {}
-    try { const u = guild.iconURL({ extension: 'png', size: 128 }); if (u) iconImg = await loadImage(u); } catch {}
+    let avatarImg = null;
+    try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); } catch {}
 
-    const FRAMES = 24, DELAY = 55; // ~18fps, 1.3s loop
-    const W = 700, H = 870;
-    const encoder = new GIFEncoder(W, H, 'octree', true);
-    encoder.setDelay(DELAY);
-    encoder.setRepeat(0);
-    encoder.start();
+    const W = 700, H = 220;
+    const canvas = createCanvas(W, H);
+    const ctx    = canvas.getContext('2d');
 
-    for (let f = 0; f < FRAMES; f++) {
-        const canvas = createCanvas(W, H);
-        const ctx    = canvas.getContext('2d');
-        const wavePhase = (f / FRAMES) * Math.PI * 2;
-        const scanY     = 8 + Math.round((f / FRAMES) * (H - 16));
-        const dotBlink  = f % 4 < 2; // blink every 2 frames
-        await drawFrame(ctx, member, levelInfo, guild, serverRank, warnCount, isOwner, avatarImg, iconImg, wavePhase, scanY, dotBlink);
-        encoder.addFrame(ctx);
+    const lvl      = isOwner ? 9999 : levelInfo.level;
+    const curXP    = isOwner ? Infinity : levelInfo.currentXP;
+    const maxXP    = isOwner ? Infinity : levelInfo.neededXP;
+    const totXP    = isOwner ? Infinity : levelInfo.totalXP;
+    const pct      = isOwner ? 1 : Math.min(1, curXP / maxXP);
+    const rankName = isOwner ? '»Royal' : getRankName(lvl);
+    const { P: accent, D: accentDark, BAR0, BAR1, BAR2 } = getRankColors(lvl);
+
+    // rounded rect path helper
+    function rr(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.arcTo(x + w, y,     x + w, y + r,     r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+        ctx.lineTo(x + r, y + h);
+        ctx.arcTo(x,     y + h, x,     y + h - r, r);
+        ctx.lineTo(x,     y + r);
+        ctx.arcTo(x,     y,     x + r, y,          r);
+        ctx.closePath();
     }
 
-    encoder.finish();
-    return Buffer.from(encoder.out.getData());
-}
+    // ── Card background ──────────────────────────────────────────────────────
+    const bg = ctx.createLinearGradient(0, 0, W, H);
+    bg.addColorStop(0, accentDark + 'dd');
+    bg.addColorStop(1, '#0d0d18');
+    rr(0, 0, W, H, 20); ctx.fillStyle = bg; ctx.fill();
 
-async function drawFrame(ctx, member, levelInfo, guild, serverRank, warnCount, isOwner, avatarImg, iconImg, wavePhase, scanY, dotBlink) {
-    const W = 700, H = 870;
-    const BG    = '#060606';
-    const PANEL = '#0d0d0d';
+    // Card border
+    rr(0, 0, W, H, 20);
+    ctx.strokeStyle = accent + '99'; ctx.lineWidth = 2; ctx.stroke();
 
-    const lvl         = isOwner ? 9999 : levelInfo.level;
-    const { P: GOLD, D: GOLD_DIM, BAR0, BAR1, BAR2 } = getRankColors(lvl);
-    const curXP       = isOwner ? Infinity : levelInfo.currentXP;
-    const maxXP       = isOwner ? Infinity : levelInfo.neededXP;
-    const totXP       = isOwner ? Infinity : levelInfo.totalXP;
-    const pct         = isOwner ? 1 : Math.min(1, curXP / maxXP);
-    const rankName    = isOwner ? '»Royal' : getRankName(lvl);
-    const func_       = getTopRoleName(member);
-    const clearance   = isOwner ? 'OMEGA — UNRESTRICTED' : getClearance(lvl);
-    const mentalState = isOwner ? 'VOLATILE' : getMentalState(warnCount);
-    const joinDate    = member.joinedAt ? member.joinedAt.toISOString().split('T')[0] : '????-??-??';
+    // Left accent stripe
+    rr(0, 0, 7, H, 4); ctx.fillStyle = accent; ctx.fill();
 
-    // ── Background + scanlines ───────────────────────────────────────────────
-    ctx.fillStyle = BG;
-    ctx.fillRect(0, 0, W, H);
-    ctx.fillStyle = 'rgba(0,0,0,0.12)';
-    for (let y = 0; y < H; y += 4) ctx.fillRect(0, y, W, 1);
+    // ── Avatar ───────────────────────────────────────────────────────────────
+    const avR = 38, avCX = 65, avCY = 65;
+    ctx.save();
+    rr(avCX - avR, avCY - avR, avR * 2, avR * 2, avR);
+    ctx.clip();
+    if (avatarImg) ctx.drawImage(avatarImg, avCX - avR, avCY - avR, avR * 2, avR * 2);
+    else { ctx.fillStyle = accentDark; ctx.fill(); }
+    ctx.restore();
+    ctx.beginPath(); ctx.arc(avCX, avCY, avR + 3, 0, Math.PI * 2);
+    ctx.strokeStyle = accent; ctx.lineWidth = 3; ctx.stroke();
 
-    ctx.strokeStyle = GOLD;     ctx.lineWidth = 2;   ctx.strokeRect(8, 8, W - 16, H - 16);
-    ctx.strokeStyle = GOLD_DIM; ctx.lineWidth = 0.5; ctx.strokeRect(12, 12, W - 24, H - 24);
+    // ── Username + XP badge ──────────────────────────────────────────────────
+    const nameX = avCX + avR + 16;
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 20px "Arial"';
+    ctx.fillText(member.displayName.substring(0, 22), nameX, 52);
 
-    // ── Header ──────────────────────────────────────────────────────────────
-    ctx.fillStyle = GOLD; ctx.font = 'bold 13px "Courier New"';
-    ctx.fillText('SUBJECT FILE  //  CLASSIFIED', 20, 33);
-    ctx.textAlign = 'right'; ctx.font = '12px "Courier New"';
-    ctx.fillText(`⬡ ${func_}`, W - 20, 33);
-    ctx.textAlign = 'left';
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, 45); ctx.lineTo(W - 8, 45); ctx.stroke();
+    const xpLabel = isOwner ? '∞ XP' : `+${totXP.toLocaleString()} XP`;
+    ctx.font = 'bold 12px "Arial"';
+    const bw = ctx.measureText(xpLabel).width + 18;
+    rr(nameX, 60, bw, 22, 11); ctx.fillStyle = accent + '30'; ctx.fill();
+    rr(nameX, 60, bw, 22, 11); ctx.strokeStyle = accent; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = accent; ctx.fillText(xpLabel, nameX + 9, 75);
 
-    // ── Avatar panel (left, large) ───────────────────────────────────────────
-    const avX = 10, avY = 53, avW = 330, avH = 310;
-    ctx.fillStyle = '#111111'; ctx.fillRect(avX, avY, avW, avH);
-    if (avatarImg) ctx.drawImage(avatarImg, avX, avY, avW, avH);
-    drawCornerBrackets(ctx, avX, avY, avW, avH, 20, GOLD);
-
-    // ── Server panel (right) ─────────────────────────────────────────────────
-    const rpX = 350, rpY = 53, rpW = W - rpX - 10, rpH = 310;
-    ctx.fillStyle = PANEL; ctx.fillRect(rpX, rpY, rpW, rpH);
-    ctx.strokeStyle = GOLD_DIM; ctx.lineWidth = 1; ctx.strokeRect(rpX, rpY, rpW, rpH);
-
-    // Server icon centered at top of right panel
-    const iconCX = rpX + Math.floor(rpW / 2), iconCY = rpY + 65;
-    if (iconImg) {
-        ctx.save();
-        ctx.beginPath(); ctx.arc(iconCX, iconCY, 45, 0, Math.PI * 2); ctx.clip();
-        ctx.drawImage(iconImg, iconCX - 45, iconCY - 45, 90, 90);
-        ctx.restore();
-        ctx.strokeStyle = GOLD; ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(iconCX, iconCY, 45, 0, Math.PI * 2); ctx.stroke();
-    }
-
-    ctx.textAlign = 'center';
-    ctx.fillStyle = GOLD_DIM; ctx.font = '9px "Courier New"';
-    ctx.fillText('[ SERVER NODE ]', iconCX, rpY + 127);
-    ctx.fillStyle = GOLD; ctx.font = 'bold 14px "Courier New"';
-    ctx.fillText(guild.name.toUpperCase(), iconCX, rpY + 147);
-    ctx.textAlign = 'left';
-
-    drawWormSquare(ctx, rpX + 18, rpY + 168, rpW - 36, 90, GOLD_DIM, wavePhase);
-
-    ctx.textAlign = 'center';
-    ctx.fillStyle = GOLD_DIM; ctx.font = '9px "Courier New"';
-    ctx.fillText(`SERVER RANK  #${serverRank}`, iconCX, rpY + rpH - 12);
-    ctx.textAlign = 'left';
-
-    // ── Divider (below panels) ───────────────────────────────────────────────
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, 373); ctx.lineTo(W - 8, 373); ctx.stroke();
-
-    // ── Info table ──────────────────────────────────────────────────────────
-    const tX = 18, tY = 383;
-    ctx.strokeStyle = GOLD_DIM; ctx.lineWidth = 1; ctx.strokeRect(tX, tY, 58, 58);
-    drawOrbit(ctx, tX + 29, tY + 29, GOLD_DIM);
-
-    const lx = tX + 72, rowH = 28, valX = W - 18;
-    const rows = [
-        ['NAME',         member.displayName.substring(0, 22).toUpperCase()],
-        ['USERNAME',     `@${member.user.username}`.substring(0, 22)      ],
-        ['FUNCTION',     func_                                              ],
-        ['INCEPT DATE',  joinDate                                           ],
-        ['MENTAL STATE', mentalState                                        ],
-        ['CLEARANCE',    clearance                                          ],
-    ];
-    rows.forEach(([label, value], i) => {
-        const ry = tY + 20 + i * rowH;
-        ctx.fillStyle = GOLD_DIM; ctx.font = '11px "Courier New"';
-        ctx.textAlign = 'left';
-        ctx.fillText(label, lx, ry);
-        const lw = ctx.measureText(label).width;
-        ctx.strokeStyle = GOLD_DIM; ctx.setLineDash([2, 4]); ctx.lineWidth = 0.5;
-        ctx.beginPath(); ctx.moveTo(lx + lw + 6, ry - 4); ctx.lineTo(valX - 182, ry - 4); ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = GOLD; ctx.font = 'bold 11px "Courier New"';
-        ctx.textAlign = 'right';
-        ctx.fillText(value.substring(0, 28), valX, ry);
-    });
-    ctx.textAlign = 'left';
-
-    // ── Divider (below info table) ───────────────────────────────────────────
-    // tY=383 + 20 + 6*28 + 14 = 585
-    const divY2 = tY + 20 + rows.length * rowH + 14;
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, divY2); ctx.lineTo(W - 8, divY2); ctx.stroke();
-
-    // ── Level section ────────────────────────────────────────────────────────
-    const lvSecY = divY2 + 12; // 597
-
-    // "LEVEL X" with filled box background
-    const lvText = `LEVEL  ${lvl}`;
-    ctx.font = 'bold 24px "Courier New"';
-    const lvTW = ctx.measureText(lvText).width;
-    ctx.fillStyle = GOLD_DIM;
-    ctx.fillRect(18, lvSecY, lvTW + 24, 36);
-    ctx.fillStyle = BG;
-    ctx.fillText(lvText, 30, lvSecY + 26);
-
-    // XP right-aligned
-    const xpStr = isOwner ? '∞ / ∞ XP' : `${curXP.toLocaleString()} / ${maxXP.toLocaleString()} XP`;
-    ctx.textAlign = 'right'; ctx.fillStyle = GOLD_DIM; ctx.font = '11px "Courier New"';
-    ctx.fillText(xpStr, W - 18, lvSecY + 26); ctx.textAlign = 'left';
-
-    // Progress bar with percentage text centered inside
-    const bx = 18, by = lvSecY + 44, bw = W - 36, bh = 22;
-    ctx.fillStyle = '#0a0a0a'; ctx.fillRect(bx, by, bw, bh);
-    ctx.strokeStyle = GOLD_DIM; ctx.lineWidth = 1; ctx.strokeRect(bx, by, bw, bh);
-    const fillW = Math.max(0, pct * (bw - 2));
-    if (fillW > 0) {
-        const grad = ctx.createLinearGradient(bx, 0, bx + bw, 0);
-        grad.addColorStop(0, BAR0); grad.addColorStop(0.5, BAR1); grad.addColorStop(1, BAR2);
-        ctx.fillStyle = grad;
-        ctx.fillRect(bx + 1, by + 1, fillW, bh - 2);
-    }
-    ctx.textAlign = 'center';
-    ctx.fillStyle = pct > 0.4 ? BG : GOLD;
-    ctx.font = 'bold 11px "Courier New"';
-    ctx.fillText(isOwner ? '∞' : `${Math.round(pct * 100)}%`, bx + bw / 2, by + bh / 2 + 4);
-    ctx.textAlign = 'left';
-
-    // Total XP + Rank name
-    const infoY = by + bh + 18; // 641 + 18 = 659 (approx)
-    ctx.fillStyle = GOLD_DIM; ctx.font = '10px "Courier New"';
-    ctx.fillText(`TOTAL XP: ${isOwner ? '∞' : totXP.toLocaleString()}`, 18, infoY);
-    ctx.textAlign = 'right'; ctx.fillStyle = GOLD; ctx.font = 'bold 10px "Courier New"';
-    ctx.fillText(`RANK: ${rankName.toUpperCase()}`, W - 18, infoY); ctx.textAlign = 'left';
-
-    // ── Divider (below level section) ────────────────────────────────────────
-    const divY3 = infoY + 14;
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, divY3); ctx.lineTo(W - 8, divY3); ctx.stroke();
-
-    // ── Neural signature + threat assessment ──────────────────────────────────
-    const waveSecY = divY3 + 14;
-
-    // Left: section label
-    ctx.fillStyle = GOLD_DIM; ctx.font = '9px "Courier New"';
-    ctx.fillText('NEURAL SIGNATURE  //  BIO-METRIC WAVE ANALYSIS', 18, waveSecY + 13);
-
-    // Right: threat assessment squares
-    for (let i = 0; i < 5; i++) {
-        const sx = W - 18 - (5 - i) * 16, sy = waveSecY + 2, ss = 12;
-        ctx.strokeStyle = GOLD; ctx.lineWidth = 1; ctx.strokeRect(sx, sy, ss, ss);
-        if (i < Math.min(warnCount, 5)) {
-            ctx.fillStyle = GOLD; ctx.fillRect(sx + 2, sy + 2, ss - 4, ss - 4);
-        }
-    }
-
-    // Animated wave
-    const waveY = waveSecY + 34;
-    ctx.strokeStyle = GOLD_DIM; ctx.lineWidth = 1.5;
-    ctx.beginPath();
-    for (let x = 18; x <= W - 18; x++) {
-        const relX = x - 18;
-        const y = waveY + Math.sin(relX * 0.055 + wavePhase) * 12 * (Math.sin(relX * 0.018) * 0.6 + 0.4);
-        x === 18 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Decorative dot grid in empty space below wave
-    ctx.fillStyle = GOLD_DIM + '44';
-    for (let gx = 35; gx < W - 35; gx += 45) {
-        for (let gy = waveY + 30; gy <= waveY + 80; gy += 25) {
-            ctx.beginPath(); ctx.arc(gx, gy, 1, 0, Math.PI * 2); ctx.fill();
-        }
-    }
-
-    // Scan line sweeping top to bottom
-    ctx.fillStyle = GOLD;
-    ctx.globalAlpha = 0.07;
-    ctx.fillRect(9, scanY - 1, W - 18, 3);
-    ctx.globalAlpha = 0.15;
-    ctx.fillRect(9, scanY, W - 18, 1);
-    ctx.globalAlpha = 1;
-
-    // ── Footer ───────────────────────────────────────────────────────────────
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(8, H - 28); ctx.lineTo(W - 8, H - 28); ctx.stroke();
-
-    ctx.fillStyle = GOLD_DIM; ctx.font = '8px "Courier New"';
-    ctx.fillText('SYS:CLASSIFIED  //  DO NOT DISTRIBUTE', 18, H - 14);
+    // Rank name top-right
     ctx.textAlign = 'right';
-    ctx.fillText(new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC', W - 18, H - 14);
+    ctx.fillStyle = accent; ctx.font = 'bold 13px "Arial"';
+    ctx.fillText(rankName.toUpperCase(), W - 18, 52);
+    ctx.fillStyle = '#ffffff88'; ctx.font = '11px "Arial"';
+    ctx.fillText(`Level ${lvl}`, W - 18, 70);
     ctx.textAlign = 'left';
+
+    // ── Separator ────────────────────────────────────────────────────────────
+    ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(18, 98); ctx.lineTo(W - 18, 98); ctx.stroke();
+
+    // ── Left panel — Level Info ───────────────────────────────────────────────
+    const p1x = 18, p1y = 108, p1w = 318, p1h = 98;
+    rr(p1x, p1y, p1w, p1h, 14); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fill();
+    rr(p1x, p1y, p1w, p1h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
+
+    ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
+    ctx.fillText('Seviye Bilgisi', p1x + 14, p1y + 18);
+
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillText('▣  Mesaj Seviyesi:', p1x + 14, p1y + 42);
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillText(`${lvl}`, p1x + 158, p1y + 42);
+
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillText('◈  Ses Seviyesi:', p1x + 14, p1y + 62);
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillText(isOwner ? '∞' : `${Math.round(pct * 100)}%`, p1x + 158, p1y + 62);
+
+    // progress bar
+    const pbx = p1x + 14, pby = p1y + 74, pbw = p1w - 28, pbh = 10;
+    rr(pbx, pby, pbw, pbh, 5); ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fill();
+    if (pct > 0) {
+        const g = ctx.createLinearGradient(pbx, 0, pbx + pbw, 0);
+        g.addColorStop(0, BAR0); g.addColorStop(0.5, BAR1); g.addColorStop(1, BAR2);
+        rr(pbx, pby, Math.max(pct * pbw, 10), pbh, 5);
+        ctx.fillStyle = g; ctx.fill();
+    }
+
+    // ── Right panel — Rank Info ───────────────────────────────────────────────
+    const p2x = p1x + p1w + 10, p2y = 108, p2w = W - p2x - 18, p2h = 98;
+    rr(p2x, p2y, p2w, p2h, 14); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fill();
+    rr(p2x, p2y, p2w, p2h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
+
+    ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
+    ctx.fillText('Siralama Bilgisi', p2x + 14, p2y + 18);
+
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillText('▣  Mesaj Siralaması:', p2x + 14, p2y + 42);
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillText(`#${serverRank}`, p2x + 178, p2y + 42);
+
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillText('◈  Toplam XP:', p2x + 14, p2y + 62);
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillText(isOwner ? '∞' : totXP.toLocaleString(), p2x + 178, p2y + 62);
+
+    // warn dots
+    for (let i = 0; i < 5; i++) {
+        const dx = p2x + 14 + i * 18, dy = p2y + 78;
+        ctx.beginPath(); ctx.arc(dx, dy, 6, 0, Math.PI * 2);
+        ctx.fillStyle = i < warnCount ? '#EF4444' : 'rgba(255,255,255,0.15)'; ctx.fill();
+    }
+
+    return canvas.toBuffer('image/png');
 }
 
 // ─── Client ───────────────────────────────────────────────────────────────────
@@ -562,7 +361,7 @@ async function handleCommand(msg, cmd, args) {
         try {
             const buffer = await generateCard(target, lvInfo, guild, serverRank, warnCount, isOwner);
             await notice.delete().catch(() => {});
-            return msg.reply({ files: [new AttachmentBuilder(buffer, { name: 'rank.gif' })] });
+            return msg.reply({ files: [new AttachmentBuilder(buffer, { name: 'rank.png' })] });
         } catch (e) {
             console.error('Card generation error:', e);
             await notice.edit({ content: null, embeds: [errEmbed('Failed to generate card.')] });
