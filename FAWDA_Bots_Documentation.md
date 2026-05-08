@@ -1,6 +1,6 @@
 # FAWDA Discord Bots — Documentation Complète
 
-> Dernière mise à jour : 8 mai 2026 — v2.3
+> Dernière mise à jour : 8 mai 2026 — v2.7
 > Language : JavaScript (discord.js v14)
 > Hébergement : Local (Windows) / futur Wispbyte
 > Shell : PowerShell (Windows 11)
@@ -671,6 +671,10 @@ GatewayIntentBits.MessageContent    // Privilégié — activer dans Developer P
 | v2.1 | 07/05/2026 | Easter egg : quand quelqu'un mentionne rayss (`1430652121375838254`), le bot répond automatiquement avec `rayss.jpg` (fichier local dans le dossier du bot) |
 | v2.2 | 08/05/2026 | Nouveau bot séparé : **Rank Bot** (`fawda rank bot/rank_bot.js`) — préfixe `=`, XP messages + voice, carte cyberpunk "SUBJECT FILE // CLASSIFIED", 10 paliers de rangs (Bronze→Royal), owner = level 9999 |
 | v2.3 | 08/05/2026 | Rank Bot — redesign carte GIF : hauteur 490→870px, avatar panel large (330×310), icône serveur centrée, valeurs info-table RIGHT-aligned, "LEVEL X" avec box de fond, barre de progression avec % centré dedans, label "NEURAL SIGNATURE // BIO-METRIC WAVE ANALYSIS", grille de points décoratifs, fix `drawCircuit` reçoit `dotBlink` en paramètre |
+| v2.4 | 08/05/2026 | Rank Bot — animation "worm" sur circuit : marching dashes + ghost trail + nodes pulsants via `wavePhase` |
+| v2.5 | 08/05/2026 | Rank Bot — worm déplacé sur le border rectangulaire du server panel (`drawWormSquare`) |
+| v2.6 | 08/05/2026 | Rank Bot — carte redessinée en **PNG statique** (700×220) : fini le GIF 24 frames, nouveau style deux panneaux arrondis (Level Info + Rank Info), gradient de fond par rang, avatar circulaire, badge XP, barre de progression, warn dots rouges. Tokens migrés vers `process.env.RANK_TOKEN` / `process.env.MAIN_TOKEN`. Projet pushé sur GitHub `fawda-lab/discord-bot`. |
+| v2.7 | 08/05/2026 | Rank Bot — labels carte traduits en anglais : "Level Info", "Message Level", "Progress", "Rank Info", "Server Rank", "Total XP" |
 
 ---
 
