@@ -1,8 +1,8 @@
 const http = require('http');
 http.createServer((req, res) => {
-  res.write('Bot is alive!');
-  res.end();
-}).listen(3001);
+  res.writeHead(200);
+  res.end('Bot is alive!');
+}).listen(process.env.PORT || 3001);
 
 const {
     Client, GatewayIntentBits, EmbedBuilder, ActionRowBuilder,
