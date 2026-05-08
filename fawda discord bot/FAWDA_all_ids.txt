@@ -1,0 +1,1091 @@
+==================================================
+SERVER: FAWDA
+Guild ID: 1480956937058390056
+Owner ID: 1430652121375838254
+
+────────────────────────────────────────
+CATEGORIES
+────────────────────────────────────────
+1487864790989934692  |  📊 | SERVER STATS
+1487864793015517275  |  🤝 | PARTNERS
+1487864797067350127  |  📌 | IMPORTANT
+1487864799743315988  |  📝 | APPLY LOGS
+1487864801932738650  |  🎁 | GIVEAWAYS
+1487864835885498549  |  💬 | COMMUNITY
+1487864838355943485  |  🎪 | EVENTS
+1497961855954452632  |  ⛔ | REPORT
+1487864846920843435  |  🎗 | HIGH ROLES
+1487864856802754713  |  🏛 | JAIL
+1487864879321710693  |  ✅ | VERIFICATION
+1487864882031497389  |  💎 | PREMIUM
+1487864884292227163  |  ☁ | HEAVEN
+1487864886691237959  |  💎 | ELITE
+1487864889186713620  |  ⭐ | VIP
+1487864923395719248  |  🏛 | BASIC
+1489926080457609376  |  🎭│FAWDA ROLE PLAY
+1487864930513453277  |  🔊 | CREATE YOUR VOICE
+1487864970246095038  |  CAM AREA
+1487864972271816726  |  🌸 | LADIES AREA
+1487864974536610057  |  🧧 | FREE TIME
+1487865050248122530  |  🕵 | CODE NAMES
+1489794542285885460  |  🏯 | CLANS AREA
+1489794668144230450  |  💭 | CLANS CHATS
+1489795309843513365  |  🔊 | CLANS VOICES
+1487865022272114770  |  🕋 | QURAN
+1487865024629309531  |  🎮 | GAMES ZONE
+1487865052513177792  |  ඞ│AMONG TOURNAMENT
+1487865054903795944  |  🌌 | AMONG US RULES
+1487865057835487453  |  🌌 | AMONG US 1
+1487865059819520010  |  🌌 | AMONG US 2
+1487865091889303602  |  🌌 | AMONG US 3
+1487865095496138782  |  🌌 | AMONG US 4
+1487865099019620432  |  ⚽ | FOOTBALL
+1487865103096352779  |  💣 | FREE FIRE
+1487865138978750649  |  🔫│VALO
+1500320381234446336  |  🔫│ARC RAIDERS
+1500178498902429886  |  ROBLOX
+1487865141600063629  |  ☄️ | League of Legends
+1487865144846454925  |  BLOOD STRIKE
+1487865147769884874  |  ⚒️ | MINCRAFT
+1487865180221341938  |  🔒 | PRIVATE ROOMS
+1489925260047548516  |  💀│BRAWLHALLA
+1489926245511594035  |  🐺│LOUP GAROU
+1487865183601692962  |  💤 | AFK
+1487865187112452437  |  🔰 | MODERATION RULES
+1487865189931028510  |  🔰 | MODERATION ZONE
+1487865220146790611  |  📁 | MODERATION LOGS
+1487865222696927374  |  📁 | LOGS LI KHADAMIN
+1487865225586938006  |  📁 | ROLES LOGS
+1487865228443255076  |  📁 | SERVER LOGS
+1487865230641074456  |  📁 | CHANNELS LOGS
+1487865262190493827  |  📁 | MESSAGES LOGS
+1487865266162499735  |  📁 | GENERAL LOGS
+1487865268276301876  |  💾│archived channels
+1487865270742552769  |  🌌Void🌌
+1487865273745674423  |  Casino
+
+────────────────────────────────────────
+CHANNELS
+────────────────────────────────────────
+1487866459706363975  |  [VOICE]  |  ⚒️│MINECRAFT  |  (cat: ⚒️ | MINCRAFT)
+1487865442855944262  |  [TEXT ]  |  📢│event・host  |  (cat: 🎪 | EVENTS)
+1487865975582752929  |  [TEXT ]  |  ・join  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865880623976469  |  [TEXT ]  |  💬│valorant  |  (cat: 🔫│VALO)
+1487865722116772101  |  [TEXT ]  |  🌸│ladies・area  |  (cat: 🌸 | LADIES AREA)
+1487865306339606720  |  [TEXT ]  |  terminal-important  |  (cat: No Category)
+1487866111398510613  |  [TEXT ]  |  📁│modlogs  |  (cat: 📁 | GENERAL LOGS)
+1487865681851715725  |  [TEXT ]  |  🏙️│fawda・rp  |  (cat: 🎭│FAWDA ROLE PLAY)
+1487866090674454730  |  [TEXT ]  |  📁│delete-messages  |  (cat: 📁 | MESSAGES LOGS)
+1487865376510316706  |  [TEXT ]  |  📝│trial・staff  |  (cat: 📝 | APPLY LOGS)
+1487865453563871394  |  [TEXT ]  |  🚩│report・info  |  (cat: ⛔ | REPORT)
+1487866373915934990  |  [VOICE]  |  🕋│Quran  |  (cat: 🕋 | QURAN)
+1487866426000802013  |  [VOICE]  |  🔫│FREE FIRE 1  |  (cat: 💣 | FREE FIRE)
+1487865692161310941  |  [TEXT ]  |  📜│rules  |  (cat: 🔊 | CREATE YOUR VOICE)
+1500321022694658118  |  [VOICE]  |  🔫│ARC RAIDERS  |  (cat: 🔫│ARC RAIDERS)
+1487866481902485584  |  [VOICE]  |  💤│AFK  |  (cat: 💤 | AFK)
+1487866140204994762  |  [TEXT ]  |  old  |  (cat: 💾│archived channels)
+1487866489230065834  |  [VOICE]  |  wc 🚽  |  (cat: 🌌Void🌌)
+1487865845345423470  |  [TEXT ]  |  📜│among・us・rules  |  (cat: 🌌 | AMONG US RULES)
+1487866066867585115  |  [TEXT ]  |  📁│channel-created-deleted  |  (cat: 📁 | CHANNELS LOGS)
+1487866156671832084  |  [TEXT ]  |  casino-role  |  (cat: Casino)
+1487866223873233056  |  [VOICE]  |  ➕│EJECTED  |  (cat: 🏛 | JAIL)
+1487866453972488362  |  [VOICE]  |  🔫│BLOOD STRIKE 1  |  (cat: BLOOD STRIKE)
+1487866377611116684  |  [VOICE]  |  🕵│Code Names 1  |  (cat: 🕵 | CODE NAMES)
+1487865884407238716  |  [TEXT ]  |  💬│lol・chat  |  (cat: ☄️ | League of Legends)
+1487865854724145303  |  [TEXT ]  |  🔑│among・code・4  |  (cat: 🌌 | AMONG US 4)
+1487865400946594043  |  [TEXT ]  |  💬│general・chat  |  (cat: 💬 | COMMUNITY)
+1487865848008933376  |  [TEXT ]  |  🔑│among・code・1  |  (cat: 🌌 | AMONG US 1)
+1487865824730546416  |  [TEXT ]  |  🕵│host・links  |  (cat: 🕵 | CODE NAMES)
+1487865390653640854  |  [TEXT ]  |  🎁│giveaways  |  (cat: 🎁 | GIVEAWAYS)
+1487866446976647320  |  [VOICE]  |  🎮│Lol・Flex  |  (cat: ☄️ | League of Legends)
+1487866244903211011  |  [VOICE]  |  👑 𝐑𝐀𝐘𝐒𝐒 👑  |  (cat: 💎 | ELITE)
+1487865887649304789  |  [TEXT ]  |  💬│blood・chat  |  (cat: BLOOD STRIKE)
+1487866464680542379  |  [VOICE]  |  🏕️│VILLAGE・1  |  (cat: 🐺│LOUP GAROU)
+1487865724784349325  |  [TEXT ]  |  📜・clans-rules  |  (cat: 🏯 | CLANS AREA)
+1487865818124521602  |  [TEXT ]  |  games・mention・system  |  (cat: 🎮 | GAMES ZONE)
+1487865852622803055  |  [TEXT ]  |  🔑│among・code・3  |  (cat: 🌌 | AMONG US 3)
+1487865484970954974  |  [TEXT ]  |  📢│update  |  (cat: 🎗 | HIGH ROLES)
+1487865660401782794  |  [TEXT ]  |  💎・│premium  |  (cat: 💎 | PREMIUM)
+1487866434313916576  |  [VOICE]  |  💀│BRAWLHALLA 1  |  (cat: 💀│BRAWLHALLA)
+1487865857475350700  |  [TEXT ]  |  ⚽│fifa・chat  |  (cat: ⚽ | FOOTBALL)
+1500320905635696814  |  [TEXT ]  |  💬│arc-raiders  |  (cat: 🔫│ARC RAIDERS)
+1487866178113241179  |  [VOICE]  |  👑 OWNERS 👑  |  (cat: 🎗 | HIGH ROLES)
+1487865867436818773  |  [TEXT ]  |  💬│free・fire  |  (cat: 💣 | FREE FIRE)
+1487866160811868182  |  [VOICE]  |  🔗│Discord.gg/fawda  |  (cat: 📊 | SERVER STATS)
+1495522501588025404  |  [VOICE]  |  NOIR DUNES  |  (cat: 🔊 | CLANS VOICES)
+1487866013386014781  |  [TEXT ]  |  📁│role・given  |  (cat: 📁 | ROLES LOGS)
+1487865814295249106  |  [TEXT ]  |  🎛️│quran・panel  |  (cat: 🕋 | QURAN)
+1500178894282559599  |  [VOICE]  |  🧍‍♀️│ROBLOX 1  |  (cat: ROBLOX)
+1487866287278260234  |  [VOICE]  |  ➕│ ONE TAP 1  |  (cat: 🔊 | CREATE YOUR VOICE)
+1487866439233966314  |  [VOICE]  |  🔫│VALORANT  |  (cat: 🔫│VALO)
+1487866265119752323  |  [VOICE]  |  basic  |  (cat: 🏛 | BASIC)
+1487866485526499358  |  [VOICE]  |  private  |  (cat: 💾│archived channels)
+1487866289404903544  |  [VOICE]  |  ➕ Verif Cam  |  (cat: CAM AREA)
+1487866408615546911  |  [VOICE]  |  ඞ│Among Us 4  |  (cat: 🌌 | AMONG US 4)
+1487866411073147182  |  [VOICE]  |  🎮│FIFA  |  (cat: ⚽ | FOOTBALL)
+1487866165559562310  |  [VOICE]  |  🎪│events room  |  (cat: 🎪 | EVENTS)
+1487866468216340591  |  [VOICE]  |  🔒│ Solo  |  (cat: 🔒 | PRIVATE ROOMS)
+1487866397341126868  |  [VOICE]  |  ඞ│Among Us 3  |  (cat: 🌌 | AMONG US 3)
+1487865908545196203  |  [TEXT ]  |  📜│game・rules  |  (cat: 🐺│LOUP GAROU)
+1487866300440252568  |  [VOICE]  |  ☕│Chill  |  (cat: 🧧 | FREE TIME)
+1487866384112160788  |  [VOICE]  |  ඞ│Among Us 1  |  (cat: 🌌 | AMONG US 1)
+1487865850357874728  |  [TEXT ]  |  🔑│among・code・2  |  (cat: 🌌 | AMONG US 2)
+1497961857472790661  |  [VOICE]  |  ⛔│NEED HELP  |  (cat: ⛔ | REPORT)
+1487905382213881916  |  [TEXT ]  |  welcome🥳  |  (cat: 📌 | IMPORTANT)
+1487865930221621258  |  [TEXT ]  |  🕛│timeout・reason  |  (cat: 🔰 | MODERATION ZONE)
+1487866314142908579  |  [VOICE]  |  🏛│Clans Meeting  |  (cat: 🏯 | CLANS AREA)
+1487866227039797298  |  [VOICE]  |  🚨│Verif ・Meeting  |  (cat: ✅ | VERIFICATION)
+1487865891101081751  |  [TEXT ]  |  📩│whiteliste・apply  |  (cat: ⚒️ | MINCRAFT)
+1487865584342274081  |  [TEXT ]  |  📋│of・jail  |  (cat: 🏛 | JAIL)
+1487866038140796998  |  [TEXT ]  |  member  |  (cat: 📁 | SERVER LOGS)
+1487865828555886723  |  [TEXT ]  |  ඞ│among・board・s2  |  (cat: ඞ│AMONG TOURNAMENT)
+1487865925561618463  |  [TEXT ]  |  moderation-rules  |  (cat: 🔰 | MODERATION RULES)
+1487865320419885066  |  [TEXT ]  |  🤝│partners  |  (cat: 🤝 | PARTNERS)
+1487865618337366016  |  [TEXT ]  |  📝│apply・for・verification  |  (cat: ✅ | VERIFICATION)
+1496321714395680898  |  [VOICE]  |  ASPD  |  (cat: ⭐ | VIP)
+1487866387920847070  |  [VOICE]  |  ඞ│Among Us 2  |  (cat: 🌌 | AMONG US 2)
+1487866296711512256  |  [VOICE]  |  🎀│ONLY GIRLS  |  (cat: 🌸 | LADIES AREA)
+1487865949179875348  |  [TEXT ]  |  🕛│timeout・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865317777604820  |  [TEXT ]  |  📊│server・stats  |  (cat: 📊 | SERVER STATS)
+1487866279632310392  |  [VOICE]  |  🎮│GTA RP  |  (cat: 🎭│FAWDA ROLE PLAY)
+1487865713044619304  |  [TEXT ]  |  📢│annoucements  |  (cat: CAM AREA)
+1495522500006772817  |  [TEXT ]  |  noir-dunes  |  (cat: 💭 | CLANS CHATS)
+1500178695686459422  |  [TEXT ]  |  💬│roblox・chat  |  (cat: ROBLOX)
+1487865488431251526  |  [TEXT ]  |  📢│annc  |  (cat: 🎗 | HIGH ROLES)
+1497305029550276638  |  [VOICE]  |  𓆩𝓜𝓞 𝓐𝓛𝓘𓆪  |  (cat: 🏛 | BASIC)
+1487865405014806619  |  [TEXT ]  |  🤖│commands  |  (cat: 💬 | COMMUNITY)
+1487866436700602538  |  [VOICE]  |  💀│BRAWLHALLA 2  |  (cat: 💀│BRAWLHALLA)
+1487866457030394117  |  [VOICE]  |  🔫│BLOOD STRIKE 2  |  (cat: BLOOD STRIKE)
+1487866231024517120  |  [VOICE]  |  💭│Verif ・Discussion  |  (cat: ✅ | VERIFICATION)
+1487866149986369756  |  [TEXT ]  |  invites  |  (cat: 💾│archived channels)
+1487866095384658142  |  [TEXT ]  |  📁│messages  |  (cat: 📁 | MESSAGES LOGS)
+1487866174153818292  |  [VOICE]  |  🔐│Find・Solution  |  (cat: ⛔ | REPORT)
+1487865327269187784  |  [TEXT ]  |  🎮│mena・streamers・community  |  (cat: 🤝 | PARTNERS)
+1487865927969276014  |  [TEXT ]  |  cmd-rules  |  (cat: 🔰 | MODERATION RULES)
+1487865586506661909  |  [TEXT ]  |  ❗│sus・accs  |  (cat: 🏛 | JAIL)
+1487866069518647326  |  [TEXT ]  |  📁│channel-permissions  |  (cat: 📁 | CHANNELS LOGS)
+1487865894423236748  |  [TEXT ]  |  💬│minecraft・chat  |  (cat: ⚒️ | MINCRAFT)
+1487865951977214214  |  [TEXT ]  |  📛│warn・log  |  (cat: 📁 | MODERATION LOGS)
+1487865727003263128  |  [TEXT ]  |  📢・clan・announcements  |  (cat: 🏯 | CLANS AREA)
+1487866041513017405  |  [TEXT ]  |  server・logs  |  (cat: 📁 | SERVER LOGS)
+1487866381063032875  |  [VOICE]  |  🕵│Code Names 2  |  (cat: 🕵 | CODE NAMES)
+1487866471852806366  |  [VOICE]  |  🔒│Duo  |  (cat: 🔒 | PRIVATE ROOMS)
+1487865821438152894  |  [TEXT ]  |  games・to・add  |  (cat: 🎮 | GAMES ZONE)
+1487866441918189639  |  [VOICE]  |  🔫│VALORANT  |  (cat: 🔫│VALO)
+1487865932645666816  |  [TEXT ]  |  📛│warn・cmd  |  (cat: 🔰 | MODERATION ZONE)
+1487866414562934874  |  [VOICE]  |  🎮│PES TN  |  (cat: ⚽ | FOOTBALL)
+1487866303934103673  |  [VOICE]  |  📺│Streaming  |  (cat: 🧧 | FREE TIME)
+1487865918959784066  |  [TEXT ]  |  📑│game・log  |  (cat: 🐺│LOUP GAROU)
+1487866158668321009  |  [TEXT ]  |  logs  |  (cat: Casino)
+1487866181749833778  |  [VOICE]  |  🏛 L7OKOMA 🏛  |  (cat: 🎗 | HIGH ROLES)
+1487865979089190994  |  [TEXT ]  |  ・move-logs  |  (cat: 📁 | LOGS LI KHADAMIN)
+1490743451384418454  |  [VOICE]  |  L4AR  |  (cat: ⭐ | VIP)
+1487866428072919110  |  [VOICE]  |  🔫│FREE FIRE 2  |  (cat: 💣 | FREE FIRE)
+1487865379861565521  |  [TEXT ]  |  📝│trial・hoster  |  (cat: 📝 | APPLY LOGS)
+1487866325996146698  |  [VOICE]  |  ⛔│ Clans Reports  |  (cat: 🏯 | CLANS AREA)
+1487865662578626701  |  [TEXT ]  |  💎・│premium・help  |  (cat: 💎 | PREMIUM)
+1487865716668502147  |  [TEXT ]  |  💬│verif-chat  |  (cat: CAM AREA)
+1487865446618108017  |  [TEXT ]  |  📢│tournament・host  |  (cat: 🎪 | EVENTS)
+1487865695302713355  |  [TEXT ]  |  🏆│top・members  |  (cat: 🔊 | CREATE YOUR VOICE)
+1499069808308916444  |  [VOICE]  |  ༺ ❂ S H A D O W ❂ ༻  |  (cat: 🔊 | CLANS VOICES)
+1487866114942959738  |  [TEXT ]  |  📁│members  |  (cat: 📁 | GENERAL LOGS)
+1487865457246732498  |  [TEXT ]  |  🚩│report・updates  |  (cat: ⛔ | REPORT)
+1487865313851867297  |  [TEXT ]  |  lwasakh  |  (cat: No Category)
+1487866282069197001  |  [VOICE]  |  🎮│GTA V LEGACY  |  (cat: 🎭│FAWDA ROLE PLAY)
+1487865865146863616  |  [TEXT ]  |  ⚽│pes・chat  |  (cat: ⚽ | FOOTBALL)
+1487866017345437736  |  [TEXT ]  |  📁│role・taken  |  (cat: 📁 | ROLES LOGS)
+1487865393660956752  |  [TEXT ]  |  🏆│big・price・winners  |  (cat: 🎁 | GIVEAWAYS)
+1487865342012293321  |  [TEXT ]  |  📢│big・annoucements  |  (cat: 📌 | IMPORTANT)
+1487866449551687840  |  [VOICE]  |  🎮│Lol・Custom  |  (cat: ☄️ | League of Legends)
+1487866291539935242  |  [VOICE]  |  Only Cam  |  (cat: CAM AREA)
+1487866462239719517  |  [VOICE]  |  🎲│𝐋𝐌𝐎𝐊𝐀𝟑𝐀𝐁𝐀𝐓  |  (cat: ⚒️ | MINCRAFT)
+1487865840022978801  |  [TEXT ]  |  ඞ│among・board・s3  |  (cat: ඞ│AMONG TOURNAMENT)
+1499069805884604598  |  [TEXT ]  |  ༺-❂-s-h-a-d-o-w-❂-༻  |  (cat: 💭 | CLANS CHATS)
+1487865604638642279  |  [TEXT ]  |  📣│verify・annc  |  (cat: ✅ | VERIFICATION)
+1487866262066565371  |  [VOICE]  |  𝐭𝐡𝐞 𝐜𝐞𝐫𝐭𝐞𝐥 ★  |  (cat: 💎 | ELITE)
+1497968361479344168  |  [VOICE]  |  🔊│ Voice : 4  |  (cat: 📊 | SERVER STATS)
+1487865608497533071  |  [TEXT ]  |  🧭│verification・team・guide  |  (cat: ✅ | VERIFICATION)
+1487865898285928628  |  [TEXT ]  |  📢│minecraft・annc  |  (cat: ⚒️ | MINCRAFT)
+1487866045267050606  |  [TEXT ]  |  invite  |  (cat: 📁 | SERVER LOGS)
+1489697133295829253  |  [VOICE]  |  𝓹𝓪𝓼𝓼𝓪𝓵𝓪𝓬𝓺𝔀𝓪🌟  |  (cat: 💎 | ELITE)
+1487866097989587114  |  [TEXT ]  |  📁│files・deleted  |  (cat: 📁 | MESSAGES LOGS)
+1487866475590189178  |  [VOICE]  |  🔒│Trio  |  (cat: 🔒 | PRIVATE ROOMS)
+1497968820424409249  |  [VOICE]  |  All Members: 405  |  (cat: 📊 | SERVER STATS)
+1487865307241382065  |  [TEXT ]  |  jason-data  |  (cat: No Category)
+1487866184908144682  |  [VOICE]  |  🎗Discussion🎗  |  (cat: 🎗 | HIGH ROLES)
+1487866293787955312  |  [VOICE]  |  Only Cam  |  (cat: CAM AREA)
+1487866020726177935  |  [TEXT ]  |  📁│role・created  |  (cat: 📁 | ROLES LOGS)
+1487865345237581864  |  [TEXT ]  |  📢│annoucements  |  (cat: 📌 | IMPORTANT)
+1495869059827372106  |  [VOICE]  |  slee3  |  (cat: ⭐ | VIP)
+1487865983195676892  |  [TEXT ]  |  ・move-logs-cmd  |  (cat: 📁 | LOGS LI KHADAMIN)
+1500353271678763070  |  [VOICE]  |  📺│Movies  |  (cat: 🧧 | FREE TIME)
+1487866430459482253  |  [VOICE]  |  🔫│FREE FIRE 3  |  (cat: 💣 | FREE FIRE)
+1487865588503281936  |  [TEXT ]  |  🚫│blacklisted・detector  |  (cat: 🏛 | JAIL)
+1487865954603110530  |  [TEXT ]  |  🔇│muted・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865491870584995  |  [TEXT ]  |  📢│points  |  (cat: 🎗 | HIGH ROLES)
+1487865397326774433  |  [TEXT ]  |  🏆│price・winners  |  (cat: 🎁 | GIVEAWAYS)
+1487866233964597388  |  [VOICE]  |  🚨│Disponible・Verif  |  (cat: ✅ | VERIFICATION)
+1487866258173989007  |  [VOICE]  |  CARTE 07  |  (cat: 🏛 | BASIC)
+1487866118679957515  |  [TEXT ]  |  📁│files  |  (cat: 📁 | GENERAL LOGS)
+1487865842359341227  |  [TEXT ]  |  ඞ│among・annoncement・s3  |  (cat: ඞ│AMONG TOURNAMENT)
+1487865408005476372  |  [TEXT ]  |  📸│media  |  (cat: 💬 | COMMUNITY)
+1487866418119708682  |  [VOICE]  |  ➕│ 1 VS 1  |  (cat: ⚽ | FOOTBALL)
+1487866172073312368  |  [VOICE]  |  🔐│Find・Solution  |  (cat: ⛔ | REPORT)
+1487865383229591552  |  [TEXT ]  |  📝│trial・designer  |  (cat: 📝 | APPLY LOGS)
+1487865460010516480  |  [TEXT ]  |  ⛔│report・chat  |  (cat: ⛔ | REPORT)
+1487866451707564062  |  [VOICE]  |  🎮│Lol・Draft  |  (cat: ☄️ | League of Legends)
+1487865664889946203  |  [TEXT ]  |  💎・│premium・mod  |  (cat: 💎 | PREMIUM)
+1487865921899860018  |  [TEXT ]  |  🗳️│vote・1  |  (cat: 🐺│LOUP GAROU)
+1487865698347913458  |  [TEXT ]  |  🎛│one・tap・panel  |  (cat: 🔊 | CREATE YOUR VOICE)
+1487865934717648896  |  [TEXT ]  |  🔇│muted・cmd・reason  |  (cat: 🔰 | MODERATION ZONE)
+1487865449558311064  |  [TEXT ]  |  🌟│clan-champion・points  |  (cat: 🎪 | EVENTS)
+1487865730585202789  |  [TEXT ]  |  ❓・clans・info  |  (cat: 🏯 | CLANS AREA)
+1487866073071222824  |  [TEXT ]  |  📁│channel-create  |  (cat: 📁 | CHANNELS LOGS)
+1487866152511340646  |  [TEXT ]  |  points-chat  |  (cat: 💾│archived channels)
+1487865308223115347  |  [TEXT ]  |  left  |  (cat: No Category)
+1487865495268102194  |  [TEXT ]  |  📢│system・rules  |  (cat: 🎗 | HIGH ROLES)
+1487865410991816915  |  [TEXT ]  |  📽️│archive  |  (cat: 💬 | COMMUNITY)
+1487865386652401839  |  [TEXT ]  |  📝│trial・dev  |  (cat: 📝 | APPLY LOGS)
+1487866154772070620  |  [TEXT ]  |  💾│welcome  |  (cat: 💾│archived channels)
+1487865937129373849  |  [TEXT ]  |  ❌│ban・cmd・reason  |  (cat: 🔰 | MODERATION ZONE)
+1489325197302435850  |  [VOICE]  |  ➕│GET VERIFIED  |  (cat: ✅ | VERIFICATION)
+1487866478475612466  |  [VOICE]  |  🔒│ Squad  |  (cat: 🔒 | PRIVATE ROOMS)
+1487866024278622218  |  [TEXT ]  |  📁│role・deleted  |  (cat: 📁 | ROLES LOGS)
+1487865464188305581  |  [TEXT ]  |  📬│report・pub  |  (cat: ⛔ | REPORT)
+1487865667746267166  |  [TEXT ]  |  updates  |  (cat: 💎 | PREMIUM)
+1487865702491754628  |  [TEXT ]  |  🎶│music・panel  |  (cat: 🔊 | CREATE YOUR VOICE)
+1487865902228705300  |  [TEXT ]  |  ⛔│minecraft・report  |  (cat: ⚒️ | MINCRAFT)
+1487866121943122110  |  [TEXT ]  |  📁│server  |  (cat: 📁 | GENERAL LOGS)
+1487866307549335582  |  [VOICE]  |  💢│Toxic Voice  |  (cat: 🧧 | FREE TIME)
+1487865985787494580  |  [TEXT ]  |  ・switch  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865733957419290  |  [TEXT ]  |  📢・clans・manager・announcements  |  (cat: 🏯 | CLANS AREA)
+1487866170068439204  |  [VOICE]  |  🔐│Rass F Rass  |  (cat: ⛔ | REPORT)
+1487865961825439924  |  [TEXT ]  |  ❌│ban・log  |  (cat: 📁 | MODERATION LOGS)
+1487866048886735030  |  [TEXT ]  |  emoji  |  (cat: 📁 | SERVER LOGS)
+1487866188565319822  |  [VOICE]  |  COMMUNITY MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487865590575005766  |  [TEXT ]  |  💼│jail・log  |  (cat: 🏛 | JAIL)
+1487865348483977226  |  [TEXT ]  |  📢│events・annoucements  |  (cat: 📌 | IMPORTANT)
+1487866420632223895  |  [VOICE]  |  ➕│ 2 VS 2  |  (cat: ⚽ | FOOTBALL)
+1496264454109663375  |  [VOICE]  |  01220  |  (cat: ⭐ | VIP)
+1487866077164601597  |  [TEXT ]  |  📁│channel-delete  |  (cat: 📁 | CHANNELS LOGS)
+1487866101181186258  |  [TEXT ]  |  📁│edit-message  |  (cat: 📁 | MESSAGES LOGS)
+1487866253044351026  |  [VOICE]  |  𝒬𝓊ℯℯ𝓃𝓈 ღ  |  (cat: 💎 | ELITE)
+1487865611764760616  |  [TEXT ]  |  🥇│verify・top  |  (cat: ✅ | VERIFICATION)
+1487865472795017497  |  [TEXT ]  |  🖥️│give・rank・cmd  |  (cat: ⛔ | REPORT)
+1487865309242200416  |  [TEXT ]  |  moderator-only  |  (cat: No Category)
+1487866422867791992  |  [VOICE]  |  ➕│ 3 VS 3  |  (cat: ⚽ | FOOTBALL)
+1487865510501548223  |  [TEXT ]  |  🔧│problem・devs  |  (cat: 🎗 | HIGH ROLES)
+1487866125575262310  |  [TEXT ]  |  📁│channels  |  (cat: 📁 | GENERAL LOGS)
+1487865615078129725  |  [TEXT ]  |  📩│invites・log  |  (cat: ✅ | VERIFICATION)
+1487865906381066280  |  [TEXT ]  |  📸│minecraft・house  |  (cat: ⚒️ | MINCRAFT)
+1487866194034692126  |  [VOICE]  |  ADMINS MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487865705805385902  |  [TEXT ]  |  💾│one・tap・logs  |  (cat: 🔊 | CREATE YOUR VOICE)
+1487865414686867466  |  [TEXT ]  |  🎨│art  |  (cat: 💬 | COMMUNITY)
+1487865352154120222  |  [TEXT ]  |  🏆│tournaments・annc  |  (cat: 📌 | IMPORTANT)
+1487866079861805127  |  [TEXT ]  |  📁│channel-update  |  (cat: 📁 | CHANNELS LOGS)
+1487866027713757505  |  [TEXT ]  |  📁│role・perm・updated  |  (cat: 📁 | ROLES LOGS)
+1487866104864051402  |  [TEXT ]  |  📁│messages-other  |  (cat: 📁 | MESSAGES LOGS)
+1487866052187787436  |  [TEXT ]  |  event  |  (cat: 📁 | SERVER LOGS)
+1487866311060099163  |  [VOICE]  |  💥│ Rejected  |  (cat: 🧧 | FREE TIME)
+1487865940157796382  |  [TEXT ]  |  👋🏻│kick・reason  |  (cat: 🔰 | MODERATION ZONE)
+1487865965256638554  |  [TEXT ]  |  ❌│unban・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865988840947774  |  [TEXT ]  |  ・disconnect  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865737317060869  |  [TEXT ]  |  👑・leaders・reminder  |  (cat: 🏯 | CLANS AREA)
+1487865594215665704  |  [TEXT ]  |  🏛│unjail・request  |  (cat: 🏛 | JAIL)
+1498363105321685002  |  [VOICE]  |  𝒯ℯ𝓇𝓂𝒾𝓃𝒶𝓁 💻  |  (cat: 💎 | ELITE)
+1487866083573760000  |  [TEXT ]  |  📁│webhook  |  (cat: 📁 | CHANNELS LOGS)
+1487865467078053999  |  [TEXT ]  |  ⛔│need・h・chat  |  (cat: ⛔ | REPORT)
+1487865968096055477  |  [TEXT ]  |  👋🏻│kick・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865622527344845  |  [TEXT ]  |  🚷│sus・users  |  (cat: ✅ | VERIFICATION)
+1487865992683061298  |  [TEXT ]  |  ・left  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865355844980867  |  [TEXT ]  |  🎧│stream・zone  |  (cat: 📌 | IMPORTANT)
+1487866031757197403  |  [TEXT ]  |  📁│roles・updates  |  (cat: 📁 | ROLES LOGS)
+1487865751854383254  |  [TEXT ]  |  📑・clan・logs  |  (cat: 🏯 | CLANS AREA)
+1487865310240571433  |  [TEXT ]  |  security  |  (cat: No Category)
+1489300242011525121  |  [TEXT ]  |  💌│confessions・chat  |  (cat: 💬 | COMMUNITY)
+1487866136992415834  |  [TEXT ]  |  📁│mugilogs  |  (cat: 📁 | GENERAL LOGS)
+1487865523990696047  |  [TEXT ]  |  🤖│cmd  |  (cat: 🎗 | HIGH ROLES)
+1487866107992871072  |  [TEXT ]  |  📁│poll  |  (cat: 📁 | MESSAGES LOGS)
+1488958778584989978  |  [VOICE]  |  𝓑𝓵𝓸𝓸𝓭 𝓢𝓲𝓷𝓰🧛  |  (cat: 💎 | ELITE)
+1487866055912063016  |  [TEXT ]  |  quark  |  (cat: 📁 | SERVER LOGS)
+1487866196471840959  |  [VOICE]  |  MODS MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487865598225682554  |  [TEXT ]  |  👮│jail・cmds  |  (cat: 🏛 | JAIL)
+1487866034940805170  |  [TEXT ]  |  📁│rank・role・given  |  (cat: 📁 | ROLES LOGS)
+1487865474929659955  |  [TEXT ]  |  ⭕│problems・logs  |  (cat: ⛔ | REPORT)
+1487865526943482038  |  [TEXT ]  |  💬│high・roles・chat  |  (cat: 🎗 | HIGH ROLES)
+1487865741397987328  |  [TEXT ]  |  👥・clan・leader・co・leader  |  (cat: 🏯 | CLANS AREA)
+1487866059586408650  |  [TEXT ]  |  quark-pro  |  (cat: 📁 | SERVER LOGS)
+1487865359016001608  |  [TEXT ]  |  💌│social・media  |  (cat: 📌 | IMPORTANT)
+1487865996948668436  |  [TEXT ]  |  ・mute-logs  |  (cat: 📁 | LOGS LI KHADAMIN)
+1489314095013560420  |  [TEXT ]  |  ⚖️│truth-or-dare  |  (cat: 💬 | COMMUNITY)
+1487865625861689384  |  [TEXT ]  |  🤖│auto・checker  |  (cat: ✅ | VERIFICATION)
+1487865311133696240  |  [TEXT ]  |  admin  |  (cat: No Category)
+1487865957346054194  |  [TEXT ]  |  📝│nickname・changed  |  (cat: 📁 | MODERATION LOGS)
+1487866199164321793  |  [VOICE]  |  HELPERS MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487866087134724107  |  [TEXT ]  |  📁│stage  |  (cat: 📁 | CHANNELS LOGS)
+1487865601023283271  |  [TEXT ]  |  🏛│jail・chat  |  (cat: 🏛 | JAIL)
+1487866248447660182  |  [VOICE]  |  𝓤𝓹𝓼𝓲𝓭𝓮 𝓭𝓸𝔀𝓷 🌙  |  (cat: 💎 | ELITE)
+1487865629259337925  |  [TEXT ]  |  🔍│checker・cmd  |  (cat: ✅ | VERIFICATION)
+1487865959606784031  |  [TEXT ]  |  📃│all・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865999918235798  |  [TEXT ]  |  ・unmute  |  (cat: 📁 | LOGS LI KHADAMIN)
+1501639282123870289  |  [VOICE]  |  𝓩𝓐3 𝓩𝓐3 𝓢𝓟𝓐𝓒𝓔 🤪  |  (cat: 💎 | ELITE)
+1487865362589552890  |  [TEXT ]  |  🎉│boosters  |  (cat: 📌 | IMPORTANT)
+1487866202419101867  |  [VOICE]  |  EVENT H MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487865477773525196  |  [TEXT ]  |  🚩│report・logs  |  (cat: ⛔ | REPORT)
+1487865744535453786  |  [TEXT ]  |  🎥・big・events・records  |  (cat: 🏯 | CLANS AREA)
+1487865424010940426  |  [TEXT ]  |  😂│memes  |  (cat: 💬 | COMMUNITY)
+1487865532391882802  |  [TEXT ]  |  💬│staff・report  |  (cat: 🎗 | HIGH ROLES)
+1487866063197569254  |  [TEXT ]  |  marry-logs  |  (cat: 📁 | SERVER LOGS)
+1487865971711414403  |  [TEXT ]  |  📁│auttaja・logs  |  (cat: 📁 | MODERATION LOGS)
+1487865638784466974  |  [TEXT ]  |  🆔│verification・cmd  |  (cat: ✅ | VERIFICATION)
+1487866205875470376  |  [VOICE]  |  🔐│Staff・Solution  |  (cat: 🎗 | HIGH ROLES)
+1487865425797714164  |  [TEXT ]  |  🧮│counting  |  (cat: 💬 | COMMUNITY)
+1487865481468579850  |  [TEXT ]  |  📬│tickets  |  (cat: ⛔ | REPORT)
+1487865337629249697  |  [TEXT ]  |  📜│rules  |  (cat: 📌 | IMPORTANT)
+1487865747958009857  |  [TEXT ]  |  🎥・games・screens  |  (cat: 🏯 | CLANS AREA)
+1487866003424677948  |  [TEXT ]  |  ・deafen-logs  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865529703071916  |  [TEXT ]  |  💬│staff・chat  |  (cat: 🎗 | HIGH ROLES)
+1487866209604075683  |  [VOICE]  |  NEED H MANAGERS MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487865369329926255  |  [TEXT ]  |  📈│ranks  |  (cat: 📌 | IMPORTANT)
+1487866007287763114  |  [TEXT ]  |  ・undeafen  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487865640722370811  |  [TEXT ]  |  🗂️│verification・user・bio  |  (cat: ✅ | VERIFICATION)
+1487865427928547458  |  [TEXT ]  |  🎮│games・chat  |  (cat: 💬 | COMMUNITY)
+1487865535655055370  |  [TEXT ]  |  🌐│spam・media  |  (cat: 🎗 | HIGH ROLES)
+1487865538020638954  |  [TEXT ]  |  📨│role・request  |  (cat: 🎗 | HIGH ROLES)
+1487865429975109642  |  [TEXT ]  |  🎥│games・clips  |  (cat: 💬 | COMMUNITY)
+1487865372638974073  |  [TEXT ]  |  📝│apply・zone  |  (cat: 📌 | IMPORTANT)
+1487865643586949350  |  [TEXT ]  |  📴│verif・on・off  |  (cat: ✅ | VERIFICATION)
+1487866009938432062  |  [TEXT ]  |  777  |  (cat: 📁 | LOGS LI KHADAMIN)
+1487866213911625818  |  [VOICE]  |  TRIALS MEETING  |  (cat: 🎗 | HIGH ROLES)
+1487866217925443764  |  [VOICE]  |  🎀Meeting🎀  |  (cat: 🎗 | HIGH ROLES)
+1488217196864995368  |  [TEXT ]  |  🎭│self・roles  |  (cat: 📌 | IMPORTANT)
+1487865647122747422  |  [TEXT ]  |  ❗│verification・log  |  (cat: ✅ | VERIFICATION)
+1487865541019303947  |  [TEXT ]  |  📨│role・given  |  (cat: 🎗 | HIGH ROLES)
+1487865432982552677  |  [TEXT ]  |  🎤│movies-suggestion  |  (cat: 💬 | COMMUNITY)
+1487865436434337855  |  [TEXT ]  |  🎤│rap  |  (cat: 💬 | COMMUNITY)
+1487865649651912795  |  [TEXT ]  |  ❔│get・verifed  |  (cat: ✅ | VERIFICATION)
+1487865543078973591  |  [TEXT ]  |  📨│role・removed  |  (cat: 🎗 | HIGH ROLES)
+1487866220849004575  |  [VOICE]  |  DESIGNERS  |  (cat: 🎗 | HIGH ROLES)
+1487865545247166544  |  [TEXT ]  |  🎯│1tap-games・task  |  (cat: 🎗 | HIGH ROLES)
+1487865651904123025  |  [TEXT ]  |  📢│verification・status  |  (cat: ✅ | VERIFICATION)
+1487865554739138733  |  [TEXT ]  |  🎯│events・task  |  (cat: 🎗 | HIGH ROLES)
+1487865653997076540  |  [TEXT ]  |  💬│verification・chat  |  (cat: ✅ | VERIFICATION)
+1487865560011378758  |  [TEXT ]  |  🎯│logs・task  |  (cat: 🎗 | HIGH ROLES)
+1487865564813856808  |  [TEXT ]  |  🚩│absence・teamstaff  |  (cat: 🎗 | HIGH ROLES)
+1487865569121407068  |  [TEXT ]  |  💬│trial・chat  |  (cat: 🎗 | HIGH ROLES)
+1487865571650572330  |  [TEXT ]  |  📢│event・rules  |  (cat: 🎗 | HIGH ROLES)
+1487865504482853126  |  [TEXT ]  |  📢│spam  |  (cat: 🎗 | HIGH ROLES)
+1487865573969887415  |  [TEXT ]  |  📢│event・updates  |  (cat: 🎗 | HIGH ROLES)
+1487865576293404775  |  [TEXT ]  |  📢│event・logs  |  (cat: 🎗 | HIGH ROLES)
+1487865580651548874  |  [TEXT ]  |  💬│event・managers  |  (cat: 🎗 | HIGH ROLES)
+1487865582601769090  |  [TEXT ]  |  🎨│only・designers  |  (cat: 🎗 | HIGH ROLES)
+1487865562326630583  |  [TEXT ]  |  🎯│trial・task  |  (cat: 🎗 | HIGH ROLES)
+1487865567162667170  |  [TEXT ]  |  💬│girls・chat  |  (cat: 🎗 | HIGH ROLES)
+1487865578046755010  |  [TEXT ]  |  📢│tournament・logs  |  (cat: 🎗 | HIGH ROLES)
+1495192827498467430  |  [TEXT ]  |  Mouad  |  (cat: 🎁│giveaways)
+1492690347288170637  |  [TEXT ]  |  Allo  |  (cat: ❔│get・verifed)
+1494694381096144916  |  [TEXT ]  |  Nothing  |  (cat: ❔│get・verifed)
+1496242964978995280  |  [TEXT ]  |  Just me  |  (cat: ❔│get・verifed)
+1496243017399537694  |  [TEXT ]  |  Nothing  |  (cat: ❔│get・verifed)
+1496404524313743360  |  [TEXT ]  |  A  |  (cat: ❔│get・verifed)
+1496472195449491556  |  [TEXT ]  |  W  |  (cat: ❔│get・verifed)
+1497068748098502798  |  [TEXT ]  |  Gg  |  (cat: 📢│verification・status)
+1497736721461280850  |  [TEXT ]  |  Vagvbond  |  (cat: 📢│verification・status)
+1500359633699606538  |  [TEXT ]  |  Don  |  (cat: 📢│verification・status)
+1500638678286991501  |  [TEXT ]  |  Test  |  (cat: 🏙️│fawda・rp)
+1492683105876709568  |  [TEXT ]  |  Confession Replies (#12)  |  (cat: 💌│confessions・chat)
+
+────────────────────────────────────────
+ROLES
+────────────────────────────────────────
+1481071992995319881  |  THE FIRST ONE
+1487864551226478674  |  • | OWNER
+1487864552275312722  |  • | Founder
+1487864553080623248  |  Concierge of Crime
+1487864553877274744  |  Devs
+1487864554623864842  |  JUDGE
+1487864555349475428  |  /./
+1487864556792582284  |  64
+1487864557677314169  |  Security Premium
+1487864559346913280  |  32
+1487864561712365842  |  𝑻𝒉𝒆 𝒃𝒆𝒔𝒕
+1487864563759317173  |  +
+1487864564551782601  |  • 𝕄𝔸𝕁𝔼𝕊𝕋𝕐
+1487864565063483393  |  •  ℙℝ𝕀ℕℂ𝔼𝕊𝕊
+1487864566724427987  |  • | Social Manager
+1487864567525539961  |  • | Community Manager
+1487864568402415646  |  ・Donator Of The Month・
+1487864569283088504  |  ・Top Donator・
+1487864570130333848  |  ・Super Donator・
+1487864570990301324  |  ・Heaven Donator・
+1487864571896270979  |  ・Luxury Donator・
+1487864572663828512  |  Clan Manager
+1487864573716467882  |  Counselor
+1487864575591452825  |  • | Head Of Admins
+1487864576182583357  |  ・Crystal Donator・
+1487864577134952601  |  • | Administrator
+1487864577864630465  |  • | Administrator Girl
+1487864578573467678  |  ・Golden Donator・
+1487864579596877874  |  • | Head Of Moderator
+1487864582717309159  |  ・Premium Donator・
+1487864583606767766  |  • | Head Of Girls
+1487864584294498314  |  • | Moderator
+1487864585317912647  |  • | Moderator Girl
+1487864588358783077  |  Custom Donator
+1487864591198195722  |  • | Assistant Girls 🎀
+1487864591986987169  |  • | Supporter
+1487864592800550942  |  • | Supporter Girl
+1487864593715036211  |  • | Helper
+1487864594650103980  |  • | Leader
+1487864595786895370  |  • | Leader Girl
+1487864597795966976  |  • | Staff Team
+1487864598941007923  |  • | Girls Staff
+1487864599805165769  |  Watcher
+1487864600841162772  |  Watcher Queen
+1487864601688412323  |  • Trial Staff
+1487864602409832630  |  • | Off Duty
+1487864603093504140  |  • Off Rank
+1487864604037222571  |  ・Premium Booster・
+1487864604699660450  |  • Head Of Verification
+1487864605660151849  |  • Verification
+1487864606704668853  |  Event Manager
+1487864607765823640  |  • Head Of Need Help
+1487864609137496124  |  • Need Help Manager
+1487864609800192031  |  Tournament Hoster
+1487864611142373709  |  Event Hoster
+1487864612887073051  |  •  Pes Manager •
+1487864613767876688  |  •  Loup Garou Manager •
+1487864614594019509  |  • Mc Manager •
+1487864614988288162  |  • FF Manager •
+1487864616292716806  |  Codename Manager
+1487864616989098126  |  •  Game Mod •
+1487864617681289376  |  Streamer
+1487864618394189864  |  Cam Manager
+1487864619157557279  |  ---Special roles---
+1487864621242126347  |  Nass L9dam
+1487864621929988139  |  Legends
+1487864623582679180  |  Clan Of The Month
+1487864624291381340  |  Member Of The Month
+1487864626766151700  |  𝓢𝔀𝓮𝓮𝓽 𝓖𝓲𝓻𝓵
+1487864628183564308  |  𝓡𝓸𝓼𝓮
+1487864629097926826  |  • | Royal Member
+1487864629869936787  |  • | Important Members
+1487864630629109890  |  𝙼𝙲𝚁𝙾𝙻𝙴
+1487864631425761463  |  Pes Champion
+1487864632340123792  |  Stumble Champion
+1487864633682559190  |  FF Elite Player
+1487864634441465967  |  Plato Champion
+1487864635137720321  |  Parchisi Champion
+1487864637868474519  |  • | Special Members
+1487864638623191040  |  • | Best Members
+1487864639508185149  |  Co Leader
+1487864640250839080  |  𝐃𝐬 𝐕𝐈𝐏
+1487864641110409376  |  Cam Participant
+1487864642825879572  |  ---Colors roles---
+1489989006799409283  |  𝓐𝓶𝓮𝓽𝓱𝔂𝓼𝓽
+1489988997651497153  |  𝓡𝓾𝓫𝔂
+1489988987744551073  |  𝓢𝓪𝓹𝓹𝓱𝓲𝓻𝓮
+1489988986951696494  |  𝓢𝓹𝓲𝓷𝓮𝓵
+1489988984359878687  |  𝓣𝓸𝓹𝓪𝔃
+1489988999769624718  |  𝓞𝓫𝓼𝓲𝓭𝓲𝓪𝓷
+1489989003879911596  |  𝓒𝓲𝓽𝓻𝓲𝓷𝓮
+1489989002529476618  |  𝓔𝓶𝓮𝓻𝓪𝓵𝓭
+1487864651504025671  |  🌠 | Sweet Booster
+1487864652338823269  |  𝐀𝐫𝐭𝐢𝐬𝐭𝐞
+1487864653559238807  |  Singer
+1487864654171607223  |  Queen
+1487864655266316360  |  ---Premium roles---
+1489995711633428651  |  Event Winner
+1487864671904993433  |  Clan of The Year
+1499069803183476776  |  ༺ ❂ S H A D O W ❂ ༻
+1487864691966607510  |  ---Rank roles---
+1487864692687765596  |  ・Royal
+1487864693493075988  |  ・Hero
+1487864694256570493  |  ・Champion
+1487864695216934963  |  ・Grand Master
+1487864705232928999  |  ・Master
+1487864706034171954  |  ・Cosmic
+1487864706822836254  |  ・Elite
+1487864707560902766  |  ・Celestia
+1487864708336975872  |  ・Epic
+1487864709129568479  |  ・Bronze
+1487864709993595035  |  ---Info roles---
+1487864718117834964  |  Muted
+1487864718843711699  |  Developer
+1487864719598551194  |  Designer
+1487864720596799688  |  Ejected
+1487864721351643216  |  Married
+1487864722257743932  |  Verified Female
+1487864723096473813  |  Verified
+1487864723839123539  |  Unverified
+1487864724585451582  |  Male
+1487864725470449684  |  Female
+1487864726439591996  |  Last Warn
+1487864727328784475  |  Second Warn
+1487864728104468580  |  First Warn
+1487864729035870358  |  ---Power roles---
+1487864729748639884  |  Full Perms
+1487864730252087539  |  Move Power
+1490842492437008524  |  Mute Power
+1487864731258589204  |  Mention Perm 📧
+1487864731766358051  |  Pic Perm 📷
+1487864732869329068  |  Link Perm 📎
+1487864733817110718  |  Nickname Perm 📝
+1487864734916153434  |  Single
+1487864735692226630  |  Taken
+1487864739072577757  |  • 𝑵𝒐 𝒙𝒑
+1487864739777347594  |  HIGH IQ
+1500339974556618812  |  BY SHWASKY
+1487864740519874673  |  ---Games roles---
+1487864741262004435  |  Among Us
+1487864742621216920  |  Free Fire
+1487864744147947691  |  GTA
+1487864745049722920  |  Call of Duty
+1487864745565622293  |  Pubg Mobile
+1487864746635169933  |  Brawlhalla
+1487864747612180602  |  Stumble Guys ♠️
+1487864749176918216  |  Minecraft
+1487864749986156657  |  Cs Go
+1487864750833401916  |  League of Legends
+1487864751890501743  |  Valorant
+1487864753618686214  |  rocket league
+1487864754591760406  |  Monopoly
+1487864755690541207  |  arc raiders
+1487864756458225807  |  Roblox
+1487864757271789708  |  Chess
+1487864758060322976  |  Codename 📝
+1487864758802845797  |  FIFA
+1487864760102948934  |  Plato
+1487864760417652858  |  Pes Mobile
+1487864761692459110  |  Bloodstrike
+1487864762518999060  |  RP
+1487864763307393125  |  Parchisi
+1489995710362288309  |  Fortnite
+1487864764691386413  |  Loup Garou
+1487864765719117865  |  ℂℝ𝕀𝕄𝕀ℕ𝔸𝕃
+1487864766549459155  |  Mono Teacher
+1487864777853112481  |  Casino Shield
+1487864778821996787  |  High Roller
+1487864783515422872  |  FP
+1487864784476045312  |  SUS
+1487864785335877973  |  Tournament Player
+1487873026057048207  |  InviteLogger
+1487877430206009606  |  Apply Bot
+1487878149558632621  |  Jockie Music (3)
+1487903274538631453  |  ProBot ✨
+1487999680058228819  |  Quran Radio
+1488000431085977600  |  QuranBot
+1488207274873720836  |  Dyno
+1488959368509653144  |  𝕍𝕒𝕞𝕡🦇
+1488236682661597294  |  🌠 | Sweet Booster
+1488238615262662687  |  DISBOARD.org
+1488317503821320322  |  RAYSS
+1488320188033142824  |  LMASSONI
+1488328735949328548  |  MEE6
+1488462012101955698  |  TempVoice
+1488606247027609723  |  By Marcy
+1488629089261715606  |  Shinwi
+1488631305817030816  |  LMZA3ZA3
+1488954375081562183  |  Zwikch
+1488978637364396123  |  𝑮𝑨𝑵𝑮𝑺𝑻𝑬𝑹 ⛓️
+1489298922819293197  |  Confessions
+1489313424759591134  |  Questo
+1489482048275222581  |  Jockie Music
+1489988969704718548  |  🍸 𝕭𝖗𝖔’𝖘
+1489988972158386198  |  𝟏𝐐
+1489988976465936384  |  𝖔𝖌'𝖘
+1489988977607049216  |  𝕷𝖚𝖒𝖎𝖓𝖆𝖗𝖎𝖊𝖘
+1489988978743574660  |  𝕲𝖍𝖔𝖘𝖙
+1489988980006195373  |  𝕱𝖆𝖜𝖉𝖆 𝕱𝖔𝖗𝖊𝖛𝖊𝖗
+1489988981884981279  |  𝓽𝓱𝓮 𝓯𝓸𝓸𝓵
+1489988983084814588  |  𝓥𝓔𝓛𝓥𝓔𝓣
+1489988989187522600  |  𝓢𝓚𝓟𝓢
+1489989008539914383  |  𝑷𝒔𝒚𝒄𝒉𝒐𝒑𝒂𝒕𝒉𝒔
+1489989010414895178  |  𝑮𝑯𝑶𝑺𝑻 𝑻𝑬𝑨𝑴
+1489989012318846997  |  𝑨𝒏𝒈𝒆𝒍𝒔
+1489989014004957345  |  𝑂𝑇𝐻𝐸𝑅 𝑆𝐼𝐷𝐸
+1489989016995758100  |  𝐵𝑒𝓈𝓉 𝑜𝒻 𝓉𝒽𝑒 𝐵𝑒𝓈𝓉
+1489989018002395196  |  𝐘𝐚𝐤𝐮𝐳𝐚
+1489989020573368340  |  𝐓𝐇𝐄 𝐅𝐀𝐌𝐈𝐋𝐘
+1489989023580819728  |  𝐄𝖙𝖍𝖊𝖗𝖊𝖆𝖑𝖘
+1489989029863886918  |  ⭐️⭐️⭐️⭐️⭐️
+1489989031038157062  |  ⭐️⭐️⭐️⭐️
+1489989032241791086  |  ⭐️⭐️⭐️
+1489989033638625350  |  ⭐️⭐️
+1489989034758377533  |  ⭐️
+1489989036020990193  |  ♞ Knight Watcher
+1489989043625136249  |  • 𝓞𝓵𝓭 𝓮𝓷𝓸𝓾𝓰𝓱
+1489989045575749682  |  • | Supervisor
+1489989046641098953  |  • | Hammer
+1489989047941333063  |  • Codename Manager •
+1489989049065279580  |  • -18
+1489989050927546579  |  • +18
+1489993638221185175  |  Void
+1489993639898775593  |  Toxic
+1489993641106735255  |  Super Event Hoster
+1489995713201836147  |  Clan of The Week
+1489995715240525845  |  Clan Leader
+1491898220283171023  |  FAWDA🐉
+1492378263962783886  |  FredBoat♪♪
+1492646192914628649  |  CSGO
+1495096917619904614  |  .fmbot
+1495522498479915130  |  NOIR DUNES
+1496509556254183618  |  Top.gg
+1496730725196763206  |  Atheina Role
+1497325818068865034  |  SKIKRA
+1497418606424625347  |  OwO
+1497967784720728238  |  Statbot
+1498121420574687232  |  Quran
+1499133287480954940  |  .
+1499218735989260378  |  meed
+1499895335169036402  |  counting
+1500954654329143338  |  Rank Bot
+1501767593910866026  |  role getter
+1480956937058390056  |  @everyone
+
+────────────────────────────────────────
+EMOJIS
+────────────────────────────────────────
+1490747634690818301  |  :emoji_1:
+1490751863732048084  |  :emoji_2:
+1490752069248745693  |  :emoji_3:
+1490761283598024877  |  :emoji_4:
+1490763558848299110  |  :emoji_5:
+1490767220685537563  |  :emoji_6:
+1490771537333325834  |  :emoji_7:
+1490772236162830397  |  :emoji_8:
+1490772304064680188  |  :emoji_9:
+1490773754375311492  |  :emoji_10:
+1490777572286664854  |  :emoji_12:
+1490780305089499136  |  :emoji_12:
+1490780445015543889  |  :emoji_13:
+1491207788246991019  |  :emoji_14:
+1491207849538490401  |  :emoji_15:
+1491207931277087011  |  :emoji_16:
+1491208022608056522  |  :emoji_17:
+1491208086315208724  |  :emoji_18:
+1491208145152774174  |  :emoji_19:
+1491208261704220882  |  :emoji_20:
+1491208343992270970  |  :emoji_21:
+1491208653129252914  |  :emoji_22:
+1491208743357255760  |  :emoji_23:
+1491208840220512306  |  :emoji_24:
+1491208885653213245  |  :emoji_25:
+1491208962861830391  |  :emoji_26:
+1491209063135187049  |  :emoji_27:
+1491209131548479608  |  :emoji_28:
+1491209177966710834  |  :emoji_29:
+1491209241845956768  |  :emoji_30:
+1491209378580398170  |  :emoji_31:
+1491210575064072252  |  :emoji_32:
+1494929521428795472  |  :Screenshot20260409160626:
+
+────────────────────────────────────────
+MEMBERS
+────────────────────────────────────────
+1493514412600852590  |  𝐬𝐛𝐫✦  |  simoeee
+1430652121375838254  |  Rayss  |  rayss_lmo2assiss
+1221648167079252131  |  ✧𝐒𝐈𝐌𝐎  |  central.see
+1489959817408811158  |  role getter  |  role getter
+1174360180641759357  |  SADOX  |  saadwayne
+1479538626739044474  |  Saga bae  |  ursaga.
+1370351837365928057  |  UmpxXy  |  lwa3er123_66165
+658350584931287061  |  !   𝓛𝓾𝓯𝓯𝔂  ⚡  |  ak__ana
+1436522149048221739  |  Amineth89  |  aminebk89_57561
+1496453758219976784  |  DETOX  |  itsmjd6
+1420086447012053062  |  Izwezoxy  |  weeez10
+1501722702418022462  |  flora  |  flora_0o.
+1266841464831348782  |  𝐻𝒶𝓉𝒾𝓂._.𝒱𝐼𝒫  |  hatimibadah04
+1489517638295228416  |  Mouad._7rby  |  mouad._7rby
+1442872963807445092  |  !               𝑳𝒐𝒓𝒆𝒏𝒛𝒐  |  lorenzoo_.1
+1467993863498240121  |  ❂ 𝕄𝕖𝕖𝕕𝕕𝕕友  |  mohh_00_84680
+1487612111696953526  |  𝐀𝐬𝐞𝐞𝐥  |  aseel._.0
+1306789080222404648  |  ! 𝐼𝓈𝒶𝒶𝓍𝓍  |  ishak.sbr
+1121917496300163073  |  Questo  |  Questo
+564358701289570314  |  007  |  dabssss
+1459726853400166453  |  Darkfox  |  darkfox0496
+1208842789966585990  |  Champi ysn  |  champiysn
+434074349088014348  |  Avac 🦂  |  mynemisjeff.
+1235501446498353182  |  Quran Radio  |  Quran Radio
+1398068832173559928  |  غا هبيل  |  riiivke
+692087003277426758  |  𝓛𝓐𝓛𝓞𝓞𝓞  |  lalooo11
+1009176651923476591  |  Ghan9otloo  |  oussam2198
+1465172247814737952  |  !YUZN!  |  yuznjacc
+1498202340094902334  |  MAGHRABI•  |  don50454
+1161017807564193832  |  𝓈𝓌ℯ𝒶𝓉𝒽ℯ𝒶𝓇𝓉  |  nou_ha.
+1411403095715610705  |  !          𝑨𝒚𝒎𝒆𝒏  |  1yme.n
+159985870458322944  |  Ver  |  MEE6
+1473739763260325971  |  DEBOSS🐉  |  adile0665
+1424256666357989507  |  WISE MAN  |  wise.men
+1470553711242907744  |  Saraaaa  |  sariiii07
+500450053345902593  |  Sayajin  |  _sayajin
+1473752161694515303  |  ⏤͟͟͞͞✦𝑺𝑯𝑨𝑫𝑶𝑾ᬽ⃝🇲🇦  |  lbot_36
+665610007441702932  |  !           𝒍𝒇𝒆9𝒂𝒔𝒔 ˊˎ-  |  mahdiiiii_36
+1317503223732633620  |  ⚔️⚡ ＬＵＣＩＡＮＯ ⚜  ⚡  |  m1nsif_
+1492244391656558643  |  SAKRAN  |  ah.wa9ila
+1493853276171665489  |  NEVESµ  |  ghaithneverdie
+1491484299416047686  |  RAYAN_cobra  |  rayan_cobra
+1414316213051588649  |  Nadaah  |  nadaathy
+712011923176030229  |  Confessions  |  Confessions
+1060863059394039808  |  ! Ⲛєкσ ᶻ 𝗓 𐰁  |  quagmie
+1377279724832686091  |  WEELKEY  |  wailker_65174
+1434086687985631296  |  ❂ TWEX  |  twex_aljndro
+848143406865186866  |  𝙈𝙚𝙙ᴳᵒᵈ  |  mohazr_17
+1299835289887576096  |  Rav  |  rav0223_15440
+1082759143024238643  |  Patron  |  riffi_riffii
+1255205328027648032  |  Zaineb  |  zaineb_222
+348050577911185408  |  Xlight  |  xlightt
+1342204027102036029  |  BLACK FOXX  |  oussama031153
+1373077980120879128  |  Waeel  |  marshaal0239_88911
+1429745545856946218  |  Adam  |  lmsmn_0_47894
+1325751748807098408  |  QuranBot  |  QuranBot
+1492219692515983552  |  Tornado  |  son7waytbon
+942892969688723577  |  ❂ Z Ø R O  🇵🇸  |  zoro49roronoi
+1352080523169759286  |  esrao  |  isvaze
+1163512367695536218  |  KnowingHawk  |  knowinghawk0895
+1441260983027765268  |  Simsim🩷  |  simsi_ma
+690263140096671785  |  ziko  |  ziko5548
+1501229364757528747  |  rav  |  rav001016
+184405311681986560  |  FredBoat♪♪  |  FredBoat♪♪
+1122156881268445297  |  MIDO  |  mid_oooo
+1399007066345177181  |  𝒀𝒐𝒖𝒔𝒔𝒆𝒇  |  ysf_ue06
+346670721990131714  |  P E D R O  |  badrgamer7253
+418905719077601290  |  B L O D Y  |  bl_odyy
+1488309470433116211  |  Cow.SWAGx7  |  tgr3fkhatrkdb
+856359706921533450  |  vision  |  _wv8
+764210576712663040  |  Palmer laylahaylah  |  kenma10
+1448410582523973795  |  Kailey🎀  |  hibaaa0839
+499595256270946326  |  InviteLogger  |  InviteLogger
+1163222358027411527  |  FunnyCat  |  funnycat0024
+1491798788640079882  |  FAWDA🐉  |  FAWDA🐉
+1206729794733998081  |  𝐀𝐊𝐈𝐑𝐀 火  |  toriyamaa
+479026077923016736  |  Ǝ⋊Ɔ∀HON  |  beka55
+337158288393240578  |  Eclipse  |  _eclipserider
+1019618620663410729  |  Snopi_  |  mehammed1217
+1312629575888666709  |  Psychopatha☘️  |  psychopatha.00
+1332128508272447581  |  TED  |  saheb_mxari3
+1233860297463169161  |  ℤ𝔼𝕏𝕆𝕆  |  ah___d444
+256429287995867136  |  DIAMONDS  |  k72d
+1240777931886694421  |  Ayoub  |  ayoub.nakoui
+953725332941332550  |  im dj  |  msdos9999
+1499757124698374187  |  Kon kon  |  konkon06768
+1460435558189760564  |  ryuzaki  |  rajel_mok_lboukrissi
+1490845567155175484  |  Fawda System  |  Fawda System
+1494191190495592498  |  ⵣ khalid  |  khalid066180
+1338259280327082087  |  𝐅𝐈𝐋𝐀𝐀𝐗 🪡  |  fila_ax
+1494033680098787478  |  al  |  freakularity
+1204845495701479547  |  D 3 F 4 U L T  |  d3f4ult77
+1404999878379307039  |  6 dsbah  |  spenoza0622
+783106478755938304  |  iliass_zitouni  |  ilyas435
+1342820377184702616  |  ISMAIL GOU  |  ismailgou
+1437202167076225206  |  eloy  |  ilya_esp
+1480021035800854648  |  Achraf  |  achraf__37
+1333421899270848549  |  Imily🐆  |  emaane1
+1390498903534866435  |  Xoxo 💋  |  bice19
+1417195652710010900  |  𝗭𝗘𝗨𝗥𝗜𝗖𝗘𝗡 ࿕  |  ricen_z
+302050872383242240  |  DISBOARD  |  DISBOARD
+1283430165241794704  |  ❂ H1MIDD999  |  ist_6
+1371828021891436616  |  ❂ 𝐀𝐩𝐚𝐭𝐡𝐲  |  theonlysad1980yu
+1469799317341470876  |  Briwaaa  |  lalaaalalla_09033
+1154779061269303376  |  Smooth Roles  |  Smooth Roles
+601581298896863282  |  KHO JA3BO9💉  |  moulrawz
+1303729381159600128  |  Tozlix  |  tozlix
+1043302738102063116  |  top10  |  top__10
+1495566174363320381  |  Blinta  |  blinta_87445
+1126546090347479133  |  all_4zi  |  bouassel_
+1428466147983884459  |  𝘚𝘢𝘯𝘥𝘰𝟧𝘢𝘯  |  mohamedsamhani_93097
+1418368887694561450  |  RIFFI  |  ilyass04520
+1422762486293073923  |  I’m just a moroccan🎀  |  salma1204._.
+1494029858219626587  |  Jane  |  6406840727
+1423404421232066722  |  Ouxn  |  t.m91928
+1399912772518809705  |  Messi  |  ishtiraki
+1449044255896113282  |  BozRog  |  unknownslayer44_29200
+409131555777282050  |  ❂ Arocoun  |  zeref_man
+1474289565182197916  |  Omaima ❤️  |  omaima_mernissi
+1433659644789657680  |  Noureddine  |  noureddine1903
+734915839353946173  |  Jasmine  |  sznx___
+1339904849264902215  |  SukiAi  |  digitalpinkie
+628580147741851648  |  BRE1K  |  bre1k_
+1425964241348984892  |  KENDR!K  |  abdorahpi_52858
+1262211218198892635  |  𝑹𝒂𝒊𝒅𝒆𝒓𝒓𝒓  |  raiderrrr.7
+647017115865448450  |  V DOUBLE E  |  vdoubleee
+781636359558660126  |  Islam  |  urfv_isalm
+1200503777170567258  |  OWL  |  OWL
+1254214436454010881  |  Btihal  |  btihal0459
+763857511941668905  |  tibari 0  |  youssefzohar
+1486550811239518438  |  EL MATADOR  |  raul.1777
+539576456054046740  |  Chab l3arbi  |  houssamuchiha
+847971506583502890  |  Griiiipoo  |  gripoo
+1376632593155358867  |  Reemah  |  stardust_n_icecream
+942847482151464970  |  𝙅𝙖𝙖𝙖𝙕𝙯  |  jaaaaz00
+1496915453614886923  |  MSMAR D10  |  msmard10_80085
+765254506559963216  |  yass-m5cs  |  supporthelp
+1492620883733512303  |  le M  |  lemdes
+1115073800602669110  |  !      𝓖𝓲𝓖𝓲  |  theluna__
+1073608327826780201  |  Mr gojo  |  mohamed_legend
+380722302372806661  |  Playmaker  |  playmaker7608
+339893265404919810  |  SLYYTUSS⭐  |  saadoune_e
+1314198126717829153  |  ❂ clairo.  |  xeoxees
+1440409184146292858  |  𝖘𝖊𝖊𝖊𝖒𝖔  |  seeemo_08
+1496836849488887818  |  ❂ LMRID  |  jakar_333
+806933805167542363  |  Morales  |  moralles.
+1429503743673634867  |  seira.n  |  seira.0
+411916947773587456  |  Jockie Music  |  Jockie Music
+1148778368641273916  |  UEOHEU  |  ueoheu
+989248018291261472  |  Apeeloo  |  nabilpr
+759170433714749480  |  ❂ Sarumaxhi 🪷  |  ihihisalma
+1269604436653637747  |  SLee3  |  iliacema0
+1492550620362834063  |  ｡⊹ 𝓙𝓪𝔀𝓪𝓭 ⋆˚  |  .j4wad_
+1497748436819382313  |  maldini  |  maldini_57844
+607254242620735518  |  𝓚  ౨ৎ  |  laila_qe
+1203817959135649807  |  Elliot  |  7aaader__
+1399792541683155039  |  Royal  |  gods_love_
+1106575612933574708  |  Za3 Za3  |  za3_za3_36
+1146808976395210903  |  SENSEI  |  abdosensei_11048
+1460418133327089899  |  Weaaayyy  |  weaaayyy_25917
+1287053816352477235  |  OTHMANE  |  othman0013_80730
+1443084998939770931  |  ℳ𝒶𝓁𝒶𝓀❤  |  malak20_.10
+1424097808159477962  |  𝓢 𝓗 𝓘 𝓝 𝓘 𝓖 𝓐 𝓜 𝓘  |  amhd0704
+1088478830953496636  |  Starboy 🇬🇧🇲🇦  |  _xoxowoel_
+1119766613365883001  |  Quran  |  Quran
+1482056609462227115  |  Ochan  |  ochan3336
+1493277868363485204  |  Cozmo  |  vxxxv.xx
+1426291228408025243  |  Mohammed37  |  mohammed0_37_44689
+995741793394110565  |  Hakim  |  hqki6682
+1490725388849254470  |  Fawda Clan Manager  |  Fawda Clan Manager
+1179504256848511068  |  𝛧𝛥𝛫  |  z._.ak
+590951114070032384  |  Anas_jr  |  mftsunstsu5579
+906242413843083264  |  F i n n  |  finn__00
+713423354069123192  |  الحَاجْ عْــلِـــي  |  rajel_ur_oum
+1489813274437484544  |  𝕮𝖍𝖆𝖎𝖒𝖆𝖆  |  chaimaeaamara
+838787089557618688  |  𝕯. 𝕭. 𝐂𝐨𝐨𝐩𝐞𝐫  |  jesuiswalid
+1380237312813826098  |  ⋆ⵜⵉⵜⵉ⋆  |  titim.zah
+1270345130028564621  |  Random♑  |  med._.thabos
+1302444199525744684  |  sheriff 🤠  |  jamalshinwi10
+688837464437293152  |  Seeemo🐺  |  noob.fts7608
+363974719801917441  |  ChintX  |  chintx.
+493292010699227156  |  Sasi  |  sasi790
+1438660284435922985  |  𝟑𝑺𝑰𝑳𝑨-𝟒𝟕  |  amine081940
+1466113457630744700  |  𝐄𝐒𝐂𝐀𝐍𝐎𝐑  |  toulab
+1496589694891196586  |  taraa_sirtops  |  one._one
+1131780123956363375  |  Dynasty  |  Dynasty
+333235184902209537  |  Blacky  |  blacky.ze
+1217445704415445005  |  SCORPIO  |  scorpio0003
+1492297601113002014  |  Ely wherever  |  ely_wherever_31199
+1499504916056510655  |  ❂ Salma  |  hassna2026
+885219008901701642  |  MISTARA  |  minjara7314
+1495855524862759056  |  احمد  |  hmd018915
+658659487615287296  |  الدكتور حمامة  |  syhaunt
+1492891193892278507  |  Myara  |  myara0347
+1501726023538966660  |  𝐞𝐦𝐚ღ  |  imane.se
+1001252605529440367  |  Thorfinn  |  nabil_0987.
+465954789247680528  |  !                      EXTA  |  lil_costa_
+1495874058456137940  |  Viexy  |  viyexa230
+721839172343824435  |  MhM4D  |  mhm4d.
+1394323960803627148  |  BUFFON  |  buffon0102
+1412580135311245362  |  ㊙  ＭＡＤＡＲＡ  !!  |  y4ssir0094
+1466542749607006299  |  Eren devloper  |  erendevloper
+1336023409850847384  |  ´  |  hf__0
+1387587291756761108  |  Moaud  |  2072180336
+1349830107287519234  |  Zinbaboy  |  yyahhgg
+718837238678421545  |  Gamy  |  gamyyr
+155149108183695360  |  Dyno  |  Dyno
+1423699397211852891  |  jj.c  |  imanel0
+801483899280031764  |  𝑳𝑼𝑲𝑨𝑺...𝑿  |  mohamedaminezejli
+422087909634736160  |  Top.gg  |  Top.gg
+1470579147360436320  |  M-psy  |  mpsy_07
+1441682714746163251  |  𝑁 𝑜 𝑤 𝑎 𝑟 𝑎  🌸  |  only_maluka
+1407581455827075133  |  WINR      ➿  |  winner__7
+1463528229079093422  |  Imyy_  |  siro_rival_vv_47218
+1230137529043259396  |  Dani  |  dolleynn
+535934831364931605  |  NESS YOU👑  |  younesskh10
+1378342907278266429  |  Jackn  |  jackn0769_85524
+1354915246388678886  |  ☯ 𝑴𝒖𝒍𝒂𝒏 ☯  |  mulan.lecter
+1450216203883647029  |  SentaL Boun9cha  |  sental4
+459821519376351262  |  Smirnoff🍺  |  .playerv
+1231369273704845343  |  𝐞𝐦𝐚𝐧 🫦  |  eir4__
+874488421832331264  |  Athei!  |  s1r11h
+1186632012598104096  |  Navi.AMINE  |  amineios
+221022021234982912  |  m  |  mei_4869
+890991224629116938  |  Najwa  |  najwa4501
+1274023875960639597  |  AMOX  |  molo_00141
+664490537478520862  |  namikaze6425  |  namikaze6425
+829371315935772682  |  ilyass_ue  |  ilyass_ue
+977572586588344351  |  Joseff  |  moultaksi6270
+1388986781420093540  |  𝐸𝑚𝑚𝑦 ღ  |  em_my7_79206
+1361448161893154876  |  Ilyass  |  a.o3_yy7.
+1498043874252423259  |  Nanao09  |  nanao09
+1349911290545438771  |  JONIX  |  hassan_benl
+916692950136803339  |  ililion  |  ililion.
+1134281252732686347  |  Apply Bot  |  Apply Bot
+1488742994130505949  |  big.has  |  joyful_piglet_52249
+1320375355986677850  |  Minho  |  kiiikaaaaaaaaa
+510016054391734273  |  counting  |  counting
+1436872482677325976  |  Lolitaa🌺  |  kwenzae
+874475350929858580  |  CHAMALI  |  c_ml
+194307384485609473  |  ❂ Drak  |  drakath9
+1482163684691148941  |  BRAHIM_JUNIOR7  |  brahim_junior70477
+748641752533041163  |  Tªᴢᴜ̈ƴɔ 𓈒𓏸  |  tsucxgurl4038
+700471679109038142  |  Smokerg5  |  smokerg5
+1395477320168378420  |  ❂ Rv  |  harmonious_avocado_10883
+1163221320943816775  |  NobleIbex  |  nobleibex0357
+1331595498032992298  |  gojo966  |  goko864956
+1357816278596976972  |  king_rca  |  king_rca.
+1315698236169916526  |  ♡  |  itshafusa
+1490289269372223773  |  TV Girl  |  tvgirl_l7
+1365103166210969660  |  A77  |  lexxosaa
+1367189468645167257  |  Speediix🇷🇺🇲🇦  |  speediix_99
+1495414414315225178  |  ree  |  misatin3s
+1080912383922421760  |  HECTOR771  |  hector.771
+1186047867924779063  |  الدكتور حمبولة  |  ana_wa3er
+1492439070578835456  |  salah_FT  |  masawi2006
+1477900971978916032  |  𝐑𝐔𝐁𝐈𝐎 𝐇𝐄𝐑𝐄  |  rubio04148
+1318117991380025375  |  Chiikoondat  |  chikko0120_81126
+1186825435477201046  |  Who Yam?  |  uppy0107
+1037796656273424455  |  WEEDman  |  weeeedman
+1429626161398419637  |  𝗦𝗮𝗹𝗮𝗵𝗘𝗱𝗱𝗶𝗻𝗲  |  x30y
+765334063787409478  |  evilya  |  evilya
+1300920621361922264  |  Sara  |  sarasarah0145_51055
+1464768029585051803  |  mska  |  msika82
+1450205474266939445  |  Mimi 🌙  |  eonni0565
+946176122838736927  |  ! ⁷⁶ 𝐑𝐈𝐅𝐈  |  rifi_02
+1391180834412691526  |  BLU TIG  |  penitent.blutig
+1495475131982676099  |  Vagvbond  |  vagvbond
+1466867571943936000  |  𝑻𝑨𝑯𝑨.𝑳𝑲𝑶𝑩𝑹𝑨𝑨  |  taha.lkoubra
+1478689604885549176  |  pedro ncibi  |  pedroncibi_80257
+760534889358950480  |  YUZNJAC  |  yuznjac
+797187117297827880  |  adam_j  |  pre._.freto
+1270076242691096659  |  ! 『MR』SIMO !  |  sssiiimmmoooo_84658
+1478524256827740341  |  bernal  |  bernal_20
+628369317771083788  |  Mohammed gr  |  bzkjmohammed
+1478570938076233899  |  Monkey_d_loffy🔥👒  |  lblir
+674311258299826187  |  WHiSKY  |  kmaicha
+1378367060530167808  |  𝓜𝓞𝓤𝓢𝓣𝓘𝓚𝓐  |  marya_m88
+708519403922259969  |  イ  |  w1lidenotnice
+1091946941446881290  |  Spidermana  |  spidermaaanaaa
+762217899355013120  |  TempVoice  |  TempVoice
+589483050208067614  |  L I S T A T   🎭  |  eddsimoo
+962421702598459412  |  darkarmy9333  |  darkarmy9333
+1387642207787286709  |  axoxX  |  axoxx_
+1492649340508966956  |  Rasheed_nx  |  rasheed_x
+929867041777803284  |  diaa  |  diaa0298
+1447969768698286092  |  AAnbaoui  |  aanbaoui
+589209416213987329  |  jay  |  jasteil
+1489998834145820722  |  2jgtf  |  2jgtf
+435495269988302851  |  shawskyy  |  shawskyy
+1463777272371871989  |  𝐏𝐀𝐀𝐍𝐃𝐀𝐀-𝐣𝐫🐼  |  paandaa.jr_99814
+1204242240889954334  |  ÂDØOŁF🙋🏻  |  hamza_benabdllah_26901
+1419352269585125487  |  Brahim  |  brahim09316
+1053427716877189221  |  𝙆𝙄𝙇𝙇𝙀𝙍..  |  killer099990909
+1239178114777747579  |  Fraiza🍓  |  niss0352
+1490720362244215036  |  Fawda Temp  |  Fawda Temp
+778339220896874567  |  ! Ceeballos  |  ceeballos
+1045029414141960212  |  Jerry lfa2r  |  black_.47
+827308269399703602  |  !    𝐎 𝐘 𝐀 𝐉 𝐈  |  oyaji_sam
+1496228030815928380  |  loon  |  loon0726
+1470075348472430858  |  ! Jen 🦇  |  ossamaaaa2
+1277737581412483348  |  !   ghanim  |  ban_ranim
+1288662899568541744  |  𝓜𝓞 𝓐𝓛𝓘  |  moali02893
+399208341038956546  |  Outhmane  |  groffty
+1478228592449290241  |  Mizo  |  mizo0418
+1261716922056310799  |  Auouub Ff  |  auouubff_93761
+1494317020408447131  |  ❂ NIVOX_  |  allae_bt
+1414955354097320119  |  !             𝒆𝒍𝒆𝒏𝒂 ❦  |  yury0332
+1221657199357591662  |  SIMO  |  tojizin0529
+1488262421708669081  |  VERO  |  vero038584
+911372867965448202  |  ! Oxinor  |  walid.56
+1163220257469636743  |  AgileLizard  |  agilelizard0607
+1498217074793906216  |  Shree  |  he05085
+1315809432617353256  |  𝕯𝖊𝖝𝖙𝖊𝖗  |  m_a_t_r_x.
+1470862489792286924  |  ymrz  |  ndry0008
+1433566525486272533  |  BAYGO  |  baygo0413
+433344023667933184  |  Near 近く  |  near6631
+1353173662727012352  |  wissaaal  |  wissaaal.chb
+1218773466673840218  |  ❂ ᥬ×͜× ʙᴏɴᴏ  ᭄  |  bawnawi
+1351284937562525697  |  𝓎ℴ𝓈𝓈ℴ𝓊𝓊  |  _5ys.
+1378382118924582933  |  habush  |  ael._.201228
+1421122675698565160  |  ❂ ShpuK!  |  kaspar_1998
+1429737371892711425  |  🧚🏻oumaima🧚🏻  |  ouma_08.
+1467516195728261142  |  Druxy  |  druxywashere
+979177187712327730  |  Sasha  |  fadwa8836
+1009177910457929799  |  YASSRE 口味  |  yassrekouwei5212
+1152184597078089738  |  Vidsll  |  vidl76
+552147336592359446  |  k2i  |  k2i3842
+459711042587590656  |  Vic silent  |  kellergoste
+1163218311346126938  |  PurpleDog  |  purpledog0431
+837955057764007978  |  الأمير عباس القحطاني  |  samox21sam
+1287548842019127380  |  Eggsy  |  eggsy.kingsman
+1182343543428231260  |  esrao🤍  |  luvrsio_64179
+1473658361643012096  |  Olga  |  t4ra_4
+1491843839508611153  |  biasboy  |  biasboy_aji
+1488599599235989607  |  AS_LM9WAD🚭  |  aslm9wd_41757
+829708920712855573  |  MR DUTCH  |  mr_prince444
+1450730570601599117  |  𝓗𝓘𝓜𝓘𝓚𝓞 🎀  |  rebelistova
+1402361691383005336  |  !𝖒𝖊𝖍𝖗𝖔  |  m_ehro
+1369529122187116594  |  Aminbrk  |  aminbrk0823
+1495544371532136449  |  Xx  |  lwimina_xx
+1320101508242473155  |  ᶻ 𝗓 𐰁  |  zarra.e
+851273871420293151  |  MedBay  |  _ayloo
+1413536622674448384  |  Vlad  |  klu0240_53234
+1498686083100311572  |  Sando5an  |  tayzenmohamed
+491769129318088714  |  Statbot  |  Statbot
+1059417607066886254  |  !               ItS_MoU34D  |  its_mou34d
+990373432048906342  |  CAMAVINGA  |  edouardo_camavinga12
+1377358630990647407  |  ༺ INZOU ༻  |  ba7amdan
+1474860686113767604  |  Skyy  |  skyy.ll
+1183393081148579919  |  Suku  |  me9la_08
+1408458350756233316  |  Tahaa_a  |  icy__boy
+858832708187848704  |  sexx1iro  |  rochdi_777
+1158762022876491819  |  Rank Bot  |  Rank Bot
+1495477171509268703  |  ﾒ𝟶  |  nawraa13
+1442326622895345796  |  Ataaay🥃  |  nesrinee__.
+778986614076080189  |  PTIPANA  |  wiiili.1
+1163512239253356586  |  ExpertOryx  |  expertoryx0857
+1163221847442198588  |  SoaringGriffin  |  soaringgriffin0829
+1094380197710680176  |  hajar  |  hajar7839
+1438455596566446100  |  SANTA 🥀  |  ryyhaaabe
+1492293794224275466  |  ❂ 𝒜𝓃𝑔𝑒𝓁  |  if_u_can_
+509803874278965248  |  Sal7awicha  |  topgxxx
+1427279631228211301  |  ❂ °•Zai.ne•°  |  zaine_0801
+1386091162099519488  |  Ziad  |  ziad_aj
+1368107999717097562  |  Mohamed_fgr  |  mohamed_fgr
+1476663378536829060  |  Choaibv2  |  choaibv2
+282859044593598464  |  ProBot ✨  |  ProBot ✨
+356268235697553409  |  .fmbot  |  .fmbot
+1413180352855277729  |  NΛTSUI🎈  |  tornadoofsouls0581
+1489392368409907200  |  YOᖇᑌ  |  yoru_11
+1481667223499178068  |  youness  |  lbassel10_09595
+496361412713644062  |  yuckfou00  |  yuckfou00
+756190561748385862  |  MrKrouse7  |  mrkrouse
+1458258282182348850  |  Eleyna🫦  |  eleyna._.
+1058784501611888670  |  !               Wlh ma ana ☭  |  taha.lkobra
+563300069521227776  |  sobri  |  sobri.exe
+1041110053521981450  |  #201  |  haitamflk
+736179821255852134  |  MHDXbingooo  |  3mhd__
+1441253707801956432  |  ven  |  donben.
+1437236289463128094  |  𓊈Salwa𓊉  |  salwa_05.
+412347780841865216  |  Jockie Music (3)  |  Jockie Music (3)
+1245562155328344166  |  oussama  |  oussama_90780
+1499885463530639534  |  Reda125.  |  reda.o125.
+1394343273748762738  |  Same  |  same0434_34600
+1491559817809236192  |  A7C  |  a7c0273
+1223767532662685829  |  Chico  |  chico086914
+1472563819518627901  |  ❂ sofain.k  |  sofainkour_18181
+1354144495435780180  |  Batman  |  batman_taiger
+587109567163269130  |  IMMORTAL  |  mu77amed
+1382823915889623210  |  MEEEDシシ  |  meeed_en
+331086125148143626  |  ⠃⠊⠝⠙⠕⠥  |  bindou
+1435374626728444034  |  Yuta_sinpai  |  kokoshibo_sinpai_19842
+1146882103913500702  |  62怨中ー  |  conane_67145
+1218037013966491770  |  Holy†Atomic  |  holy_atomic
+1353482701189157018  |  JustWALID  |  justwalid12
+947901467447132181  |  z  |  z_x149
+1463666412248764491  |  adnan  |  adnan_61258
+1425164180834619533  |  ❂ Zrii9aaaa  |  souhailzr9
+1410029653279637504  |  Mol 20$  |  fitriam__34323
+1140344077162921984  |  BO6TA  |  bo6ta
+580752990491901982  |  MaBe1  |  mabe_the_one
+747982145498382447  |  yassir  |  yassir5647
+408785106942164992  |  OwO  |  OwO
+1464048299114758307  |  Youssef  |  ysf.v
+1319479540170625055  |  Saad  |  saad0872_57095

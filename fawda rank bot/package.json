@@ -1,0 +1,10 @@
+{
+  "name": "fawda-rank-bot",
+  "version": "1.0.0",
+  "main": "rank_bot.js",
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "@napi-rs/canvas": "^0.1.44",
+    "gif-encoder-2": "^1.0.4"
+  }
+}
