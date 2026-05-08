@@ -13,7 +13,7 @@ const fs   = require('fs');
 const path = require('path');
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const TOKEN      = require('./config.json').token;
+const TOKEN      = process.env.RANK_TOKEN;
 const PREFIX     = '=';
 const DATA_FILE  = path.join(__dirname, 'rank_data.json');
 const GUILD_ID   = '1480956937058390056';
@@ -50,7 +50,7 @@ function saveData(d) { fs.writeFileSync(DATA_FILE, JSON.stringify(d, null, 2), '
 
 function getMainBotData() {
     try {
-        const p = path.join(__dirname, '..', 'fawda main bot', 'data.json');
+        const p = path.join(__dirname, 'data.json');
         if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
     } catch {}
     return null;

@@ -12,7 +12,7 @@ const fs   = require('fs');
 const path = require('path');
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const TOKEN     = require('./config.json').token;
+const TOKEN     = process.env.MAIN_TOKEN;
 const PREFIX    = '+';
 const DATA_FILE = 'data.json';
 
