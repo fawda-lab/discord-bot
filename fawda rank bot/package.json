@@ -2,6 +2,9 @@
   "name": "fawda-rank-bot",
   "version": "1.0.0",
   "main": "rank_bot.js",
+  "scripts": {
+    "start:rank": "node rank_bot.js"
+  },
   "dependencies": {
     "discord.js": "^14.0.0",
     "@napi-rs/canvas": "^0.1.44",
