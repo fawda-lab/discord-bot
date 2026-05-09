@@ -140,6 +140,7 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
 
 module.exports = {
     name: 'rank',
+    cooldown: 15,
     execute: async (msg, args, client) => {
         const { guild, member } = msg;
         let target = member;

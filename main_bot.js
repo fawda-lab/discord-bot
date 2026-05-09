@@ -1,3 +1,4 @@
+require('dotenv').config();
 const log = require('./logger')('MainBot');
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -14,6 +15,8 @@ const fs   = require('fs');
 const path = require('path');
 
 const connectDB = require('./utils/db');
+const cooldowns = require('./utils/cooldownManager');
+const antiSpam  = require('./utils/antiSpam');
 const { TOKEN, PREFIX, RAYSS_ID } = require('./utils/mainConstants');
 const { HELP_PANELS, buildAllCommandsDm } = require('./utils/helpPanels');
 
@@ -82,6 +85,7 @@ client.on('interactionCreate', async (interaction) => {
 const RAYSS_IMG = path.join(__dirname, 'rayss.jpg');
 client.on('messageCreate', async (msg) => {
     if (msg.author.bot || !msg.guild) return;
+    await antiSpam.check(msg.member);
 
     if (msg.content.includes(`<@${RAYSS_ID}>`) && fs.existsSync(RAYSS_IMG)) {
         await msg.reply({ files: [RAYSS_IMG] }).catch(e => log.debug('[DEBUG]', e.message));
@@ -92,6 +96,16 @@ client.on('messageCreate', async (msg) => {
     const cmd     = args.shift().toLowerCase();
     const command = client.commands.get(cmd);
     if (!command) return;
+
+    if (command.cooldown) {
+        const { onCooldown, remainingSeconds } = cooldowns.check(msg.author.id, cmd, command.cooldown);
+        if (onCooldown) {
+            const notice = await msg.reply(`⏱️ Please wait **${remainingSeconds}s** before using this command again.`);
+            setTimeout(() => notice.delete().catch(() => {}), 4000);
+            return;
+        }
+        cooldowns.set(msg.author.id, cmd, command.cooldown);
+    }
 
     try {
         await command.execute(msg, args, client);

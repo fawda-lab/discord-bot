@@ -18,6 +18,7 @@ const connectDB = require('./utils/db');
 const { TOKEN, PREFIX, GUILD_ID, VOICE_XP, MSG_XP_MIN, MSG_XP_MAX, MSG_COOLDOWN } = require('./utils/constants');
 const { getMember, addXP } = require('./utils/dataManager');
 const Member = require('./utils/models/Member');
+const cooldowns = require('./utils/cooldownManager');
 
 // ─── Client ───────────────────────────────────────────────────────────────────
 const client = new Client({
@@ -97,6 +98,16 @@ client.on('messageCreate', async (msg) => {
     const cmd  = args.shift().toLowerCase();
     const command = client.commands.get(cmd);
     if (!command) return;
+
+    if (command.cooldown) {
+        const { onCooldown, remainingSeconds } = cooldowns.check(msg.author.id, cmd, command.cooldown);
+        if (onCooldown) {
+            const notice = await msg.reply(`⏱️ Please wait **${remainingSeconds}s** before using this command again.`);
+            setTimeout(() => notice.delete().catch(() => {}), 4000);
+            return;
+        }
+        cooldowns.set(msg.author.id, cmd, command.cooldown);
+    }
 
     try {
         await command.execute(msg, args, client);

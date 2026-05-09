@@ -4,6 +4,7 @@ const { C } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'aji',
+    cooldown: 60,
     execute: async (msg, args, client) => {
         const { guild, member } = msg;
         if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });

@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
+const { canModerate } = require('../../../utils/permissions');
 const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C } = require('../../../utils/mainConstants');
 
@@ -12,6 +13,7 @@ module.exports = {
         if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const target  = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
+        if (!canModerate(member, target)) return msg.reply({ embeds: [errEmbed('You cannot moderate someone with an equal or higher role.')] });
         const timeArg = args[1];
         if (!timeArg) return msg.reply({ embeds: [errEmbed('Usage: `+timeout @user [durée] [raison]`\nExemple: `+timeout @user 10m spam`')] });
         const match = timeArg.match(/^(\d+)(s|m|h|d)?$/i);
