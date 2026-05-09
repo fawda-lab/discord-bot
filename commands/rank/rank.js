@@ -68,20 +68,20 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
     ctx.strokeStyle = accent; ctx.lineWidth = 3; ctx.stroke();
 
     const nameX = avCX + avR + 16;
-    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 20px "Arial"';
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 20px "Liberation Sans"';
     ctx.fillText(member.displayName.substring(0, 22), nameX, 52);
 
     const xpLabel = isOwner ? '∞ XP' : `+${totXP.toLocaleString()} XP`;
-    ctx.font = 'bold 12px "Arial"';
+    ctx.font = 'bold 12px "Liberation Sans"';
     const bw = ctx.measureText(xpLabel).width + 18;
     rr(nameX, 60, bw, 22, 11); ctx.fillStyle = accent + '30'; ctx.fill();
     rr(nameX, 60, bw, 22, 11); ctx.strokeStyle = accent; ctx.lineWidth = 1; ctx.stroke();
     ctx.fillStyle = accent; ctx.fillText(xpLabel, nameX + 9, 75);
 
     ctx.textAlign = 'right';
-    ctx.fillStyle = accent; ctx.font = 'bold 13px "Arial"';
+    ctx.fillStyle = accent; ctx.font = 'bold 13px "Liberation Sans"';
     ctx.fillText(rankName.toUpperCase(), W - 18, 52);
-    ctx.fillStyle = '#ffffff88'; ctx.font = '11px "Arial"';
+    ctx.fillStyle = '#ffffff88'; ctx.font = '11px "Liberation Sans"';
     ctx.fillText(`Level ${lvl}`, W - 18, 70);
     ctx.textAlign = 'left';
 
@@ -91,15 +91,15 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
     const p1x = 18, p1y = 108, p1w = 318, p1h = 98;
     rr(p1x, p1y, p1w, p1h, 14); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fill();
     rr(p1x, p1y, p1w, p1h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
+    ctx.fillStyle = accent; ctx.font = 'bold 11px "Liberation Sans"';
     ctx.fillText('Level Info', p1x + 14, p1y + 18);
-    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Liberation Sans"';
     ctx.fillText('▣  Message Level:', p1x + 14, p1y + 42);
-    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Liberation Sans"';
     ctx.fillText(`${lvl}`, p1x + 158, p1y + 42);
-    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Liberation Sans"';
     ctx.fillText('◈  Progress:', p1x + 14, p1y + 62);
-    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Liberation Sans"';
     ctx.fillText(isOwner ? '∞' : `${Math.round(pct * 100)}%`, p1x + 158, p1y + 62);
 
     const pbx = p1x + 14, pby = p1y + 74, pbw = p1w - 28, pbh = 10;
@@ -114,15 +114,15 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
     const p2x = p1x + p1w + 10, p2y = 108, p2w = W - p2x - 18, p2h = 98;
     rr(p2x, p2y, p2w, p2h, 14); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fill();
     rr(p2x, p2y, p2w, p2h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = accent; ctx.font = 'bold 11px "Arial"';
+    ctx.fillStyle = accent; ctx.font = 'bold 11px "Liberation Sans"';
     ctx.fillText('Rank Info', p2x + 14, p2y + 18);
-    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Liberation Sans"';
     ctx.fillText('▣  Server Rank:', p2x + 14, p2y + 42);
-    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Liberation Sans"';
     ctx.fillText(`#${serverRank}`, p2x + 178, p2y + 42);
-    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Arial"';
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '13px "Liberation Sans"';
     ctx.fillText('◈  Total XP:', p2x + 14, p2y + 62);
-    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Arial"';
+    ctx.fillStyle = '#ffffff'; ctx.font = 'bold 13px "Liberation Sans"';
     ctx.fillText(isOwner ? '∞' : totXP.toLocaleString(), p2x + 178, p2y + 62);
 
     for (let i = 0; i < 5; i++) {
