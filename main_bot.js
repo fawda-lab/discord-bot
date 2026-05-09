@@ -1,19 +1,5 @@
 const log = require('./logger')('MainBot');
 
-const http = require('http');
-const server = http.createServer((req, res) => {
-    try { res.writeHead(200); res.end('Bot is alive!'); }
-    catch (e) { log.error('HTTP handler error:', e); }
-});
-server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        log.error(`[HTTP] Port ${process.env.PORT || 3001} is already in use.`);
-        process.exit(1);
-    }
-    log.error('[HTTP] Server error:', err);
-});
-server.listen(process.env.PORT || 3001);
-
 process.on('unhandledRejection', (reason, promise) => {
     log.error('[Anti-Crash] Unhandled Rejection at:', promise);
     log.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
@@ -122,7 +108,7 @@ client.on('messageCreate', async (msg) => {
 async function gracefulShutdown(signal) {
     log.info(`Received ${signal}, shutting down gracefully...`);
     try { client.destroy(); } catch (e) { log.debug('[DEBUG]', e.message); }
-    server.close(() => process.exit(0));
+    process.exit(0);
 }
 process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));

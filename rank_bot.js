@@ -1,19 +1,5 @@
 const log = require('./logger')('RankBot');
 
-const http = require('http');
-const server = http.createServer((req, res) => {
-    try { res.writeHead(200); res.end('Bot is alive!'); }
-    catch (e) { log.error('HTTP handler error:', e); }
-});
-server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        log.error(`[HTTP] Port ${process.env.PORT || 3000} is already in use.`);
-        process.exit(1);
-    }
-    log.error('[HTTP] Server error:', err);
-});
-server.listen(process.env.PORT || 3000);
-
 process.on('unhandledRejection', (reason, promise) => {
     log.error('[Anti-Crash] Unhandled Rejection at:', promise);
     log.error('[Anti-Crash] Reason:', reason?.stack ?? reason);
@@ -137,7 +123,7 @@ async function gracefulShutdown(signal) {
         }
     }
     try { client.destroy(); } catch (e) { log.debug('[DEBUG]', e.message); }
-    server.close(() => process.exit(0));
+    process.exit(0);
 }
 process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
