@@ -1,4 +1,7 @@
 require('dotenv').config();
+// Local DNS servers sometimes refuse SRV queries from Node's c-ares resolver;
+// use Google's public DNS to ensure the mongodb+srv:// lookup works.
+require('dns').setServers(['8.8.8.8', '8.8.4.4']);
 const fs       = require('fs');
 const path     = require('path');
 const mongoose = require('mongoose');

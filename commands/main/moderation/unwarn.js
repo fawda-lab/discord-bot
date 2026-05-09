@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
-const { loadData, saveData } = require('../../../utils/mainData');
+const { getMember, updateMember } = require('../../../utils/mainData');
 const { ft, errEmbed, warnBar, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C, ROLES } = require('../../../utils/mainConstants');
 
@@ -11,13 +11,13 @@ module.exports = {
         if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const target = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
-        const data = loadData();
-        if (!data.warns[target.id] || data.warns[target.id].count === 0)
-            return msg.reply({ embeds: [errEmbed('That member has no warns.')] });
-        data.warns[target.id].count--;
-        data.warns[target.id].reasons.pop();
-        const newCount = data.warns[target.id].count;
-        saveData(data);
+
+        const doc = await getMember(target.id);
+        if (!doc.warns.length) return msg.reply({ embeds: [errEmbed('That member has no warns.')] });
+
+        const updated = await updateMember(target.id, { $pop: { warns: 1 } });
+        const newCount = updated.warns.length;
+
         const allWarnRoles = [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN, ROLES.MUTED];
         for (const roleId of allWarnRoles) {
             const r = guild.roles.cache.get(roleId);
@@ -28,6 +28,7 @@ module.exports = {
             const r = guild.roles.cache.get(warnRoleMap[newCount]);
             if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
         }
+
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
             .setTitle('✅  Warn Removed')

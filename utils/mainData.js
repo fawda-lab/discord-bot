@@ -1,23 +1,17 @@
-const fs  = require('fs');
-const log = require('../logger')('MainBot');
-const { DATA_FILE } = require('./mainConstants');
+const Member = require('./models/Member');
 
-function loadData() {
-    if (!fs.existsSync(DATA_FILE))
-        return { warns: {}, jailed: {}, sasList: [], verifications: {}, jailActions: {} };
-    try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); }
-    catch (e) {
-        log.error('[Data] Failed to parse data.json:', e.message);
-        return { warns: {}, jailed: {}, sasList: [], verifications: {}, jailActions: {} };
-    }
+async function getMember(userId) {
+    return Member.findByIdAndUpdate(
+        userId,
+        { $setOnInsert: { _id: userId } },
+        { upsert: true, new: true }
+    );
 }
 
-function saveData(d) {
-    const tmp = DATA_FILE + '.tmp';
-    fs.writeFileSync(tmp, JSON.stringify(d, null, 2), 'utf8');
-    fs.renameSync(tmp, DATA_FILE);
+async function updateMember(userId, update) {
+    return Member.findByIdAndUpdate(userId, update, { upsert: true, new: true });
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-module.exports = { loadData, saveData, sleep };
+module.exports = { getMember, updateMember, sleep };

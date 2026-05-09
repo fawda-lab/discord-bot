@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
-const { loadData, saveData, sleep } = require('../../../utils/mainData');
+const { updateMember } = require('../../../utils/mainData');
 const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C, ROLES } = require('../../../utils/mainConstants');
 
@@ -17,18 +17,22 @@ module.exports = {
             const rolesToRemove = target.roles.cache.filter(r => r.id !== guild.roles.everyone.id && r.id !== ROLES.JAIL);
             for (const [, r] of rolesToRemove) {
                 await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
-                await sleep(300);
+                await new Promise(res => setTimeout(res, 300));
             }
             await target.roles.add(jailRole).catch(e => log.debug('[DEBUG]', e.message));
         }
-        const data = loadData();
-        data.jailed[target.id] = {
-            reason, jailedBy: member.id,
-            rolesSnapshot: target.roles.cache.map(r => r.id).filter(id => id !== guild.roles.everyone.id),
-            timestamp: new Date().toISOString(),
-        };
-        data.jailActions[member.id] = (data.jailActions[member.id] || 0) + 1;
-        saveData(data);
+
+        await updateMember(target.id, {
+            $set: {
+                jail: {
+                    reason, jailedBy: member.id,
+                    timestamp: new Date().toISOString(),
+                    rolesSnapshot: target.roles.cache.map(r => r.id).filter(id => id !== guild.roles.everyone.id),
+                },
+            },
+        });
+        await updateMember(member.id, { $inc: { 'staffStats.jailsDone': 1 } });
+
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
             .setTitle('🔒  Member Jailed')

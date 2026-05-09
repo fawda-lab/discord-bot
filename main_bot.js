@@ -13,6 +13,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs   = require('fs');
 const path = require('path');
 
+const connectDB = require('./utils/db');
 const { TOKEN, PREFIX, RAYSS_ID } = require('./utils/mainConstants');
 const { HELP_PANELS, buildAllCommandsDm } = require('./utils/helpPanels');
 
@@ -113,4 +114,4 @@ async function gracefulShutdown(signal) {
 process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 
-client.login(TOKEN);
+connectDB().then(() => client.login(TOKEN));

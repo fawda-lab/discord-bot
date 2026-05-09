@@ -1,15 +1,15 @@
 const { EmbedBuilder } = require('discord.js');
-const { loadData, calcLevel } = require('../../utils/dataManager');
+const Member = require('../../utils/models/Member');
+const { calcLevel } = require('../../utils/dataManager');
 
 module.exports = {
     name: 'lb',
-    execute: async (msg, args, client) => {
-        const data   = loadData();
-        const sorted = Object.entries(data.users).sort(([,a],[,b]) => b.xp - a.xp).slice(0, 10);
+    execute: async (msg) => {
+        const top = await Member.find({ xp: { $gt: 0 } }).sort({ xp: -1 }).limit(10);
         const medals = ['🥇','🥈','🥉'];
-        const lines  = sorted.map(([id, u], i) => {
+        const lines  = top.map((u, i) => {
             const info = calcLevel(u.xp);
-            return `${medals[i] ?? `**${i+1}.**`} <@${id}> — Lv.**${info.level}** · \`${u.xp.toLocaleString()} XP\``;
+            return `${medals[i] ?? `**${i+1}.**`} <@${u._id}> — Lv.**${info.level}** · \`${u.xp.toLocaleString()} XP\``;
         });
         const e = new EmbedBuilder()
             .setTitle('🏆  FAWDA — XP Leaderboard')

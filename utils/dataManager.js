@@ -1,27 +1,6 @@
-const fs   = require('fs');
-const path = require('path');
-const log  = require('../logger')('RankBot');
-const { DATA_FILE, RANKS } = require('./constants');
-
-function loadData() {
-    if (!fs.existsSync(DATA_FILE)) return { users: {} };
-    try { return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')); }
-    catch { return { users: {} }; }
-}
-
-function saveData(d) {
-    const tmp = DATA_FILE + '.tmp';
-    fs.writeFileSync(tmp, JSON.stringify(d, null, 2), 'utf8');
-    fs.renameSync(tmp, DATA_FILE);
-}
-
-function getMainBotData() {
-    try {
-        const p = path.join(__dirname, '..', 'data.json');
-        if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
-    } catch (e) { log.debug('[DEBUG]', e.message); }
-    return null;
-}
+const log    = require('../logger')('RankBot');
+const Member = require('./models/Member');
+const { RANKS } = require('./constants');
 
 function xpToNextLevel(n) { return 200 * (n + 1); }
 
@@ -41,14 +20,27 @@ function getRankName(level) {
     return r ? r.name : 'Initiate';
 }
 
+async function getMember(userId) {
+    return Member.findByIdAndUpdate(
+        userId,
+        { $setOnInsert: { _id: userId } },
+        { upsert: true, new: true }
+    );
+}
+
 async function addXP(userId, amount, guild) {
-    const data = loadData();
-    if (!data.users[userId]) data.users[userId] = { xp: 0, lastMsg: 0 };
-    const oldLevel = calcLevel(data.users[userId].xp).level;
-    data.users[userId].xp += amount;
-    const newInfo  = calcLevel(data.users[userId].xp);
-    saveData(data);
-    if (newInfo.level > oldLevel) await handleRankUp(userId, oldLevel, newInfo.level, guild);
+    const before = await getMember(userId);
+    const oldLevel = calcLevel(before.xp).level;
+
+    const after = await Member.findByIdAndUpdate(
+        userId,
+        { $inc: { xp: amount } },
+        { new: true }
+    );
+
+    if (calcLevel(after.xp).level > oldLevel) {
+        await handleRankUp(userId, oldLevel, calcLevel(after.xp).level, guild);
+    }
 }
 
 async function handleRankUp(userId, oldLevel, newLevel, guild) {
@@ -74,4 +66,9 @@ async function handleRankUp(userId, oldLevel, newLevel, guild) {
     ).catch(e => log.debug('[DEBUG]', e.message));
 }
 
-module.exports = { loadData, saveData, getMainBotData, calcLevel, getRankName, addXP };
+async function getMainBotData() {
+    const doc = await Member.findById('__main__').catch(() => null);
+    return doc;
+}
+
+module.exports = { getMember, addXP, calcLevel, getRankName, getMainBotData };

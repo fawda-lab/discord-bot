@@ -4,7 +4,8 @@ const path = require('path');
 const registered = GlobalFonts.registerFromPath(path.join(__dirname, '../../fonts/LiberationSans-Regular.ttf'), 'Liberation Sans');
 console.log('Font registered:', registered);
 const log = require('../../logger')('RankBot');
-const { loadData, calcLevel, getRankName, getMainBotData } = require('../../utils/dataManager');
+const Member = require('../../utils/models/Member');
+const { calcLevel, getRankName, getMember } = require('../../utils/dataManager');
 const { errEmbed } = require('../../utils/embeds');
 const { OWNER_ID } = require('../../utils/constants');
 
@@ -147,16 +148,12 @@ module.exports = {
             if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
         }
         const isOwner  = target.id === OWNER_ID;
-        const data     = loadData();
-        const userData = data.users[target.id] || { xp: 0 };
-        const lvInfo   = calcLevel(userData.xp);
+        const doc      = await getMember(target.id);
+        const lvInfo   = calcLevel(doc.xp);
 
-        const sorted     = Object.entries(data.users).sort(([,a],[,b]) => b.xp - a.xp).map(([id]) => id);
-        const serverRank = isOwner ? 1 : (sorted.indexOf(target.id) + 1) || '?';
+        const serverRank = isOwner ? 1 : (await Member.countDocuments({ xp: { $gt: doc.xp } }) + 1);
 
-        let warnCount = 0;
-        const mainData = getMainBotData();
-        if (mainData?.warns?.[target.id]) warnCount = mainData.warns[target.id].count || 0;
+        const warnCount = doc.warns?.length ?? 0;
 
         const notice = await msg.reply('⏳ Generating rank card...');
         try {

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const log = require('./logger')('RankBot');
 
 process.on('unhandledRejection', (reason, promise) => {
@@ -13,8 +14,10 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs   = require('fs');
 const path = require('path');
 
+const connectDB = require('./utils/db');
 const { TOKEN, PREFIX, GUILD_ID, VOICE_XP, MSG_XP_MIN, MSG_XP_MAX, MSG_COOLDOWN } = require('./utils/constants');
-const { loadData, saveData, addXP } = require('./utils/dataManager');
+const { getMember, addXP } = require('./utils/dataManager');
+const Member = require('./utils/models/Member');
 
 // ─── Client ───────────────────────────────────────────────────────────────────
 const client = new Client({
@@ -80,12 +83,10 @@ client.on('messageCreate', async (msg) => {
     if (msg.author.bot || !msg.guild || msg.guild.id !== GUILD_ID) return;
 
     if (!msg.content.startsWith(PREFIX)) {
-        const data = loadData();
-        if (!data.users[msg.author.id]) data.users[msg.author.id] = { xp: 0, lastMsg: 0 };
+        const doc = await getMember(msg.author.id);
         const now = Date.now();
-        if (now - (data.users[msg.author.id].lastMsg || 0) >= MSG_COOLDOWN) {
-            data.users[msg.author.id].lastMsg = now;
-            saveData(data);
+        if (now - (doc.lastMsg || 0) >= MSG_COOLDOWN) {
+            await Member.findByIdAndUpdate(msg.author.id, { $set: { lastMsg: now } });
             const gain = Math.floor(Math.random() * (MSG_XP_MAX - MSG_XP_MIN + 1)) + MSG_XP_MIN;
             await addXP(msg.author.id, gain, msg.guild);
         }
@@ -128,4 +129,4 @@ async function gracefulShutdown(signal) {
 process.on('SIGINT',  () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
 
-client.login(TOKEN);
+connectDB().then(() => client.login(TOKEN));

@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
-const { loadData, saveData } = require('../../../utils/mainData');
+const { getMember, updateMember } = require('../../../utils/mainData');
 const { ft, errEmbed, warnBar, warnColor, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C, ROLES } = require('../../../utils/mainConstants');
 
@@ -12,11 +12,11 @@ module.exports = {
         const target = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
         const reason = args.slice(1).join(' ') || 'No reason provided';
-        const data   = loadData();
-        if (!data.warns[target.id]) data.warns[target.id] = { count: 0, reasons: [] };
-        data.warns[target.id].count++;
-        data.warns[target.id].reasons.push({ reason, by: member.id, at: new Date().toISOString() });
-        const count = data.warns[target.id].count;
+
+        const doc = await updateMember(target.id, {
+            $push: { warns: { reason, by: member.id, at: new Date().toISOString() } },
+        });
+        const count = doc.warns.length;
 
         const warnRoles = [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN];
         for (const roleId of warnRoles) {
@@ -34,7 +34,6 @@ module.exports = {
         }
         if (count >= 4) await target.kick(`Auto-kick: ${count} warns`).catch(e => log.debug('[DEBUG]', e.message));
 
-        saveData(data);
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
             .setTitle(`⚠️  Warn #${count}`)
