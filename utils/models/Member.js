@@ -21,6 +21,7 @@ const staffStatsSchema = new Schema({
 const memberSchema = new Schema({
     _id:        { type: String, required: true },
     xp:         { type: Number, default: 0 },
+    voiceXp:    { type: Number, default: 0 },
     lastMsg:    { type: Number, default: 0 },
     warns:      { type: [warnSchema], default: [] },
     jail:       { type: jailSchema,  default: null },

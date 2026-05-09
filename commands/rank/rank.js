@@ -23,12 +23,12 @@ function getRankColors(level) {
     return                   { P: '#94A3B8', D: '#334155', BAR0: '#0F172A', BAR1: '#94A3B8', BAR2: '#64748B' };
 }
 
-async function generateCard(member, levelInfo, guild, serverRank, warnCount, isOwner) {
+async function generateCard(member, levelInfo, guild, serverRank, warnCount, isOwner, voiceXp = 0) {
     let avatarImg = null;
     try { avatarImg = await loadImage(member.user.displayAvatarURL({ extension: 'png', size: 128 })); }
     catch (e) { log.debug('[DEBUG]', e.message); }
 
-    const W = 700, H = 220;
+    const W = 700, H = 285;
     const canvas = createCanvas(W, H);
     const ctx    = canvas.getContext('2d');
 
@@ -135,6 +135,34 @@ async function generateCard(member, levelInfo, guild, serverRank, warnCount, isO
         ctx.fillStyle = i < warnCount ? '#EF4444' : 'rgba(255,255,255,0.15)'; ctx.fill();
     }
 
+    // ─── Voice Level panel ────────────────────────────────────────────────────
+    const vInfo = calcLevel(voiceXp);
+    const vPct  = isOwner ? 1 : Math.min(1, vInfo.currentXP / vInfo.neededXP);
+    const vLvl  = isOwner ? '∞' : vInfo.level;
+
+    const p3x = 18, p3y = 215, p3w = W - 36, p3h = 55;
+    rr(p3x, p3y, p3w, p3h, 14); ctx.fillStyle = 'rgba(0,0,0,0.35)'; ctx.fill();
+    rr(p3x, p3y, p3w, p3h, 14); ctx.strokeStyle = accent + '40'; ctx.lineWidth = 1; ctx.stroke();
+
+    ctx.fillStyle = accent; ctx.font = 'bold 11px "Liberation Sans"';
+    ctx.fillText('Voice Level', p3x + 14, p3y + 18);
+
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#ffffffbb'; ctx.font = '11px "Liberation Sans"';
+    ctx.fillText(isOwner ? 'Lv. ∞' : `Lv. ${vLvl}  —  ${Math.round(vPct * 100)}%`, p3x + p3w - 14, p3y + 18);
+    ctx.textAlign = 'left';
+
+    const vbx = p3x + 14, vby = p3y + 30, vbw = p3w - 28, vbh = 10;
+    rr(vbx, vby, vbw, vbh, 5); ctx.fillStyle = 'rgba(0,0,0,0.5)'; ctx.fill();
+    if (vPct > 0) {
+        const g = ctx.createLinearGradient(vbx, 0, vbx + vbw, 0);
+        g.addColorStop(0, BAR0); g.addColorStop(0.5, BAR1); g.addColorStop(1, BAR2);
+        rr(vbx, vby, Math.max(vPct * vbw, 10), vbh, 5);
+        ctx.fillStyle = g; ctx.fill();
+    }
+    // always stroke the track outline so the bar is visible even at 0%
+    rr(vbx, vby, vbw, vbh, 5); ctx.strokeStyle = accent + '60'; ctx.lineWidth = 1; ctx.stroke();
+
     return canvas.toBuffer('image/png');
 }
 
@@ -158,7 +186,7 @@ module.exports = {
 
         const notice = await msg.reply('⏳ Generating rank card...');
         try {
-            const buffer = await generateCard(target, lvInfo, guild, serverRank, warnCount, isOwner);
+            const buffer = await generateCard(target, lvInfo, guild, serverRank, warnCount, isOwner, doc.voiceXp ?? 0);
             await notice.delete().catch(e => log.debug('[DEBUG]', e.message));
             return msg.reply({ files: [new AttachmentBuilder(buffer, { name: 'rank.png' })] });
         } catch (e) {

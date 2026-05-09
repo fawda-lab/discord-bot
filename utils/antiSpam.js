@@ -28,6 +28,7 @@ async function check(member) {
     } catch (e) {
         log.error(`[AntiSpam] Could not timeout ${member.user.tag}:`, e.message);
     }
+    return true;
 }
 
 module.exports = { check };

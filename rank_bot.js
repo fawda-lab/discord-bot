@@ -16,9 +16,10 @@ const path = require('path');
 
 const connectDB = require('./utils/db');
 const { TOKEN, PREFIX, GUILD_ID, VOICE_XP, MSG_XP_MIN, MSG_XP_MAX, MSG_COOLDOWN } = require('./utils/constants');
-const { getMember, addXP } = require('./utils/dataManager');
+const { getMember, addXP, addVoiceXP } = require('./utils/dataManager');
 const Member = require('./utils/models/Member');
 const cooldowns = require('./utils/cooldownManager');
+const antiSpam  = require('./utils/antiSpam');
 
 // ─── Client ───────────────────────────────────────────────────────────────────
 const client = new Client({
@@ -74,7 +75,7 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
         const joinTime = client.voiceSessions.get(member.id);
         if (joinTime) {
             const minutes = Math.floor((Date.now() - joinTime) / 60_000);
-            if (minutes > 0) await addXP(member.id, minutes * VOICE_XP, guild);
+            if (minutes > 0) await addVoiceXP(member.id, minutes * VOICE_XP);
             client.voiceSessions.delete(member.id);
         }
     }
@@ -83,13 +84,17 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 client.on('messageCreate', async (msg) => {
     if (msg.author.bot || !msg.guild || msg.guild.id !== GUILD_ID) return;
 
+    const isSpam = await antiSpam.check(msg.member);
+
     if (!msg.content.startsWith(PREFIX)) {
-        const doc = await getMember(msg.author.id);
-        const now = Date.now();
-        if (now - (doc.lastMsg || 0) >= MSG_COOLDOWN) {
-            await Member.findByIdAndUpdate(msg.author.id, { $set: { lastMsg: now } });
-            const gain = Math.floor(Math.random() * (MSG_XP_MAX - MSG_XP_MIN + 1)) + MSG_XP_MIN;
-            await addXP(msg.author.id, gain, msg.guild);
+        if (!isSpam) {
+            const doc = await getMember(msg.author.id);
+            const now = Date.now();
+            if (now - (doc.lastMsg || 0) >= MSG_COOLDOWN) {
+                await Member.findByIdAndUpdate(msg.author.id, { $set: { lastMsg: now } });
+                const gain = Math.floor(Math.random() * (MSG_XP_MAX - MSG_XP_MIN + 1)) + MSG_XP_MIN;
+                await addXP(msg.author.id, gain, msg.guild);
+            }
         }
         return;
     }
@@ -129,7 +134,7 @@ async function gracefulShutdown(signal) {
         for (const [userId, joinTime] of client.voiceSessions) {
             const minutes = Math.floor((Date.now() - joinTime) / 60_000);
             if (minutes > 0) {
-                try { await addXP(userId, minutes * VOICE_XP, guild); }
+                try { await addVoiceXP(userId, minutes * VOICE_XP); }
                 catch (e) { log.debug('[DEBUG]', e.message); }
             }
         }

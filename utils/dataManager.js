@@ -66,9 +66,17 @@ async function handleRankUp(userId, oldLevel, newLevel, guild) {
     ).catch(e => log.debug('[DEBUG]', e.message));
 }
 
+async function addVoiceXP(userId, amount) {
+    await Member.findByIdAndUpdate(
+        userId,
+        { $inc: { voiceXp: amount } },
+        { upsert: true }
+    );
+}
+
 async function getMainBotData() {
     const doc = await Member.findById('__main__').catch(() => null);
     return doc;
 }
 
-module.exports = { getMember, addXP, calcLevel, getRankName, getMainBotData };
+module.exports = { getMember, addXP, addVoiceXP, calcLevel, getRankName, getMainBotData };
