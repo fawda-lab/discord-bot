@@ -42,6 +42,12 @@ const GAME_ROLES = {
     chess: '1487864757271789708',
 };
 
+const LOG_CHANNELS = {
+    TIMEOUT: '1487865949179875348',
+    WARN:    '1487865951977214214',
+    JAIL:    '1487865590575005766',
+};
+
 module.exports = {
     TOKEN:         process.env.MAIN_TOKEN,
     PREFIX:        '+',
@@ -49,5 +55,5 @@ module.exports = {
     RAYSS_ID:      '1430652121375838254',
     ONE_TAP_1:     '1487866287278260234',
     GAME_COOLDOWN: 30 * 60 * 1000,
-    C, ROLES, GAME_ROLES,
+    C, ROLES, GAME_ROLES, LOG_CHANNELS,
 };

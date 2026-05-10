@@ -2,7 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
 const { canModerate } = require('../../../utils/permissions');
 const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
-const { C } = require('../../../utils/mainConstants');
+const { C, LOG_CHANNELS } = require('../../../utils/mainConstants');
+const { updateMember } = require('../../../utils/mainData');
 
 const UNIT_MAP = { s: 1000, m: 60_000, h: 3_600_000, d: 86_400_000 };
 
@@ -22,6 +23,9 @@ module.exports = {
         if (ms > 28 * 86_400_000) return msg.reply({ embeds: [errEmbed('Maximum: 28 jours.')] });
         const reason = args.slice(2).join(' ') || 'No reason provided';
         await target.timeout(ms, reason);
+        await updateMember(target.id, {
+            $push: { timeouts: { reason, by: member.id, at: new Date().toISOString(), duration: timeArg } },
+        });
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
             .setTitle('⏱️  Timeout')
@@ -37,5 +41,7 @@ module.exports = {
         await msg.reply({ embeds: [e] });
         await target.send(`⏱️ You have been **timed out** in **${guild.name}** for **${timeArg}**.\n📝 Reason: ${reason}`)
             .catch(e => log.debug('[DEBUG]', e.message));
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.TIMEOUT).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[TimeoutLog]', e.message));
     },
 };

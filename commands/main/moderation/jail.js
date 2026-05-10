@@ -3,7 +3,7 @@ const log = require('../../../logger')('MainBot');
 const { updateMember } = require('../../../utils/mainData');
 const { canModerate } = require('../../../utils/permissions');
 const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
-const { C, ROLES } = require('../../../utils/mainConstants');
+const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'jail',
@@ -49,5 +49,7 @@ module.exports = {
         await msg.reply({ embeds: [e] });
         await target.send(`🔒 You have been **jailed** in **${guild.name}**.\n📝 Reason: ${reason}`)
             .catch(e => log.debug('[DEBUG]', e.message));
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.JAIL).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[JailLog]', e.message));
     },
 };

@@ -3,7 +3,7 @@ const log = require('../../../logger')('MainBot');
 const { getMember, updateMember } = require('../../../utils/mainData');
 const { canModerate } = require('../../../utils/permissions');
 const { ft, errEmbed, warnBar, warnColor, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
-const { C, ROLES } = require('../../../utils/mainConstants');
+const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'warn',
@@ -52,5 +52,7 @@ module.exports = {
         await target.send(
             `⚠️ You received a **warn** in **${guild.name}**.\n📝 Reason: ${reason}\n📊 Total: ${warnBar(count)} (${count}/3)`
         ).catch(e => log.debug('[DEBUG]', e.message));
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.WARN).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[WarnLog]', e.message));
     },
 };

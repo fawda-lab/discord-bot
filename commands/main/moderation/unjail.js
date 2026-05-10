@@ -2,7 +2,7 @@ const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
 const { getMember, updateMember } = require('../../../utils/mainData');
 const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
-const { C, ROLES } = require('../../../utils/mainConstants');
+const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'unjail',
@@ -33,6 +33,8 @@ module.exports = {
                 { name: '🛡️ By',    value: `${member}`, inline: true },
             )
             .setFooter(ft(client)).setTimestamp();
-        return msg.reply({ embeds: [e] });
+        await msg.reply({ embeds: [e] });
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.JAIL).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[UnjailLog]', e.message));
     },
 };
