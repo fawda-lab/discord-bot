@@ -19,7 +19,15 @@ npm-debug.log*
 dashboard/.next/
 dashboard/node_modules/
 
-# OS / editor junk
+# Bureau folders — personal files, not part of the bot project
+Games/
+Documents/
+Projects/
+.claude/
+
+# Windows shortcuts and OS junk
+*.lnk
+*.url
 .DS_Store
 desktop.ini
 Thumbs.db
