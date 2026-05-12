@@ -1,2 +1,5 @@
 [phases.setup]
 aptPkgs = ["fonts-liberation"]
+
+[variables]
+NODE_VERSION = "20"
