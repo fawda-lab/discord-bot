@@ -16,7 +16,7 @@ module.exports = {
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
         if (!canModerate(member, target)) return msg.reply({ embeds: [errEmbed('You cannot moderate someone with an equal or higher role.')] });
         const timeArg = args[1];
-        if (!timeArg) return msg.reply({ embeds: [errEmbed('Usage: `+timeout @user [durée] [raison]`\nExemple: `+timeout @user 10m spam`')] });
+        if (!timeArg) return msg.reply({ embeds: [errEmbed('Usage: `!timeout @user [durée] [raison]`\nExemple: `!timeout @user 10m spam`')] });
         const match = timeArg.match(/^(\d+)(s|m|h|d)?$/i);
         if (!match) return msg.reply({ embeds: [errEmbed('Durée invalide. Ex: `30s` `10m` `1h` `1d`')] });
         const ms = parseInt(match[1]) * UNIT_MAP[(match[2] || 'm').toLowerCase()];

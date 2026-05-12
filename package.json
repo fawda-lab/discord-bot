@@ -1,9 +1,13 @@
 {
   "name": "fawda-discord-bot",
+  "description": "Multi-bot Discord server management system",
   "version": "1.0.0",
   "scripts": {
     "start:main": "node main_bot.js",
     "start:rank": "node rank_bot.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@napi-rs/canvas": "^0.1.44",

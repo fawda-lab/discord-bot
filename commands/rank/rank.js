@@ -1,9 +1,9 @@
 const { AttachmentBuilder } = require('discord.js');
 const { createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas');
 const path = require('path');
-const registered = GlobalFonts.registerFromPath(path.join(__dirname, '../../fonts/LiberationSans-Regular.ttf'), 'Liberation Sans');
-console.log('Font registered:', registered);
 const log = require('../../logger')('RankBot');
+const registered = GlobalFonts.registerFromPath(path.join(__dirname, '../../fonts/LiberationSans-Regular.ttf'), 'Liberation Sans');
+log.info('Font registered:', registered);
 const Member = require('../../utils/models/Member');
 const { calcLevel, getRankName, getMember } = require('../../utils/dataManager');
 const { errEmbed } = require('../../utils/embeds');

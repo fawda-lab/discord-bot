@@ -1,9 +1,9 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
-const { getMember, updateMember } = require('../../../utils/mainData');
+const { updateMember } = require('../../../utils/mainData');
 const { canModerate } = require('../../../utils/permissions');
 const { ft, errEmbed, warnBar, warnColor, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
-const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
+const { ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'warn',

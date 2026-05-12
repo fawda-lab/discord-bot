@@ -14,17 +14,17 @@ module.exports = {
                 {
                     name: '👤  Member',
                     value: [
-                        '`=rank` — Affiche ta carte de rang',
-                        '`=rank @user` — Carte d\'un autre membre',
-                        '`=lb` — Classement top 10 XP',
+                        '`.rank` — Affiche ta carte de rang',
+                        '`.rank @user` — Carte d\'un autre membre',
+                        '`.lb` — Classement top 10 XP',
                     ].join('\n'),
                     inline: false,
                 },
                 {
                     name: '🛡️  Staff / Admin',
                     value: [
-                        '`=givexp @user [n]` — Donner des XP',
-                        '`=resetxp @user` — Remettre les XP à 0',
+                        '`.givexp @user [n]` — Donner des XP',
+                        '`.resetxp @user` — Remettre les XP à 0',
                     ].join('\n'),
                     inline: false,
                 },
@@ -44,7 +44,7 @@ module.exports = {
                     inline: true,
                 },
             )
-            .setFooter({ text: 'Préfixe : =  •  Owner = Level 9999 ∞' })
+            .setFooter({ text: 'Préfixe : .  •  Owner = Level 9999 ∞' })
             .setTimestamp();
         return msg.reply({ embeds: [e] });
     },

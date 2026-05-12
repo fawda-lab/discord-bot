@@ -7,7 +7,7 @@ module.exports = {
     execute: async (msg, args, client) => {
         const { guild } = msg;
         const code = args[0];
-        if (!code) return msg.reply({ embeds: [errEmbed('Usage: `+inviteowner <code>`')] });
+        if (!code) return msg.reply({ embeds: [errEmbed('Usage: `!inviteowner <code>`')] });
         const invites = await guild.invites.fetch().catch(() => null);
         if (!invites) return msg.reply({ embeds: [errEmbed('Could not fetch invites.')] });
         const inv = invites.get(code);

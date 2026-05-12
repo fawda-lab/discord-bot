@@ -10,7 +10,7 @@ module.exports = {
         if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const amount = parseInt(args[0]);
         if (!args[0] || isNaN(amount) || amount < 1 || amount > 100)
-            return msg.reply({ embeds: [errEmbed('Usage: `+ms7 [1-100]`')] });
+            return msg.reply({ embeds: [errEmbed('Usage: `!ms7 [1-100]`')] });
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder().setCustomId('ms7_confirm').setLabel('✅ Confirm').setStyle(ButtonStyle.Danger),

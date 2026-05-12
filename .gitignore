@@ -3,6 +3,7 @@ node_modules/
 
 # Secrets — never commit these
 .env
+.env.local
 config.json
 
 # Runtime data (auto-generated, changes frequently)
@@ -13,6 +14,10 @@ rank_data.json
 logs/
 *.log
 npm-debug.log*
+
+# Dashboard build/dependencies
+dashboard/.next/
+dashboard/node_modules/
 
 # OS / editor junk
 .DS_Store

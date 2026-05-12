@@ -11,7 +11,7 @@ module.exports = {
         const target = await guild.members.fetch(args[0]?.replace(/[<@!>]/g, '')).catch(() => null);
         const amount = parseInt(args[1]);
         if (!target || isNaN(amount) || amount <= 0)
-            return msg.reply({ embeds: [errEmbed('Usage: `=givexp @user [amount]`')] });
+            return msg.reply({ embeds: [errEmbed('Usage: `.givexp @user [amount]`')] });
         await addXP(target.id, amount, guild);
         return msg.reply({ embeds: [new EmbedBuilder().setColor(0xFFD700)
             .setDescription(`✅  Added **${amount} XP** to ${target}.`)] });

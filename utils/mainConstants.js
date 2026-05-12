@@ -50,7 +50,7 @@ const LOG_CHANNELS = {
 
 module.exports = {
     TOKEN:         process.env.MAIN_TOKEN,
-    PREFIX:        '+',
+    PREFIX:        '!',
     DATA_FILE:     path.join(__dirname, '..', 'data.json'),
     RAYSS_ID:      '1430652121375838254',
     ONE_TAP_1:     '1487866287278260234',

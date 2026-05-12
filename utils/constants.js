@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     TOKEN:       process.env.RANK_TOKEN,
-    PREFIX:      '=',
+    PREFIX:      '.',
     DATA_FILE:   path.join(__dirname, '..', 'rank_data.json'),
     GUILD_ID:    '1480956937058390056',
     OWNER_ID:    '1430652121375838254',

@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const Member = require('../../utils/models/Member');
 const { getMember, addXP } = require('../../utils/dataManager');
-const { errEmbed } = require('../../utils/embeds');
 
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const XP_MIN = 50, XP_MAX = 150;

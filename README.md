@@ -1,269 +1,227 @@
 # FAWDA Discord Bots
 
-A two-bot Discord system built with **discord.js v14** for the FAWDA community server. One bot handles the XP/leveling rank system; the other covers moderation, verification, voice utilities, and games.
-
----
+Multi-bot Discord server management system for the FAWDA community, with moderation tools, XP leveling, and a staff dashboard.
 
 ## Features
 
-### Rank Bot (`=`)
-- **XP & Leveling** — Earns XP from messages (15–25 XP, 60s cooldown) and voice time (10 XP/min)
-- **Rank Cards** — Canvas-rendered PNG cards with dynamic colors per rank tier
-- **10 Rank Roles** — Bronze → Epic → Celestia → Elite → Cosmic → Master → Grand Master → Champion → Hero → Royal
-- **Leaderboard** — Top 10 XP rankings with level display
-- **Staff Tools** — Give XP, reset XP (owner only)
+- Rank Bot: XP, leveling, rank cards, voice XP, daily rewards, leaderboard
+- Main Bot: Verification, jail, warns, timeouts, anti-spam, voice management, game role pings
+- Web Dashboard: Leaderboard, staff mod logs, Discord OAuth2 login
 
-### Main Bot (`+`)
-- **Verification** — Assign Boy/Girl roles to members; leaderboard of top verifiers
-- **Sas System** — Maintain a flagged-members watchlist
-- **Moderation** — Jail (with role snapshot/restore), warns (auto-mute at 3, auto-kick at 4+), timeout, bulk delete
-- **Jail Leaderboard** — Track which staff members jailed the most
-- **Voice Utilities** — Move members between channels, server statistics, One Tap shortcut
-- **Info Commands** — User info, staff stats, avatar, banner, invite lookup
-- **Games** — Ping game roles (21 games, 30-minute per-channel cooldown)
-- **Help Panel** — Interactive button panel with per-category command lists; DM export
+## Tech Stack
 
----
+| Technology | Usage |
+| --- | --- |
+| Node.js | Bot runtime |
+| discord.js v14 | Discord API client |
+| MongoDB Atlas (Mongoose) | Shared persistence for bot and dashboard data |
+| @napi-rs/canvas | Rank card image rendering |
+| Railway | Bot hosting |
+| Next.js 16 | Staff dashboard framework |
+| Vercel | Dashboard hosting |
 
 ## Project Structure
 
+```text
+.
+|-- rank_bot.js                  # Rank bot entry point
+|-- main_bot.js                  # Main bot entry point
+|-- logger.js                    # Shared timestamped logger
+|-- package.json                 # Root bot package and scripts
+|-- nixpacks.toml                # Railway build configuration
+|-- fonts/
+|   `-- LiberationSans-Regular.ttf
+|-- commands/
+|   |-- rank/
+|   |   |-- daily.js
+|   |   |-- givexp.js
+|   |   |-- help.js
+|   |   |-- lb.js
+|   |   |-- rank.js
+|   |   `-- resetxp.js
+|   `-- main/
+|       |-- verification/
+|       |-- moderation/
+|       |-- voice/
+|       |-- info/
+|       |-- games/
+|       `-- general/
+|-- utils/
+|   |-- db.js
+|   |-- dataManager.js
+|   |-- mainData.js
+|   |-- mainConstants.js
+|   |-- mainHelpers.js
+|   |-- permissions.js
+|   |-- cooldownManager.js
+|   |-- antiSpam.js
+|   `-- models/
+|       `-- Member.js
+`-- dashboard/
+    |-- app/
+    |-- lib/
+    |-- public/
+    |-- types/
+    |-- middleware.ts
+    `-- package.json
 ```
-discord-bot/
-├── main_bot.js                    # Main bot entry point
-├── rank_bot.js                    # Rank bot entry point
-├── logger.js                      # Shared logger (colored console + daily log files)
-├── config.example.json            # Example config (copy → set env vars)
-├── package.json
-│
-├── utils/
-│   ├── constants.js               # Rank bot constants (XP rates, rank thresholds)
-│   ├── dataManager.js             # XP data: load, save (atomic), addXP, calcLevel
-│   ├── embeds.js                  # errEmbed() for rank bot
-│   ├── mainConstants.js           # Main bot constants (colors, roles, game roles)
-│   ├── mainData.js                # Main bot data: load, save (atomic)
-│   ├── mainHelpers.js             # Shared helpers: ft, errEmbed, warnBar, resolveUser
-│   └── helpPanels.js              # Help button builders and DM formatter
-│
-├── commands/
-│   ├── rank/
-│   │   ├── rank.js                # Rank card (canvas PNG)
-│   │   ├── lb.js                  # XP leaderboard
-│   │   ├── givexp.js              # Give XP (staff)
-│   │   ├── resetxp.js             # Reset XP (owner)
-│   │   └── help.js                # Rank bot help
-│   └── main/
-│       ├── verification/
-│       │   ├── vb.js              # Verify as Boy
-│       │   ├── vg.js              # Verify as Girl
-│       │   ├── sas.js             # Add to sas list
-│       │   ├── unsas.js           # Remove from sas list
-│       │   ├── saslist.js         # View sas list
-│       │   └── lbvb.js            # Top verifiers leaderboard
-│       ├── moderation/
-│       │   ├── jail.js            # Jail member (strips + snapshots roles)
-│       │   ├── unjail.js          # Unjail member (restores roles)
-│       │   ├── jailcase.js        # View jail case
-│       │   ├── lbj.js             # Top jailers leaderboard
-│       │   ├── warn.js            # Warn member
-│       │   ├── unwarn.js          # Remove warn
-│       │   ├── warns.js           # View warn history
-│       │   ├── timeout.js         # Timeout member
-│       │   └── ms7.js             # Bulk delete messages
-│       ├── voice/
-│       │   ├── join.js            # Show current voice channel
-│       │   ├── vc.js              # Server statistics
-│       │   ├── aji.js             # Move member to voice channel
-│       │   ├── vkick.js           # Kick from voice
-│       │   └── ot.js              # Move to One Tap 1
-│       ├── info/
-│       │   ├── user.js            # User info embed
-│       │   ├── staff.js           # Staff stats embed
-│       │   ├── a.js               # Avatar
-│       │   ├── b.js               # Banner
-│       │   ├── myinvites.js       # Your active invites
-│       │   └── inviteowner.js     # Invite code lookup
-│       ├── games/
-│       │   └── games.js           # All 21+ game ping commands
-│       └── general/
-│           └── help.js            # Interactive help panel
-│
-└── logs/                          # Auto-created; gitignored
-    └── YYYY-MM-DD.log
-```
-
----
 
 ## Setup
 
-### 1. Clone the repository
+1. Clone the repo.
 
 ```bash
-git clone https://github.com/fawda-lab/discord-bot.git
-cd discord-bot
+git clone <repo-url>
+cd <repo-folder>
 ```
 
-### 2. Install dependencies
+2. Install bot dependencies.
 
 ```bash
 npm install
 ```
 
-### 3. Configure environment variables
+3. Create `.env` in the project root.
 
-The bots read tokens from environment variables. Set them in your shell, `.env` file, or hosting dashboard:
-
-| Variable     | Description                    |
-|--------------|--------------------------------|
-| `RANK_TOKEN` | Discord bot token for rank bot |
-| `MAIN_TOKEN` | Discord bot token for main bot |
-
-See `config.example.json` for reference.
-
-### 4. Run the bots
-
-```bash
-# Run the main bot
-npm run start:main
-
-# Run the rank bot (separate terminal or process)
-npm run start:rank
+```env
+MONGODB_URI=your_mongodb_atlas_connection_string
+RANK_TOKEN=your_rank_bot_token
+MAIN_TOKEN=your_main_bot_token
 ```
 
-Both bots spin up a lightweight HTTP server (rank: port `3000`, main: port `3001`) used for health checks. This port can be overridden with the `PORT` environment variable.
+4. Run the bots.
 
----
+```bash
+node rank_bot.js
+node main_bot.js
+```
 
-## Commands
+You can also use the package scripts:
 
-### Rank Bot — prefix `=`
+```bash
+npm run start:rank
+npm run start:main
+```
 
-| Command | Description |
-|---------|-------------|
-| `=rank [user]` | Display rank card (canvas PNG) with level, XP, and server rank |
-| `=lb` | XP leaderboard — top 10 members |
-| `=givexp <user> <amount>` | Give XP to a member *(staff only)* |
-| `=resetxp <user>` | Reset a member's XP to zero *(owner only)* |
-| `=help` / `=rankhelp` | Rank bot help panel |
+5. Run the dashboard.
 
-**XP Rates**
-- Messages: 15–25 XP per message (60-second cooldown)
-- Voice: 10 XP per minute in a voice channel
+```bash
+cd dashboard
+npm install
+npm run dev
+```
 
-**Rank Milestones**
+## Environment Variables
 
-| Level | Role |
-|-------|------|
-| 10 | »Bronze |
-| 20 | »Epic |
-| 30 | »Celestia |
-| 40 | »Elite |
-| 50 | »Cosmic |
-| 60 | »Master |
-| 70 | »Grand Master |
-| 80 | »Champion |
-| 90 | »Hero |
-| 100 | »Royal |
+| Variable | Component | Description |
+| --- | --- | --- |
+| `MONGODB_URI` | Bots, Dashboard | MongoDB Atlas connection string shared by all services |
+| `RANK_TOKEN` | Rank Bot | Discord token for `rank_bot.js` |
+| `MAIN_TOKEN` | Main Bot | Discord token for `main_bot.js` |
+| `DISCORD_CLIENT_ID` | Dashboard | Discord OAuth2 application client ID |
+| `DISCORD_CLIENT_SECRET` | Dashboard | Discord OAuth2 application client secret |
+| `NEXTAUTH_SECRET` | Dashboard | Secret used by NextAuth to sign and encrypt session data |
+| `NEXTAUTH_URL` | Dashboard | Public dashboard URL used by NextAuth callbacks |
+| `GUILD_ID` | Dashboard | Discord guild ID used for staff role verification |
 
----
+## Bot Commands
 
-### Main Bot — prefix `+`
+### Rank Bot (prefix: `.`)
 
-#### Verification *(staff only)*
+| Command | Description | Permission |
+| --- | --- | --- |
+| `.rank [user]` | Show a rank card with message XP, level, server rank, and voice XP | Everyone |
+| `.lb` | Show the paginated XP leaderboard | Everyone |
+| `.daily`, `.claim` | Claim a daily XP reward | Everyone |
+| `.givexp <user> <amount>` | Add XP to a member | Owner |
+| `.resetxp <user>` | Reset a member's XP after confirmation | Owner |
+| `.help`, `.rankhelp` | Show rank bot help | Everyone |
 
-| Command | Description |
-|---------|-------------|
-| `+vb <user>` | Verify member as Boy (assigns Boy + Male roles) |
-| `+vg <user>` | Verify member as Girl (assigns Girl + Female roles) |
-| `+sas <user>` | Add member to the sas watchlist |
-| `+unsas <user>` | Remove member from the sas watchlist |
-| `+saslist` | Display the current sas watchlist |
-| `+lbvb` | Top 10 members by verification count |
+### Main Bot (prefix: `!`)
 
-#### Moderation *(staff only)*
+#### Verification
 
-| Command | Description |
-|---------|-------------|
-| `+jail <user> [reason]` | Jail a member — strips all roles, saves a snapshot |
-| `+unjail <user>` | Release from jail and restore role snapshot |
-| `+jailcase <user>` | View a member's active jail case |
-| `+lbj` | Top 10 staff members by jail count |
-| `+warn <user> [reason]` | Warn a member (3 warns → mute; 4+ → auto-kick) |
-| `+unwarn <user>` | Remove one warn from a member |
-| `+warns <user>` | View full warn history for a member |
-| `+timeout <user> <duration>` | Timeout a member |
-| `+ms7 [1–100]` | Bulk-delete messages in current channel |
+| Command | Description | Permission |
+| --- | --- | --- |
+| `!vb <user>` | Verify a member as boy | Staff / Verification |
+| `!vg <user>` | Verify a member as girl | Staff / Verification |
+| `!sas <user>` | Mark a member as SAS/suspect | Staff / Verification |
+| `!unsas <user>` | Remove SAS/suspect status | Staff / Verification |
+| `!saslist` | Show the SAS/suspect list | Everyone |
+| `!lbvb` | Show the verification leaderboard | Everyone |
 
-#### Voice *(staff only where noted)*
+#### Moderation
 
-| Command | Description |
-|---------|-------------|
-| `+join` | Display your current voice channel |
-| `+vc` | Server statistics (members, online, in voice, channels, roles, boosts) |
-| `+aji <user> [channel]` *(staff)* | Move a member to a voice channel |
-| `+vkick <user>` *(staff)* | Disconnect a member from voice |
-| `+ot` | Move yourself to the One Tap 1 channel |
+| Command | Description | Permission |
+| --- | --- | --- |
+| `!jail <user> [reason]` | Jail a member and save role state | Staff |
+| `!unjail <user> [g]` | Release a jailed member | Staff |
+| `!jailcase <user>` | Show the active jail case for a member | Everyone |
+| `!warn <user> [reason]` | Warn a member and update warn roles | Staff |
+| `!unwarn <user>` | Remove the latest warning | Staff |
+| `!warns <user>` | Show warning history | Everyone |
+| `!timeout <user> <duration> [reason]` | Apply a Discord timeout | Staff |
+| `!ms7 [count]` | Bulk-delete messages after confirmation | Staff |
+| `!modlogs <user>`, `!ml <user>` | Show paginated moderation history | Admin |
+| `!lbj` | Show the jail leaderboard | Everyone |
+
+#### Voice
+
+| Command | Description | Permission |
+| --- | --- | --- |
+| `!join` | Show the caller's current voice channel | Everyone |
+| `!vc` | Show server voice and member statistics | Everyone |
+| `!aji <user> [channel]` | Move a member to a voice channel | Staff |
+| `!vkick <user>` | Disconnect a member from voice | Staff |
+| `!ot` | Move yourself to the One Tap voice channel | Everyone |
 
 #### Info
 
-| Command | Description |
-|---------|-------------|
-| `+user [user]` | User info: username, ID, join date, roles |
-| `+staff [user]` | Staff stats: verifications, jails, roles |
-| `+a [user]` | Display avatar |
-| `+b [user]` | Display banner |
-| `+myinvites` | List your active server invites |
-| `+inviteowner <code>` | Look up invite code details |
+| Command | Description | Permission |
+| --- | --- | --- |
+| `!a [user]` | Show a member avatar | Everyone |
+| `!b [user]` | Show a member banner | Everyone |
+| `!user [user]` | Show member profile information | Everyone |
+| `!staff [user]` | Show staff statistics | Everyone |
+| `!myinvites` | Show your active server invites | Everyone |
+| `!inviteowner <code>` | Look up the owner of an invite code | Everyone |
 
-#### Games *(30-minute cooldown per channel)*
+#### Games
 
-Pings the corresponding game role to find players. Supported games:
+Game commands ping their configured game role and use a 30-minute cooldown per channel.
 
-`+pes` · `+lol` · `+valo` / `+valorant` · `+ff` / `+freefire` · `+mc` / `+minecraft` · `+cs` · `+pubg` · `+gta` · `+cod` · `+fortnite` · `+roblox` · `+among` / `+amongus` · `+codenames` · `+plato` · `+stumble` / `+stumbleguys` · `+brawl` / `+brawlhalla` · `+parchisi` · `+fifa` · `+monopoly` · `+bloodstrike` · `+chess`
-
-#### General
-
-| Command | Description |
-|---------|-------------|
-| `+help` | Interactive help panel with category buttons; DM export option |
-
----
-
-## Tech Stack
-
-| Technology | Purpose |
-|------------|---------|
-| [Node.js](https://nodejs.org/) | Runtime |
-| [discord.js v14](https://discord.js.org/) | Discord API wrapper |
-| [@napi-rs/canvas](https://github.com/Brooooooklyn/canvas) | Rank card image generation |
-| `fs` / `path` | Atomic JSON persistence, file logging |
-
----
+| Command | Description | Permission |
+| --- | --- | --- |
+| `!pes` | Ping the PES role | Everyone |
+| `!among`, `!amongus` | Ping the Among Us role | Everyone |
+| `!ff`, `!freefire` | Ping the Free Fire role | Everyone |
+| `!codenames` | Ping the Codenames role | Everyone |
+| `!lol` | Ping the League of Legends role | Everyone |
+| `!valo`, `!valorant` | Ping the Valorant role | Everyone |
+| `!plato` | Ping the Plato role | Everyone |
+| `!mc`, `!minecraft` | Ping the Minecraft role | Everyone |
+| `!stumble`, `!stumbleguys` | Ping the Stumble Guys role | Everyone |
+| `!brawl`, `!brawlhalla` | Ping the Brawlhalla role | Everyone |
+| `!cs` | Ping the CS role | Everyone |
+| `!roblox` | Ping the Roblox role | Everyone |
+| `!pubg` | Ping the PUBG role | Everyone |
+| `!parchisi` | Ping the Parchisi role | Everyone |
+| `!fifa` | Ping the FIFA role | Everyone |
+| `!gta` | Ping the GTA role | Everyone |
+| `!cod` | Ping the Call of Duty role | Everyone |
+| `!fortnite` | Ping the Fortnite role | Everyone |
+| `!monopoly` | Ping the Monopoly role | Everyone |
+| `!bloodstrike` | Ping the Blood Strike role | Everyone |
+| `!chess` | Ping the Chess role | Everyone |
 
 ## Deployment
 
-### Render
-
-Both bots are deployed as separate **Web Services** on [Render](https://render.com).
-
-1. Create a new Web Service for each bot.
-2. Set **Environment** to `Node`.
-3. Set **Start Command**:
-   - Main bot: `node main_bot.js`
-   - Rank bot: `node rank_bot.js`
-4. Add `MAIN_TOKEN` / `RANK_TOKEN` as environment variables in the Render dashboard.
-
-Each bot starts an HTTP server on its assigned port. Render uses this to verify the service is healthy.
-
-### UptimeRobot
-
-Render free-tier services sleep after inactivity. Use [UptimeRobot](https://uptimerobot.com) to keep both bots alive:
-
-1. Add a new **HTTP(s)** monitor for each bot's Render URL.
-2. Set the check interval to **5 minutes**.
-3. UptimeRobot's regular pings prevent the services from sleeping.
-
----
+- Bots: Railway, with two services pointing to the same repository.
+- Rank Bot service start command: `npm run start:rank`.
+- Main Bot service start command: `npm run start:main`.
+- Dashboard: Vercel, connected to GitHub with the dashboard environment variables configured.
+- Auto-deploys run when changes are pushed to the `main` branch.
 
 ## License
 
-Private — for use within the FAWDA community server.
+MIT
