@@ -1,14 +1,14 @@
 const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
 const { getMember, updateMember } = require('../../../utils/mainData');
-const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
+const { ft, errEmbed, hasJailPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'unjail',
     execute: async (msg, args, client) => {
         const { guild, member } = msg;
-        if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
+        if (!hasJailPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const target   = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
         const isGirl   = args[1]?.toLowerCase() === 'g';
@@ -34,7 +34,7 @@ module.exports = {
             )
             .setFooter(ft(client)).setTimestamp();
         await msg.reply({ embeds: [e] });
-        const logCh = await guild.channels.fetch(LOG_CHANNELS.JAIL).catch(() => null);
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.UNJAIL).catch(() => null);
         if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[UnjailLog]', e.message));
     },
 };

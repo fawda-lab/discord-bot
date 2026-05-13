@@ -17,7 +17,7 @@ const path = require('path');
 const connectDB = require('./utils/db');
 const cooldowns = require('./utils/cooldownManager');
 const antiSpam  = require('./utils/antiSpam');
-const { TOKEN, PREFIX, RAYSS_ID } = require('./utils/mainConstants');
+const { TOKEN, PREFIX, RAYSS_ID, C, LOG_CHANNELS } = require('./utils/mainConstants');
 const { HELP_PANELS, buildAllCommandsDm } = require('./utils/helpPanels');
 
 // ─── Client ───────────────────────────────────────────────────────────────────
@@ -28,6 +28,7 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.GuildInvites,
         GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildModeration,
         GatewayIntentBits.MessageContent,
     ],
 });
@@ -117,6 +118,48 @@ client.on('messageCreate', async (msg) => {
         );
         msg.reply('❌ An error occurred.').catch(e => log.debug('[DEBUG]', e.message));
     }
+});
+
+// ─── Ban / Unban logs ─────────────────────────────────────────────────────────
+const { EmbedBuilder } = require('discord.js');
+
+client.on('guildBanAdd', async (ban) => {
+    try {
+        const { guild, user, reason } = ban;
+        const executor = await guild.fetchAuditLogs({ type: 22, limit: 1 })
+            .then(a => a.entries.first()?.executor).catch(() => null);
+        const e = new EmbedBuilder()
+            .setTitle('🔨  Member Banned')
+            .setColor(0xED4245)
+            .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+            .addFields(
+                { name: '👤 User',    value: `${user.tag} (${user.id})`, inline: true  },
+                { name: '🛡️ By',     value: executor ? `${executor.tag}` : 'Unknown',  inline: true  },
+                { name: '📝 Reason', value: reason ?? 'No reason provided',             inline: false },
+            )
+            .setTimestamp();
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.BAN).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[BanLog]', e.message));
+    } catch (e) { log.error('[guildBanAdd]', e.message); }
+});
+
+client.on('guildBanRemove', async (ban) => {
+    try {
+        const { guild, user } = ban;
+        const executor = await guild.fetchAuditLogs({ type: 23, limit: 1 })
+            .then(a => a.entries.first()?.executor).catch(() => null);
+        const e = new EmbedBuilder()
+            .setTitle('✅  Member Unbanned')
+            .setColor(0x57F287)
+            .setThumbnail(user.displayAvatarURL({ dynamic: true }))
+            .addFields(
+                { name: '👤 User', value: `${user.tag} (${user.id})`, inline: true },
+                { name: '🛡️ By',  value: executor ? `${executor.tag}` : 'Unknown',  inline: true },
+            )
+            .setTimestamp();
+        const logCh = await guild.channels.fetch(LOG_CHANNELS.UNBAN).catch(() => null);
+        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[UnbanLog]', e.message));
+    } catch (e) { log.error('[guildBanRemove]', e.message); }
 });
 
 // ─── Graceful shutdown ────────────────────────────────────────────────────────

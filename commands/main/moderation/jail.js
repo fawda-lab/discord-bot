@@ -2,14 +2,14 @@ const { EmbedBuilder } = require('discord.js');
 const log = require('../../../logger')('MainBot');
 const { updateMember } = require('../../../utils/mainData');
 const { canModerate } = require('../../../utils/permissions');
-const { ft, errEmbed, hasStaffPerms, resolveUser } = require('../../../utils/mainHelpers');
+const { ft, errEmbed, hasJailPerms, resolveUser } = require('../../../utils/mainHelpers');
 const { C, ROLES, LOG_CHANNELS } = require('../../../utils/mainConstants');
 
 module.exports = {
     name: 'jail',
     execute: async (msg, args, client) => {
         const { guild, member } = msg;
-        if (!hasStaffPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
+        if (!hasJailPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const target = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
         if (!canModerate(member, target)) return msg.reply({ embeds: [errEmbed('You cannot moderate someone with an equal or higher role.')] });

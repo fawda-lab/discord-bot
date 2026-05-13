@@ -1,5 +1,5 @@
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const { C, ROLES } = require('./mainConstants');
+const { C, ROLES, JAILER_ROLES } = require('./mainConstants');
 
 function ft(client) {
     return { text: 'FAWDA Bot', iconURL: client.user.displayAvatarURL() };
@@ -29,6 +29,11 @@ function hasStaffPerms(member) {
     return member.permissions.has(PermissionFlagsBits.ManageMessages);
 }
 
+function hasJailPerms(member) {
+    if (member.permissions.has(PermissionFlagsBits.Administrator)) return true;
+    return JAILER_ROLES.some(id => member.roles.cache.has(id));
+}
+
 function hasVerifPerms(member) {
     if (member.permissions.has(PermissionFlagsBits.Administrator)) return true;
     if (ROLES.STAFF && member.roles.cache.has(ROLES.STAFF)) return true;
@@ -42,4 +47,4 @@ async function resolveUser(guild, raw) {
     return guild.members.fetch(id).catch(() => null);
 }
 
-module.exports = { ft, errEmbed, warnBar, warnColor, rankMedal, hasStaffPerms, hasVerifPerms, resolveUser };
+module.exports = { ft, errEmbed, warnBar, warnColor, rankMedal, hasStaffPerms, hasJailPerms, hasVerifPerms, resolveUser };
