@@ -25,6 +25,12 @@ const timeoutLogSchema = new Schema({
     duration: { type: String, required: true },
 }, { _id: false });
 
+const sasSchema = new Schema({
+    active: { type: Boolean, default: false },
+    by:     { type: String,  default: null  },
+    at:     { type: String,  default: null  },
+}, { _id: false });
+
 const memberSchema = new Schema({
     _id:        { type: String, required: true },
     xp:             { type: Number, default: 0 },
@@ -33,7 +39,7 @@ const memberSchema = new Schema({
     lastDailyClaim: { type: Number, default: 0 },
     warns:      { type: [warnSchema], default: [] },
     jail:       { type: jailSchema,  default: null },
-    isSas:      { type: Boolean, default: false },
+    sas:        { type: sasSchema,   default: null },
     staffStats: { type: staffStatsSchema, default: () => ({ verificationsDone: 0, jailsDone: 0 }) },
     timeouts:   { type: [timeoutLogSchema], default: [] },
 });

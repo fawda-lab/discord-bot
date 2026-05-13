@@ -10,7 +10,7 @@ module.exports = {
         if (!hasVerifPerms(member)) return msg.reply({ embeds: [errEmbed('No permission.')] });
         const target = await resolveUser(guild, args[0]);
         if (!target) return msg.reply({ embeds: [errEmbed('Member not found.')] });
-        await updateMember(target.id, { $set: { isSas: true } });
+        await updateMember(target.id, { $set: { sas: { active: true, by: member.id, at: new Date().toISOString() } } });
         const e = new EmbedBuilder().setColor(C.WARN)
             .setDescription(`📋  ${target} added to the **Sas List**.`)
             .setFooter(ft(client));
