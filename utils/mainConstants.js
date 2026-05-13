@@ -65,6 +65,22 @@ const LOG_CHANNELS = {
     ALL:     '1487865959606784031',
 };
 
+const OWNER_ROLES = [
+    '1487864551226478674',
+    '1487864552275312722',
+];
+
+const TEAMS = [
+    { name: 'Verification',    headRoles: ['1487864604699660450'],                                      teamRole: '1487864605660151849' },
+    { name: 'Need Help',       headRoles: ['1487864607765823640'],                                      teamRole: '1487864609137496124' },
+    { name: 'Moderation',      headRoles: ['1487864579596877874'],                                      teamRole: '1487864584294498314' },
+    { name: 'Moderation Girl', headRoles: ['1487864579596877874', '1487864583606767766'],               teamRole: '1487864585317912647' },
+    { name: 'Girls Staff',     headRoles: ['1487864583606767766'],                                      teamRole: '1487864598941007923' },
+    { name: 'Assistant Girls', headRoles: ['1487864583606767766'],                                      teamRole: '1487864591198195722' },
+    { name: 'Staff Team',      headRoles: ['1487864575591452825'],                                      teamRole: '1487864597795966976' },
+    { name: 'Trial Staff',     headRoles: ['1487864584294498314'],                                      teamRole: '1487864601688412323' },
+];
+
 module.exports = {
     TOKEN:         process.env.MAIN_TOKEN,
     PREFIX:        '!',
@@ -72,5 +88,5 @@ module.exports = {
     RAYSS_ID:      '1430652121375838254',
     ONE_TAP_1:     '1487866287278260234',
     GAME_COOLDOWN: 30 * 60 * 1000,
-    C, ROLES, GAME_ROLES, JAILER_ROLES, LOG_CHANNELS,
+    C, ROLES, GAME_ROLES, JAILER_ROLES, LOG_CHANNELS, OWNER_ROLES, TEAMS,
 };
