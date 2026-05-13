@@ -128,6 +128,7 @@ client.on('guildBanAdd', async (ban) => {
         const { guild, user, reason } = ban;
         const executor = await guild.fetchAuditLogs({ type: 22, limit: 1 })
             .then(a => a.entries.first()?.executor).catch(() => null);
+        if (executor?.id === client.user.id) return;
         const e = new EmbedBuilder()
             .setTitle('🔨  Member Banned')
             .setColor(0xED4245)
