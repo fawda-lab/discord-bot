@@ -20,21 +20,49 @@ module.exports = {
         });
         const count = doc.warns.length;
 
-        const warnRoles = [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN];
-        for (const roleId of warnRoles) {
+        // Always clear existing warn roles before assigning the new one
+        for (const roleId of [ROLES.FIRST_WARN, ROLES.SECOND_WARN, ROLES.LAST_WARN]) {
             const r = guild.roles.cache.get(roleId);
-            if (r && target.roles.cache.has(roleId)) await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
+            if (r && target.roles.cache.has(roleId))
+                await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
         }
-        const warnRoleMap = { 1: ROLES.FIRST_WARN, 2: ROLES.SECOND_WARN, 3: ROLES.LAST_WARN };
-        if (warnRoleMap[Math.min(count, 3)]) {
-            const r = guild.roles.cache.get(warnRoleMap[Math.min(count, 3)]);
+
+        if (count === 1) {
+            const r = guild.roles.cache.get(ROLES.FIRST_WARN);
             if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
+        } else if (count === 2) {
+            const r = guild.roles.cache.get(ROLES.SECOND_WARN);
+            if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
+        } else if (count === 3) {
+            const r = guild.roles.cache.get(ROLES.LAST_WARN);
+            if (r) await target.roles.add(r).catch(e => log.debug('[DEBUG]', e.message));
+        } else {
+            // 4th warn → auto-jail: snapshot roles, strip all, assign JAIL, persist
+            const rolesSnapshot = target.roles.cache
+                .filter(r => r.id !== guild.roles.everyone.id)
+                .map(r => r.id);
+
+            const jailRole = guild.roles.cache.get(ROLES.JAIL);
+            const rolesToStrip = target.roles.cache.filter(
+                r => r.id !== guild.roles.everyone.id && r.id !== ROLES.JAIL
+            );
+            for (const [, r] of rolesToStrip) {
+                await target.roles.remove(r).catch(e => log.debug('[DEBUG]', e.message));
+                await new Promise(res => setTimeout(res, 300));
+            }
+            if (jailRole) await target.roles.add(jailRole).catch(e => log.debug('[DEBUG]', e.message));
+
+            await updateMember(target.id, {
+                $set: {
+                    jail: {
+                        reason:        `Auto-jail: ${count} warns — last: ${reason}`,
+                        jailedBy:      client.user.id,
+                        timestamp:     new Date().toISOString(),
+                        rolesSnapshot,
+                    },
+                },
+            });
         }
-        if (count === 3) {
-            const muted = guild.roles.cache.get(ROLES.MUTED);
-            if (muted) await target.roles.add(muted).catch(e => log.debug('[DEBUG]', e.message));
-        }
-        if (count >= 4) await target.kick(`Auto-kick: ${count} warns`).catch(e => log.debug('[DEBUG]', e.message));
 
         const e = new EmbedBuilder()
             .setAuthor({ name: member.displayName, iconURL: member.user.displayAvatarURL() })
@@ -42,17 +70,27 @@ module.exports = {
             .setColor(warnColor(count))
             .setThumbnail(target.user.displayAvatarURL({ dynamic: true }))
             .addFields(
-                { name: '👤 Member', value: `${target}`,       inline: true  },
-                { name: '📊 Warns',  value: warnBar(count),     inline: true  },
-                { name: '🛡️ By',    value: `${member}`,        inline: true  },
-                { name: '📝 Reason', value: reason,             inline: false },
+                { name: '👤 Member', value: `${target}`,    inline: true  },
+                { name: '📊 Warns',  value: warnBar(count), inline: true  },
+                { name: '🛡️ By',    value: `${member}`,    inline: true  },
+                { name: '📝 Reason', value: reason,          inline: false },
             )
             .setFooter(ft(client)).setTimestamp();
+
         await msg.reply({ embeds: [e] });
-        await target.send(
-            `⚠️ You received a **warn** in **${guild.name}**.\n📝 Reason: ${reason}\n📊 Total: ${warnBar(count)} (${count}/3)`
-        ).catch(e => log.debug('[DEBUG]', e.message));
-        const logCh = await guild.channels.fetch(LOG_CHANNELS.WARN).catch(() => null);
-        if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[WarnLog]', e.message));
+
+        if (count >= 4) {
+            await target.send(
+                `🔒 You have been **auto-jailed** in **${guild.name}** after accumulating ${count} warns.\n📝 Last reason: ${reason}`
+            ).catch(e => log.debug('[DEBUG]', e.message));
+            const logCh = await guild.channels.fetch(LOG_CHANNELS.JAIL).catch(() => null);
+            if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[JailLog]', e.message));
+        } else {
+            await target.send(
+                `⚠️ You received a **warn** in **${guild.name}**.\n📝 Reason: ${reason}\n📊 Total: ${warnBar(count)} (${count}/3)`
+            ).catch(e => log.debug('[DEBUG]', e.message));
+            const logCh = await guild.channels.fetch(LOG_CHANNELS.WARN).catch(() => null);
+            if (logCh) await logCh.send({ embeds: [e] }).catch(e => log.error('[WarnLog]', e.message));
+        }
     },
 };
