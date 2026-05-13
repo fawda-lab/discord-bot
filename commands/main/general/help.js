@@ -14,6 +14,10 @@ module.exports = {
             .setThumbnail(guild.iconURL({ dynamic: true }))
             .setFooter({ text: `Requested by ${member.displayName}`, iconURL: member.user.displayAvatarURL() })
             .setTimestamp();
-        return msg.reply({ embeds: [e], components: buildHelpRows() });
+        const sentMessage = await msg.reply({ embeds: [e], components: buildHelpRows() });
+        const collector = sentMessage.createMessageComponentCollector({ time: 60000 });
+        collector.on('end', () => {
+            sentMessage.delete().catch(() => null);
+        });
     },
 };
