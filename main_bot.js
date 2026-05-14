@@ -50,6 +50,8 @@ function loadCommands(dir) {
     }
 }
 loadCommands(path.join(__dirname, 'commands', 'main'));
+const loadedCommands = [...new Set([...client.commands.values()].map(command => command.name))].sort();
+log.info(`Loaded ${loadedCommands.length} main commands: ${loadedCommands.join(', ')}`);
 
 // ─── Events ───────────────────────────────────────────────────────────────────
 client.on('ready',     () => log.info(`Logged in as ${client.user.tag}`));
