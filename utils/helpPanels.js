@@ -45,7 +45,9 @@ const HELP_PANELS = {
         .setDescription(
             '`!vc` — Server statistics\n`!join` — Bot joins your voice channel\n' +
             '`!aji [@user] [#channel]` — Move member (no channel = your vc)\n' +
-            '`!vkick [@user]` — Kick from voice\n`!ot` — Move yourself to One Tap 1\n`!ms7 [1-100]` — Bulk delete messages'
+            '`!vkick [@user]` — Kick from voice\n`!vmuteall [time] [reason]` — Server-mute your voice channel\n' +
+            '`!muteall` — Alias for `!vmuteall`\n`!vunmuteall [reason]` — Server-unmute your voice channel\n' +
+            '`!ot` — Move yourself to One Tap 1\n`!ms7 [1-100]` — Bulk delete messages'
         ).setFooter({ text: '!ot is open to everyone' }),
     help_info: () => new EmbedBuilder().setTitle('📋  Info Commands').setColor(C.INFO)
         .setDescription(
@@ -68,7 +70,7 @@ function buildAllCommandsDm(guild) {
         `**JAIL**\n!jail @user [reason] | !unjail @user | !unjail @user g | !jailcase @user | !lbj\n\n` +
         `**WARN**\n!warn @user [reason] | !unwarn @user | !warns @user\n\n` +
         `**TIMEOUT**\n!timeout @user [10m] [reason]\n\n` +
-        `**VOICE**\n!join | !vc | !aji @user [#channel] | !vkick @user | !ot | !ms7 [n]\n\n` +
+        `**VOICE**\n!join | !vc | !aji @user [#channel] | !vkick @user | !vmuteall [time] [reason] | !muteall | !vunmuteall [reason] | !ot | !ms7 [n]\n\n` +
         `**INFO**\n!a @user | !b @user | !user @user | !staff @user | !myinvites | !inviteowner [code]\n\n` +
         `**GAMES** (30min cooldown per channel)\n!pes !among !ff !codenames !lol !valo !plato !mc\n` +
         `!stumble !brawl !cs !roblox !pubg !parchisi !fifa !gta !cod !fortnite !monopoly !bloodstrike !chess`

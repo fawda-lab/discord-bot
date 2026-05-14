@@ -70,6 +70,23 @@ const OWNER_ROLES = [
     '1487864552275312722',
 ];
 
+const EVENT_ROLES = {
+    // TODO: Replace '0' with the Event Hoster role ID.
+    HOSTER:  '0',
+    MANAGER: '1487864606704668853',
+};
+
+const MODERATOR_OR_HIGHER_ROLES = [
+    '1487864584294498314', // Moderator
+    '1487864585317912647', // Moderator Girl
+    '1487864579596877874', // Head Of Moderator
+    '1487864577134952601', // Administrator
+    '1487864577864630465', // Administrator Girl
+    '1487864575591452825', // Head Of Admins
+    '1487864567525539961', // Community Manager
+    ...OWNER_ROLES,
+];
+
 const TEAMS = [
     { name: 'Verification',    headRoles: ['1487864604699660450'],                                      teamRole: '1487864605660151849' },
     { name: 'Need Help',       headRoles: ['1487864607765823640'],                                      teamRole: '1487864609137496124' },
@@ -88,5 +105,13 @@ module.exports = {
     RAYSS_ID:      '1430652121375838254',
     ONE_TAP_1:     '1487866287278260234',
     GAME_COOLDOWN: 30 * 60 * 1000,
-    C, ROLES, GAME_ROLES, JAILER_ROLES, LOG_CHANNELS, OWNER_ROLES, TEAMS,
+    C,
+    ROLES,
+    GAME_ROLES,
+    JAILER_ROLES,
+    LOG_CHANNELS,
+    OWNER_ROLES,
+    EVENT_ROLES,
+    MODERATOR_OR_HIGHER_ROLES,
+    TEAMS,
 };

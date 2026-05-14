@@ -1,5 +1,5 @@
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const { C, ROLES, JAILER_ROLES } = require('./mainConstants');
+const { C, ROLES, JAILER_ROLES, EVENT_ROLES, MODERATOR_OR_HIGHER_ROLES } = require('./mainConstants');
 
 function ft(client) {
     return { text: 'FAWDA Bot', iconURL: client.user.displayAvatarURL() };
@@ -34,6 +34,20 @@ function hasJailPerms(member) {
     return JAILER_ROLES.some(id => member.roles.cache.has(id));
 }
 
+function hasModeratorOrHigherPerms(member) {
+    if (member.permissions.has(PermissionFlagsBits.Administrator)) return true;
+    return MODERATOR_OR_HIGHER_ROLES.some(id => member.roles.cache.has(id));
+}
+
+function hasEventOrModeratorPerms(member) {
+    if (member.permissions.has(PermissionFlagsBits.Administrator)) return true;
+
+    const eventRoleIds = Object.values(EVENT_ROLES).filter(id => id && id !== '0');
+    if (eventRoleIds.some(id => member.roles.cache.has(id))) return true;
+
+    return MODERATOR_OR_HIGHER_ROLES.some(id => member.roles.cache.has(id));
+}
+
 function hasVerifPerms(member) {
     if (member.permissions.has(PermissionFlagsBits.Administrator)) return true;
     if (ROLES.STAFF && member.roles.cache.has(ROLES.STAFF)) return true;
@@ -47,4 +61,16 @@ async function resolveUser(guild, raw) {
     return guild.members.fetch(id).catch(() => null);
 }
 
-module.exports = { ft, errEmbed, warnBar, warnColor, rankMedal, hasStaffPerms, hasJailPerms, hasVerifPerms, resolveUser };
+module.exports = {
+    ft,
+    errEmbed,
+    warnBar,
+    warnColor,
+    rankMedal,
+    hasStaffPerms,
+    hasJailPerms,
+    hasEventOrModeratorPerms,
+    hasModeratorOrHigherPerms,
+    hasVerifPerms,
+    resolveUser,
+};
