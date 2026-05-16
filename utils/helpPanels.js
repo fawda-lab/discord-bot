@@ -39,7 +39,8 @@ const HELP_PANELS = {
         .setDescription(
             '`!timeout [@user] [durée] [raison]` — Timeout un membre\n\n' +
             '`s` secondes · `m` minutes · `h` heures · `d` jours\n' +
-            'Exemple : `!timeout @user 10m spam`\nMaximum : 28 jours'
+            'Exemple : `!timeout @user 10m spam`\nMaximum : 28 jours\n\n' +
+            '`!lockchat [reason]` — Lock the current chat\n`!unlockchat [reason]` — Unlock the current chat'
         ).setFooter({ text: 'Staff Team · Admin' }),
     help_voice: () => new EmbedBuilder().setTitle('🔊  Voice Commands').setColor(C.VOICE)
         .setDescription(
@@ -69,7 +70,7 @@ function buildAllCommandsDm(guild) {
         `**VERIFICATION**\n!vb @user | !vg @user | !sas @user | !unsas @user | !saslist | !lbvb\n\n` +
         `**JAIL**\n!jail @user [reason] | !unjail @user | !unjail @user g | !jailcase @user | !lbj\n\n` +
         `**WARN**\n!warn @user [reason] | !unwarn @user | !warns @user\n\n` +
-        `**TIMEOUT**\n!timeout @user [10m] [reason]\n\n` +
+        `**TIMEOUT / CHAT**\n!timeout @user [10m] [reason] | !lockchat [reason] | !unlockchat [reason]\n\n` +
         `**VOICE**\n!join | !vc | !aji @user [#channel] | !vkick @user | !vmuteall [time] [reason] | !muteall | !vunmuteall [reason] | !ot | !ms7 [n]\n\n` +
         `**INFO**\n!a @user | !b @user | !user @user | !staff @user | !myinvites | !inviteowner [code]\n\n` +
         `**GAMES** (30min cooldown per channel)\n!pes !among !ff !codenames !lol !valo !plato !mc\n` +
