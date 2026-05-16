@@ -1,5 +1,5 @@
 const { EmbedBuilder, PermissionFlagsBits } = require('discord.js');
-const { C, ROLES, JAILER_ROLES, EVENT_ROLES, MODERATOR_OR_HIGHER_ROLES } = require('./mainConstants');
+const { C, ROLES, JAILER_ROLES, EVENT_ROLES, CLAN_ROLES, MODERATOR_OR_HIGHER_ROLES } = require('./mainConstants');
 
 function ft(client) {
     return { text: 'FAWDA Bot', iconURL: client.user.displayAvatarURL() };
@@ -44,6 +44,9 @@ function hasEventOrModeratorPerms(member) {
 
     const eventRoleIds = Object.values(EVENT_ROLES).filter(id => id && id !== '0');
     if (eventRoleIds.some(id => member.roles.cache.has(id))) return true;
+
+    const clanRoleIds = Object.values(CLAN_ROLES).filter(id => id && id !== '0');
+    if (clanRoleIds.some(id => member.roles.cache.has(id))) return true;
 
     return MODERATOR_OR_HIGHER_ROLES.some(id => member.roles.cache.has(id));
 }

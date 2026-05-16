@@ -71,9 +71,12 @@ const OWNER_ROLES = [
 ];
 
 const EVENT_ROLES = {
-    // TODO: Replace '0' with the Event Hoster role ID.
-    HOSTER:  '0',
+    HOSTER:  '1487864611142373709',
     MANAGER: '1487864606704668853',
+};
+
+const CLAN_ROLES = {
+    LEADER: '1489995715240525845',
 };
 
 const MODERATOR_OR_HIGHER_ROLES = [
@@ -112,6 +115,7 @@ module.exports = {
     LOG_CHANNELS,
     OWNER_ROLES,
     EVENT_ROLES,
+    CLAN_ROLES,
     MODERATOR_OR_HIGHER_ROLES,
     TEAMS,
 };
