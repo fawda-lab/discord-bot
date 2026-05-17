@@ -94,6 +94,10 @@ client.on('messageCreate', async (msg) => {
         await msg.reply({ files: [RAYSS_IMG] }).catch(e => log.debug('[DEBUG]', e.message));
     }
 
+    if (/\blwazir\b/i.test(msg.content)) {
+        await msg.reply('# JAMAAAALL ').catch(e => log.debug('[DEBUG]', e.message));
+    }
+
     if (!msg.content.startsWith(PREFIX)) return;
     const args    = msg.content.slice(PREFIX.length).trim().split(/\s+/);
     const cmd     = args.shift().toLowerCase();
